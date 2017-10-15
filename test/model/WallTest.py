@@ -10,18 +10,18 @@ class WallTest(unittest.TestCase):
         self.wall = Wall.Wall()
         
     def test_removedInit(self):
-        self.assertFalse(self.wall.removed)
+        self.assertFalse(self.wall.removed, 'Wall is removed.')
         
     def test_remove(self):
         self.wall.remove()
-        self.assertTrue(self.wall.removed)
+        self.assertTrue(self.wall.removed, 'Wall is not removed.')
         
     def test_create(self):
         self.wall.create()
-        self.assertFalse(self.wall.removed)
+        self.assertFalse(self.wall.removed, 'Wall is removed.')
         
     def test_isRemoved(self):
-        self.assertEqual(self.wall.isRemoved(), self.wall.removed)
+        self.assertEqual(self.wall.isRemoved(), self.wall.removed, 'isRemoved returns wrong value.')
     
 if __name__ == '__main__':
     unittest.main()

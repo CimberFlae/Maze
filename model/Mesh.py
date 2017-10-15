@@ -52,7 +52,7 @@ class Mesh:
             self.sets[toSet].append(self.sets[fromSet][i])
             self.sets[fromSet][i].setSet(toSet)
         self.sets[fromSet][:] = []
-
+    #TODO: Rename to hasMultipleSets after Refactoring tool has been installed (Rope)
     def checkSets(self):#returns True if Maze has more than one set
         for i in range (len(self.sets)):
             if (len(self.sets[i]) == self.size*self.size):
@@ -76,7 +76,7 @@ class Mesh:
     def isBorder(self, cell, wall):
         return ((cell.x == 0) & (wall == cell.topWall)) | ((cell.x == self.size-1) & (wall == cell.bottomWall)) | \
                 ((cell.y == 0) & (wall == cell.leftWall)) | ((cell.y == self.size-1) & (wall == cell.rightWall))
-
+    #TODO: rename to hasNeighbourInDifferentSet
     def hasLegitNeighbour(self, cell):#checks if cell has a neighbour which is not in the same set
         x = cell.getX()
         y = cell.getY()
