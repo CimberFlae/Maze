@@ -1,5 +1,7 @@
 import os
-os.chdir(os.path.join(os.path.curdir,  '..'))
+os.chdir(os.path.join(os.path.curdir,  '..')) # This line needs to be present if one wants to run the file inside Eric
+import sys
+sys.path.insert(0, '') # This line needs to be present if one wants to run the file from the shell
 import generators.KruskalGenerator as KruskalGenerator
 import generators.DepthFirstSearchGenerator as DepthFirstSearchGenerator
 import generators.PrimGenerator as PrimGenerator
@@ -12,7 +14,7 @@ import solvers.RandomMouseSolver as RandomMouseSolver
 
 class Test:
 
-    size = 5
+    size = 10
     drawer = ASCIIDrawer.ASCIIDrawer()
     print("testing the KruskalGenerator and RightWallFollowerSolver")
     generator = KruskalGenerator.KruskalGenerator()
