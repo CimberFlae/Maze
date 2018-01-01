@@ -99,3 +99,9 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# OSX File System
+.DS_Store
+
+# Eric6 Files
+.eric6project
