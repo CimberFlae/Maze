@@ -2,9 +2,7 @@ import unittest
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
-print(sys.path)
 import generators.BinaryTreeGenerator as BinaryTreeGenerator
-print(BinaryTreeGenerator)
 import AbstractBaseGeneratorTest
 
 class BinaryTreeGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest, unittest.TestCase):
