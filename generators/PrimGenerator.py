@@ -7,7 +7,7 @@ class PrimGenerator(Generator.Generator):
     def __init__(self):
         Generator.Generator.__init__(self)
 
-    def generateMaze(self, size, entry = True, exit = True):
+    def __generateMaze__(self, size, entry = True, exit = True):
         """implement Prim's Algorithm"""
         mesh = Mesh.Mesh(size)
         cell = mesh.chooseCell()
@@ -40,11 +40,6 @@ class PrimGenerator(Generator.Generator):
                     mesh.removeBottom(cell)
                     mesh.moveCell(neighbour.getSet(),cell.getSet())
                     queue.append(neighbour)
-            if (not mesh.hasLegitNeighbour(cell)):
+            if (not mesh.hasNeighbourInDifferentSet(cell)):
                 queue.remove(cell)
-        """create entrance and exit"""
-        if entry:
-            super(PrimGenerator, self).setRandomLeftEntrance(mesh)
-        if exit:
-            super(PrimGenerator, self).setRandomRightExit(mesh)
         return mesh

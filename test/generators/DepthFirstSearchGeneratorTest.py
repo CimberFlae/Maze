@@ -3,13 +3,14 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
 import generators.DepthFirstSearchGenerator as DepthFirstSearchGenerator
+import AbstractBaseGeneratorTest
 
-class BinaryTreeGeneratorTest(unittest.TestCase):
+class BinaryTreeGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest,  unittest.TestCase):
     
     def setUp(self):
         self.size = 5
         generator = DepthFirstSearchGenerator.DepthFirstSearchGenerator()
-        self.maze = generator.generateMaze(self.size)
+        self.maze = generator.generateRandomMaze(self.size)
     
     def test_entry(self):
         super(BinaryTreeGeneratorTest, self).test_entry()

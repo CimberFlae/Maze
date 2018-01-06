@@ -14,15 +14,13 @@ class AbstractBaseGeneratorTest(ABC, unittest.TestCase):
     def test_entry(self):
         entry = self.maze.getEntrance()
         self.assertIsNotNone(entry, 'Entry is None.')
-        self.assertEqual(entry.getX(), 0, 'Entry is not on the left side of the Maze.')
-        self.assertEqual(entry.getY(), 0, 'Entry is not on the top side of the Maze.')
+        self.assertTrue(entry.getX() == 0 or entry.getY() == 0, 'Entry is neither on the left nor on top side of the Maze')
         
     # check wether the maze has a valid exit point
     def test_exit(self):
         exit = self.maze.getExit()
         self.assertIsNotNone(exit, 'Exit is None.')
-        self.assertEqual(exit.getX(), self.size-1, 'Exit is not on the right side of the Maze.')
-        self.assertEqual(exit.getY(), self.size-1, 'Exit is not on the bottom side of the Maze.')
+        self.assertTrue(exit.getX() == self.size-1 or exit.getY() == self.size-1, 'Exit is neither on the right nor on the bottom side of the Maze')
         
     # check wether every cell in the maze has either the left wall or the top wall removed
     def test_cells(self):

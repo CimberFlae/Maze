@@ -1,10 +1,30 @@
+import random
+
 class Generator:
 
     def __init__(self):
-        print ("generating a Generator")
+        print ("generating a " + self.__class__.__name__)
 
-    def generateMaze(self, size, top = True, bottom = True, entry = True, exit = True):
+    def __generateMaze__(self, size, top = True, bottom = True, entry = True, exit = True):
         """Generate a Maze using a specific algorithm"""
+
+    def generateRandomMaze(self, size):
+        maze = self.__generateMaze__(size)
+        if random.getrandbits(1) == 0:
+            self.setRandomTopEntrance(maze)
+        else:
+            self.setRandomLeftEntrance(maze)
+        if random.getrandbits(1) == 0:
+            self.setRandomBottomExit(maze)
+        else:
+            self.setRandomRightExit(maze)
+        return maze
+    
+    def generateCustomMaze(self, size, x1, y1, x2, y2):
+        maze = self.__generateMaze__(size)
+        maze.setCustomOpening(x1, y1, True)
+        maze.setCustomOpening(x2, y2, True)
+        return maze
 
     def setStandardEntrance(self, maze, top):
         maze.clearEntrance()
@@ -12,35 +32,28 @@ class Generator:
             maze.setCustomOpening(0, 0, True)
         else:
             maze.setCustomOpening(0, 0, False)
-        return maze
 
     def setStandardExit(self, maze, bottom):
         maze.clearExit()
         if bottom:
-            maze.setCustomOpening(maze.getSize()-1, maze.getSize()-1, None, True)
+            maze.setCustomOpening(maze.getSize()-1, maze.getSize()-1, True)
         else:
-            maze.setCustomOpening(maze.getSize()-1, maze.getSize()-1, None, False)
-        return maze
+            maze.setCustomOpening(maze.getSize()-1, maze.getSize()-1, False)
     
     def setStandardEntryExit(self, maze, entry, exit, top, bottom):
         if entry:
             maze = self.setStandardEntrance(maze, top)
         if exit:
             maze = self.setStandardExit(maze, bottom)
-        return maze
 
-    def setRandomTopEntrance(self,maze):
+    def setRandomTopEntrance(self, maze):
         maze.setRandomTopEntrance()
-        return maze
 
-    def setRandomLeftEntrance(self,maze):
+    def setRandomLeftEntrance(self, maze):
         maze.setRandomLeftEntrance()
-        return maze
 
-    def setRandomBottomExit(self,maze):
+    def setRandomBottomExit(self, maze):
         maze.setRandomBottomExit()
-        return maze
 
-    def setRandomRightExit(self,maze):
+    def setRandomRightExit(self, maze):
         maze.setRandomRightExit()
-        return maze

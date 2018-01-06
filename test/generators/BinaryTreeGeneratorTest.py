@@ -10,7 +10,7 @@ class BinaryTreeGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTes
     def setUp(self):
         self.size = 5
         generator = BinaryTreeGenerator.BinaryTreeGenerator()
-        self.maze = generator.generateMaze(self.size)
+        self.maze = generator.generateRandomMaze(self.size)
     
     def test_entry(self):
         super(BinaryTreeGeneratorTest, self).test_entry()

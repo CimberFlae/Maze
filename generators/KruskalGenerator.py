@@ -6,10 +6,10 @@ class KruskalGenerator(Generator.Generator):
     def __init__(self):
         Generator.Generator.__init__(self)
 
-    def generateMaze(self, size, top = True, bottom = True, entry = True, exit = True):
+    def __generateMaze__(self, size, top = True, bottom = True, entry = True, exit = True):
         """implement Kruskal's Algorithm"""
         mesh = Mesh.Mesh(size)
-        while (mesh.checkSets()):
+        while (mesh.hasMultipleSets()):
             cell = mesh.chooseCell()
             wall = mesh.chooseWall(cell)
             if (wall == mesh.getLeft(cell)):
@@ -32,6 +32,4 @@ class KruskalGenerator(Generator.Generator):
                 if (mesh.getSet(neighbour) != mesh.getSet(cell)):
                     mesh.removeBottom(cell)
                     mesh.moveCell(neighbour.getSet(),cell.getSet())
-        """create entrance and exit"""
-        super(KruskalGenerator, self).setStandardEntryExit(mesh, entry, exit, top, bottom)
         return mesh

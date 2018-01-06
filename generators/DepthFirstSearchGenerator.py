@@ -6,13 +6,13 @@ class DepthFirstSearchGenerator(Generator.Generator):
     def __init__(self):
         Generator.Generator.__init__(self)
 
-    def generateMaze(self, size, entry = True, exit = True):
+    def __generateMaze__(self, size, entry = True, exit = True):
         """implement Depth-first Search Algorithm"""
         mesh = Mesh.Mesh(size)
         cell = mesh.chooseCell()
         stack = []
-        while (mesh.checkSets()):
-            if (mesh.hasLegitNeighbour(cell)):
+        while (mesh.hasMultipleSets()):
+            if (mesh.hasNeighbourInDifferentSet(cell)):
                 wall = mesh.chooseWall(cell)
                 if (wall == mesh.getLeft(cell)):
                     neighbour = mesh.getLeftNeighbour(cell)
@@ -44,9 +44,4 @@ class DepthFirstSearchGenerator(Generator.Generator):
                         cell = neighbour
             else:
                 cell = stack.pop()
-        """create entrance and exit"""
-        if entry:
-            super(DepthFirstSearchGenerator, self).setRandomTopEntrance(mesh)
-        if exit:
-            super(DepthFirstSearchGenerator, self).setRandomBottomExit(mesh)
         return mesh

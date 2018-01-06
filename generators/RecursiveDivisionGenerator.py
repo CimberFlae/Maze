@@ -7,7 +7,7 @@ class RecursiveDivisionGenerator(Generator.Generator):
     def __init__(self):
         Generator.Generator.__init__(self)
 
-    def generateMaze(self,size, entry = True, exit = True):
+    def __generateMaze__(self,size, entry = True, exit = True):
         """implement Recursive Division Algorithm"""
         mesh = Mesh.Mesh(size,True)
         for i in range(0,size):#create boundary walls
@@ -16,10 +16,6 @@ class RecursiveDivisionGenerator(Generator.Generator):
             mesh.createTop(mesh.getCell(0,i))
             mesh.createBottom(mesh.getCell(size-1,i))
         self.divideAndGenerate(mesh,0, size-1, 0, size-1)
-        if entry:
-            super(RecursiveDivisionGenerator, self).setRandomLeftEntrance(mesh)
-        if exit:
-            super(RecursiveDivisionGenerator, self).setRandomRightExit(mesh)
         return mesh
 
     def divideAndGenerate(self,mesh,leftBorder,rightBorder,topBorder,bottomBorder):

@@ -7,7 +7,7 @@ class BinaryTreeGenerator(Generator.Generator):
     def __init__(self):
         Generator.Generator.__init__(self)
 
-    def generateMaze(self, size, top = True, bottom = True, entry = True, exit = True):
+    def __generateMaze__(self, size, top = True, bottom = True, entry = True, exit = True):
         """implement Binary Tree Algorithm"""
         mesh = Mesh.Mesh(size)
         for i in range(1,size):
@@ -19,6 +19,4 @@ class BinaryTreeGenerator(Generator.Generator):
                     mesh.removeLeft(mesh.getCell(i,j))
                 else:
                     mesh.removeTop(mesh.getCell(i,j))
-        """create entrance and exit"""
-        mesh = super(BinaryTreeGenerator, self).setStandardEntryExit(mesh, entry, exit, top, bottom)
         return mesh

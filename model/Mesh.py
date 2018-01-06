@@ -7,11 +7,11 @@ class Mesh:
         self.matrix = []
         self.sets = []
         k = 0
-        for i in range (0,size):
+        for i in range (0, size):
             matrixrow = []
-            for j in range (0,size):
+            for j in range (0, size):
                 setrow = []
-                cell = Cell.Cell(i,j,k,wallsRemoved)
+                cell = Cell.Cell(i, j, k, wallsRemoved)
                 setrow.append(cell)
                 self.sets.append(setrow)
                 k += 1
@@ -22,11 +22,11 @@ class Mesh:
         self.exit = None
 
     def synchronizeWalls(self):
-        for i in range (0,self.size-1):#synchronize all horizontal walls
-            for j in range (0,self.size):
+        for i in range (0, self.size-1):#synchronize all horizontal walls
+            for j in range (0, self.size):
                 self.matrix[i][j].setBottom(self.matrix[i+1][j].getTop())
-        for i in range (0,self.size):#synchronize all vertical walls
-            for j in range (0,self.size-1):
+        for i in range (0, self.size):#synchronize all vertical walls
+            for j in range (0, self.size-1):
                 self.matrix[i][j].setRight(self.matrix[i][j+1].getLeft())
 
     def getSize(self):
@@ -44,16 +44,18 @@ class Mesh:
     def getTopNeighbour(self,cell):
         return self.matrix[cell.getX()-1][cell.getY()]
 
-    def getBottomNeighbour(self,cell):
+    def getBottomNeighbour(self, cell):
         return self.matrix[cell.getX()+1][cell.getY()]
 
-    def moveCell(self,fromSet,toSet):
-        for i in range (0,len(self.sets[fromSet])):
+    def moveCell(self, fromSet, toSet):
+        if fromSet == toSet:
+            return
+        for i in range (0, len(self.sets[fromSet])):
             self.sets[toSet].append(self.sets[fromSet][i])
             self.sets[fromSet][i].setSet(toSet)
         self.sets[fromSet][:] = []
-    #TODO: Rename to hasMultipleSets after Refactoring tool has been installed (Rope)
-    def checkSets(self):#returns True if Maze has more than one set
+
+    def hasMultipleSets(self):#returns True if Maze has more than one set
         for i in range (len(self.sets)):
             if (len(self.sets[i]) == self.size*self.size):
                 return False
@@ -63,21 +65,21 @@ class Mesh:
         hasResult = False
         for i in range(self.size):
             for j in range(self.size):
-                if self.hasLegitNeighbour(self.matrix[i][j]):
+                if self.hasNeighbourInDifferentSet(self.matrix[i][j]):
                     hasResult = True
         while (hasResult):
-            x = random.randint(0,self.size-1)
-            y = random.randint(0,self.size-1)
+            x = random.randint(0, self.size-1)
+            y = random.randint(0, self.size-1)
             cell = self.matrix[x][y]
-            if (self.hasLegitNeighbour(cell)):
+            if (self.hasNeighbourInDifferentSet(cell)):
                 return cell
         return None
     
     def isBorder(self, cell, wall):
         return ((cell.x == 0) & (wall == cell.topWall)) | ((cell.x == self.size-1) & (wall == cell.bottomWall)) | \
                 ((cell.y == 0) & (wall == cell.leftWall)) | ((cell.y == self.size-1) & (wall == cell.rightWall))
-    #TODO: rename to hasNeighbourInDifferentSet
-    def hasLegitNeighbour(self, cell):#checks if cell has a neighbour which is not in the same set
+
+    def hasNeighbourInDifferentSet(self, cell):#checks if cell has a neighbour which is not in the same set
         x = cell.getX()
         y = cell.getY()
         set = cell.getSet()
@@ -94,19 +96,19 @@ class Mesh:
         else:
             return default
             
-    def setCustomOpening(self, x, y, top = True, bottom = True):
+    def setCustomOpening(self, x, y, vertical = True):
         if x >= self.size or y >= self.size:
             raise IndexError('Opening cell has to part of the maze - check your indexes')
         cell = self.matrix[x][y]
         if x == 0:
             if y == 0:
-                if top:
+                if vertical:
                     cell.removeTop()
                 else:
                     cell.removeLeft()
                 self.entrance = cell
             elif y == self.size - 1:
-                if top:
+                if vertical:
                     cell.removeTop()
                     self.entrance = cell
                 else:
@@ -117,13 +119,13 @@ class Mesh:
                 self.entrance = cell
         elif x == self.size - 1:
             if y == self.size - 1:
-                if bottom:
+                if vertical:
                     cell.removeBottom()
                 else:
                     cell.removeRight()
                 self.exit = cell
             elif y == 0:
-                if bottom:
+                if vertical:
                     cell.removeBottom()
                     self.exit = cell
                 else:
@@ -141,23 +143,23 @@ class Mesh:
 
     def setRandomTopEntrance(self):
         self.clearEntrance()
-        n = random.randint(0,self.size-1)
+        n = random.randint(0, self.size-1)
         self.setCustomOpening(0, n, True)
 
     def setRandomLeftEntrance(self):
         self.clearEntrance()
-        n = random.randint(0,self.size-1)
-        self.setCustomOpening(n, 0, False, False)
+        n = random.randint(0, self.size-1)
+        self.setCustomOpening(n, 0, False)
 
     def setRandomBottomExit(self):
         self.clearExit()
-        n = random.randint(0,self.size-1)
-        self.setCustomOpening(self.size-1, n, None, False)
+        n = random.randint(0, self.size-1)
+        self.setCustomOpening(self.size-1, n, False)
 
     def setRandomRightExit(self):
         self.clearExit()
-        n = random.randint(0,self.size-1)
-        self.setCustomOpening(n, self.size-1, False, False)
+        n = random.randint(0, self.size-1)
+        self.setCustomOpening(n, self.size-1, False)
 
     def clearEntrance(self):#clear entrance to get sure a maze only has one entrance
         if (self.entrance != None):

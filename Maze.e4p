@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE Project SYSTEM "Project-5.1.dtd">
+<!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project Maze -->
-<!-- Saved: 2017-08-27, 22:16:58 -->
-<!-- Copyright (C) 2017 Rafael Häuselmann, rafi.haeuselmann@hispeed.ch -->
-<Project version="5.1">
+<!-- Saved: 2018-01-01, 19:35:04 -->
+<!-- Copyright (C) 2018 Rafael Häuselmann, rafi.haeuselmann@hispeed.ch -->
+<Project version="6.0">
   <Language></Language>
   <Hash>c333b79a777fe96b320f71f40c409327715668f9</Hash>
   <ProgLanguage mixed="0">Python3</ProgLanguage>
@@ -14,7 +14,6 @@
   <Email>rafi.haeuselmann@hispeed.ch</Email>
   <Eol index="0"/>
   <Sources>
-    <Source>__init__.py</Source>
     <Source>drawers/ASCIIDrawer.py</Source>
     <Source>drawers/Drawer.py</Source>
     <Source>drawers/__init__.py</Source>
@@ -24,7 +23,6 @@
     <Source>generators/KruskalGenerator.py</Source>
     <Source>generators/PrimGenerator.py</Source>
     <Source>generators/RecursiveDivisionGenerator.py</Source>
-    <Source>generators/__init__.py</Source>
     <Source>model/Cell.py</Source>
     <Source>model/Mesh.py</Source>
     <Source>model/Wall.py</Source>
@@ -36,21 +34,17 @@
     <Source>solvers/TrémauxSolver.py</Source>
     <Source>solvers/__init__.py</Source>
     <Source>test/Test.py</Source>
-    <Source>test/__init__.py</Source>
+    <Source>test/generators/AbstractBaseGeneratorTest.py</Source>
     <Source>test/generators/BinaryTreeGeneratorTest.py</Source>
     <Source>test/generators/DepthFirstSearchGeneratorTest.py</Source>
-    <Source>test/generators/__init__.py</Source>
     <Source>test/model/CellTest.py</Source>
     <Source>test/model/MeshTest.py</Source>
     <Source>test/model/WallTest.py</Source>
     <Source>test/model/__init__.py</Source>
   </Sources>
-  <Forms/>
-  <Translations/>
-  <Resources/>
-  <Interfaces/>
   <Others>
     <Other>Maze.e4p</Other>
+    <Other>README.md</Other>
   </Others>
   <Vcs>
     <VcsType>None</VcsType>
