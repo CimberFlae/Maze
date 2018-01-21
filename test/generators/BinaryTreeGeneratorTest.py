@@ -12,11 +12,17 @@ class BinaryTreeGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTes
         generator = BinaryTreeGenerator.BinaryTreeGenerator()
         self.maze = generator.generateRandomMaze(self.size)
     
-    def test_entry(self):
-        super(BinaryTreeGeneratorTest, self).test_entry()
+    def test_validEntry(self):
+        super(BinaryTreeGeneratorTest, self).test_validEntry()
         
-    def test_exit(self):
-        super(BinaryTreeGeneratorTest, self).test_exit()
+    def test_oneEntry(self):
+        super(BinaryTreeGeneratorTest, self).test_oneEntry()
+        
+    def test_validExit(self):
+        super(BinaryTreeGeneratorTest, self).test_validExit()
+        
+    def test_oneExit(self):
+        super(BinaryTreeGeneratorTest, self).test_oneExit()
         
     def test_cells(self):
         super(BinaryTreeGeneratorTest, self).test_cells()
