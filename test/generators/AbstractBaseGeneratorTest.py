@@ -45,20 +45,3 @@ class AbstractBaseGeneratorTest(ABC, unittest.TestCase):
             if cell.getBottom().isRemoved():
                 exits += 1
         self.assertEqual(exits, 1, 'There are more than one exit')
-    
-    # check wether every cell in the maze has exactly one of the left wall or the top wall removed
-    def test_cells(self):
-        for i in range(self.size):
-            for j in range(self.size):
-                cell = self.maze.getCell(i, j)
-                self.assertNotEqual(cell.getLeft().isRemoved, cell.getTop().isRemoved, 'Cell still has both left and top Wall.')
-                
-    # check wether the top row has all left walls removed (except entry cell)
-    def test_topRow(self):
-        for i in range(1, self.size):
-            self.assertTrue(self.maze.getCell(0, i).getLeft().isRemoved, 'Cell in top row still has left Wall.')
-            
-    # check wether the left row has all top walls removed (except entry cell)
-    def test_leftRow(self):
-        for i in range(1, self.size):
-            self.assertTrue(self.maze.getCell(i, 0).getTop().isRemoved, 'Cell in left row still has top Wall.')

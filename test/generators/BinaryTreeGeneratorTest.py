@@ -24,14 +24,24 @@ class BinaryTreeGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTes
     def test_oneExit(self):
         super(BinaryTreeGeneratorTest, self).test_oneExit()
         
+    # check wether every cell in the maze has at least one of the left or top wall removed (except the top left cell)
     def test_cells(self):
-        super(BinaryTreeGeneratorTest, self).test_cells()
+        for i in range(self.size):
+            for j in range(self.size):
+                if i == j == 0:
+                    continue
+                cell = self.maze.getCell(i, j)
+                self.assertFalse(not cell.getLeft().isRemoved() and not cell.getTop().isRemoved(), 'Cell still has both left and top Wall.')
                 
+    # check wether the top row has all left walls removed (except entry cell)
     def test_topRow(self):
-        super(BinaryTreeGeneratorTest, self).test_topRow()
-        
+        for i in range(1, self.size):
+            self.assertTrue(self.maze.getCell(0, i).getLeft().isRemoved(), 'Cell in top row still has left Wall.')
+            
+    # check wether the left row has all top walls removed (except entry cell)
     def test_leftRow(self):
-        super(BinaryTreeGeneratorTest, self).test_leftRow()
+        for i in range(1, self.size):
+            self.assertTrue(self.maze.getCell(i, 0).getTop().isRemoved(), 'Cell in left row still has top Wall.')
         
 if __name__ == '__main__':
     unittest.main()

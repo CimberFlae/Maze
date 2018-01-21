@@ -23,15 +23,6 @@ class DepthFirstSearchGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGenera
         
     def test_oneExit(self):
         super(DepthFirstSearchGeneratorTest, self).test_oneExit()
-        
-    def test_cells(self):
-        super(DepthFirstSearchGeneratorTest, self).test_cells()
-                
-    def test_topRow(self):
-        super(DepthFirstSearchGeneratorTest, self).test_topRow()
-        
-    def test_leftRow(self):
-        super(DepthFirstSearchGeneratorTest, self).test_leftRow()
 
 if __name__ == '__main__':
     unittest.main()
