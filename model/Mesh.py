@@ -32,16 +32,16 @@ class Mesh:
     def getSize(self):
         return self.size
 
-    def getCell(self,x,y):
+    def getCell(self, x, y):
         return self.matrix[x][y]
 
-    def getLeftNeighbour(self,cell):
+    def getLeftNeighbour(self, cell):
         return self.matrix[cell.getX()][cell.getY()-1]
 
-    def getRightNeighbour(self,cell):
+    def getRightNeighbour(self, cell):
         return self.matrix[cell.getX()][cell.getY()+1]
 
-    def getTopNeighbour(self,cell):
+    def getTopNeighbour(self, cell):
         return self.matrix[cell.getX()-1][cell.getY()]
 
     def getBottomNeighbour(self, cell):
@@ -154,7 +154,7 @@ class Mesh:
     def setRandomBottomExit(self):
         self.clearExit()
         n = random.randint(0, self.size-1)
-        self.setCustomOpening(self.size-1, n, False)
+        self.setCustomOpening(self.size-1, n, True)
 
     def setRandomRightExit(self):
         self.clearExit()
