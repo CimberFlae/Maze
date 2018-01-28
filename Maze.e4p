@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project Maze -->
-<!-- Saved: 2018-01-01, 19:35:04 -->
+<!-- Saved: 2018-01-28, 22:53:08 -->
 <!-- Copyright (C) 2018 Rafael Häuselmann, rafi.haeuselmann@hispeed.ch -->
 <Project version="6.0">
   <Language></Language>
@@ -33,7 +33,7 @@
     <Source>solvers/Solver.py</Source>
     <Source>solvers/TrémauxSolver.py</Source>
     <Source>solvers/__init__.py</Source>
-    <Source>test/Test.py</Source>
+    <Source>test/Demo.py</Source>
     <Source>test/generators/AbstractBaseGeneratorTest.py</Source>
     <Source>test/generators/BinaryTreeGeneratorTest.py</Source>
     <Source>test/generators/DepthFirstSearchGeneratorTest.py</Source>
@@ -45,6 +45,7 @@
   <Others>
     <Other>Maze.e4p</Other>
     <Other>README.md</Other>
+    <Other>setup.cfg.asp</Other>
   </Others>
   <Vcs>
     <VcsType>None</VcsType>

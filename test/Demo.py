@@ -12,7 +12,7 @@ import solvers.RightWallFollowerSolver as RightWallFollowerSolver
 import solvers.LeftWallFollowerSolver as LeftWallFollowerSolver
 import solvers.RandomMouseSolver as RandomMouseSolver
 
-class Test:
+class Demo:
 
     size = 10
     drawer = ASCIIDrawer.ASCIIDrawer()
