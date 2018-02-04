@@ -1,7 +1,7 @@
 import unittest
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
 import model.Cell as Cell
 import model.Wall as Wall
 
@@ -130,6 +130,6 @@ class CellTest(unittest.TestCase):
         self.cell.removeBottom()
         wall = self.cell.chooseWall()
         self.assertIsNone(wall, 'A wall could be chosen.')
-    
-if __name__ == '__main__':
-    unittest.main()
+
+suite = unittest.TestLoader().loadTestsFromTestCase(CellTest)
+unittest.TextTestRunner(verbosity=2).run(suite)

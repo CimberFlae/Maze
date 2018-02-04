@@ -1,7 +1,7 @@
 import unittest
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
 import model.Mesh as Mesh
 
 class MeshTest(unittest.TestCase):
@@ -109,5 +109,5 @@ class MeshTest(unittest.TestCase):
         self.assertTrue(self.mesh.matrix[0][0].getTop().isRemoved(), 'Cell (0,0) is not removed.')
         #TODO: test more functionality
     
-if __name__ == '__main__':
-    unittest.main()
+suite = unittest.TestLoader().loadTestsFromTestCase(MeshTest)
+unittest.TextTestRunner(verbosity=2).run(suite)

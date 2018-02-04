@@ -1,9 +1,9 @@
 import unittest
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
 import generators.DepthFirstSearchGenerator as DepthFirstSearchGenerator
-import AbstractBaseGeneratorTest
+import generatorstest.AbstractBaseGeneratorTest as AbstractBaseGeneratorTest
 
 class DepthFirstSearchGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest,  unittest.TestCase):
     
@@ -24,5 +24,5 @@ class DepthFirstSearchGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGenera
     def test_oneExit(self):
         super(DepthFirstSearchGeneratorTest, self).test_oneExit()
 
-if __name__ == '__main__':
-    unittest.main()
+suite = unittest.TestLoader().loadTestsFromTestCase(DepthFirstSearchGeneratorTest)
+unittest.TextTestRunner(verbosity=2).run(suite)

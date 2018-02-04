@@ -2,9 +2,10 @@ import unittest
 import sys
 import os
 from abc import ABC, abstractmethod
-sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
+tc = unittest.TestCase('__init__')
 
-class AbstractBaseGeneratorTest(ABC, unittest.TestCase):
+class AbstractBaseGeneratorTest(ABC):
     
     @abstractmethod
     def setUp(self):
@@ -13,8 +14,8 @@ class AbstractBaseGeneratorTest(ABC, unittest.TestCase):
     # check wether the maze has a valid entry point
     def test_validEntry(self):
         entry = self.maze.getEntrance()
-        self.assertIsNotNone(entry, 'Entry is None.')
-        self.assertTrue(entry.getX() == 0 or entry.getY() == 0, 'Entry is neither on the left nor on top side of the Maze')
+        tc.assertIsNotNone(entry, 'Entry is None.')
+        tc.assertTrue(entry.getX() == 0 or entry.getY() == 0, 'Entry is neither on the left nor on top side of the Maze')
         
     # check wether the maze has only one entry point
     def test_oneEntry(self):
@@ -26,13 +27,13 @@ class AbstractBaseGeneratorTest(ABC, unittest.TestCase):
             cell = self.maze.getCell(0, i)
             if cell.getTop().isRemoved():
                 entries += 1
-        self.assertEqual(entries, 1, 'There are more than one entry')
+        tc.assertEqual(entries, 1, 'There are more than one entry')
     
     # check wether the maze has a valid exit point
     def test_validExit(self):
         exit = self.maze.getExit()
-        self.assertIsNotNone(exit, 'Exit is None.')
-        self.assertTrue(exit.getX() == self.size-1 or exit.getY() == self.size-1, 'Exit is neither on the right nor on the bottom side of the Maze')
+        tc.assertIsNotNone(exit, 'Exit is None.')
+        tc.assertTrue(exit.getX() == self.size-1 or exit.getY() == self.size-1, 'Exit is neither on the right nor on the bottom side of the Maze')
     
     # check wether the maze has only one exit point
     def test_oneExit(self):
@@ -44,4 +45,4 @@ class AbstractBaseGeneratorTest(ABC, unittest.TestCase):
             cell = self.maze.getCell(self.size-1, i)
             if cell.getBottom().isRemoved():
                 exits += 1
-        self.assertEqual(exits, 1, 'There are more than one exit')
+        tc.assertEqual(exits, 1, 'There are more than one exit')

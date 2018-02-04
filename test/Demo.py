@@ -1,7 +1,6 @@
 import os
-os.chdir(os.path.join(os.path.curdir,  '..')) # This line needs to be present if one wants to run the file inside Eric
 import sys
-sys.path.insert(0, '') # This line needs to be present if one wants to run the file from the shell
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import generators.KruskalGenerator as KruskalGenerator
 import generators.DepthFirstSearchGenerator as DepthFirstSearchGenerator
 import generators.PrimGenerator as PrimGenerator

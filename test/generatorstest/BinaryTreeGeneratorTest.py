@@ -1,9 +1,9 @@
 import unittest
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
 import generators.BinaryTreeGenerator as BinaryTreeGenerator
-import AbstractBaseGeneratorTest
+import generatorstest.AbstractBaseGeneratorTest as AbstractBaseGeneratorTest
 
 class BinaryTreeGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest, unittest.TestCase):
     
@@ -43,5 +43,5 @@ class BinaryTreeGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTes
         for i in range(1, self.size):
             self.assertTrue(self.maze.getCell(i, 0).getTop().isRemoved(), 'Cell in left row still has top Wall.')
         
-if __name__ == '__main__':
-    unittest.main()
+suite = unittest.TestLoader().loadTestsFromTestCase(BinaryTreeGeneratorTest)
+unittest.TextTestRunner(verbosity=2).run(suite)

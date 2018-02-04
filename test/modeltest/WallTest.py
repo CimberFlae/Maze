@@ -1,7 +1,7 @@
 import unittest
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(__file__), '../..'))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
 import model.Wall as Wall
 
 class WallTest(unittest.TestCase):
@@ -23,5 +23,5 @@ class WallTest(unittest.TestCase):
     def test_isRemoved(self):
         self.assertEqual(self.wall.isRemoved(), self.wall.removed, 'isRemoved returns wrong value.')
     
-if __name__ == '__main__':
-    unittest.main()
+suite = unittest.TestLoader().loadTestsFromTestCase(WallTest)
+unittest.TextTestRunner(verbosity=2).run(suite)

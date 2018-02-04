@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project Maze -->
-<!-- Saved: 2018-01-28, 22:53:08 -->
+<!-- Saved: 2018-02-04, 16:15:45 -->
 <!-- Copyright (C) 2018 Rafael Häuselmann, rafi.haeuselmann@hispeed.ch -->
 <Project version="6.0">
   <Language></Language>
@@ -14,6 +14,8 @@
   <Email>rafi.haeuselmann@hispeed.ch</Email>
   <Eol index="0"/>
   <Sources>
+    <Source>PathVariables.py</Source>
+    <Source>__init__.py</Source>
     <Source>drawers/ASCIIDrawer.py</Source>
     <Source>drawers/Drawer.py</Source>
     <Source>drawers/__init__.py</Source>
@@ -23,6 +25,7 @@
     <Source>generators/KruskalGenerator.py</Source>
     <Source>generators/PrimGenerator.py</Source>
     <Source>generators/RecursiveDivisionGenerator.py</Source>
+    <Source>generators/__init__.py</Source>
     <Source>model/Cell.py</Source>
     <Source>model/Mesh.py</Source>
     <Source>model/Wall.py</Source>
@@ -34,9 +37,13 @@
     <Source>solvers/TrémauxSolver.py</Source>
     <Source>solvers/__init__.py</Source>
     <Source>test/Demo.py</Source>
+    <Source>test/Tests.py</Source>
+    <Source>test/__init__.py</Source>
+    <Source>test/context.py</Source>
     <Source>test/generators/AbstractBaseGeneratorTest.py</Source>
     <Source>test/generators/BinaryTreeGeneratorTest.py</Source>
     <Source>test/generators/DepthFirstSearchGeneratorTest.py</Source>
+    <Source>test/generators/__init__.py</Source>
     <Source>test/model/CellTest.py</Source>
     <Source>test/model/MeshTest.py</Source>
     <Source>test/model/WallTest.py</Source>
@@ -45,7 +52,6 @@
   <Others>
     <Other>Maze.e4p</Other>
     <Other>README.md</Other>
-    <Other>setup.cfg.asp</Other>
   </Others>
   <Vcs>
     <VcsType>None</VcsType>
