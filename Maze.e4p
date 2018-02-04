@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project Maze -->
-<!-- Saved: 2018-02-04, 16:15:45 -->
+<!-- Saved: 2018-02-04, 17:38:08 -->
 <!-- Copyright (C) 2018 Rafael Häuselmann, rafi.haeuselmann@hispeed.ch -->
 <Project version="6.0">
   <Language></Language>
@@ -14,7 +14,6 @@
   <Email>rafi.haeuselmann@hispeed.ch</Email>
   <Eol index="0"/>
   <Sources>
-    <Source>PathVariables.py</Source>
     <Source>__init__.py</Source>
     <Source>drawers/ASCIIDrawer.py</Source>
     <Source>drawers/Drawer.py</Source>
@@ -40,16 +39,17 @@
     <Source>test/Tests.py</Source>
     <Source>test/__init__.py</Source>
     <Source>test/context.py</Source>
-    <Source>test/generators/AbstractBaseGeneratorTest.py</Source>
-    <Source>test/generators/BinaryTreeGeneratorTest.py</Source>
-    <Source>test/generators/DepthFirstSearchGeneratorTest.py</Source>
-    <Source>test/generators/__init__.py</Source>
-    <Source>test/model/CellTest.py</Source>
-    <Source>test/model/MeshTest.py</Source>
-    <Source>test/model/WallTest.py</Source>
-    <Source>test/model/__init__.py</Source>
+    <Source>test/generatorstest/AbstractBaseGeneratorTest.py</Source>
+    <Source>test/generatorstest/BinaryTreeGeneratorTest.py</Source>
+    <Source>test/generatorstest/DepthFirstSearchGeneratorTest.py</Source>
+    <Source>test/generatorstest/__init__.py</Source>
+    <Source>test/modeltest/CellTest.py</Source>
+    <Source>test/modeltest/MeshTest.py</Source>
+    <Source>test/modeltest/WallTest.py</Source>
+    <Source>test/modeltest/__init__.py</Source>
   </Sources>
   <Others>
+    <Other>.travis.yml</Other>
     <Other>Maze.e4p</Other>
     <Other>README.md</Other>
   </Others>
