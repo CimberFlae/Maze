@@ -38,7 +38,7 @@ class AbstractBaseSolverTest(ABC):
         tc.assertEquals(len(self.solver.path), 5)
         tc.assertEquals(self.solver.path,  ['v', '->', '^', '^', '^'])
 
-    def createMaze(self):
+    def test_solveMaze(self):
         mesh = Mesh.Mesh(4)
         # Openings
         mesh.matrix[0][2].topWall.removed = True

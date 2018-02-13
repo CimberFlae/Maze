@@ -7,7 +7,7 @@ class RandomMouseSolver(Solver.Solver):
         Solver.Solver.__init__(self)
 
     def solveMaze(self,maze):
-        """implement TrŽmaux's algorithm"""
+        """implement Tremaux's algorithm"""
         if (maze.getEntrance() == None):
             maze.setStandardEntrance()
         if (maze.getExit() == None):

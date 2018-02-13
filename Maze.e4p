@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project Maze -->
-<!-- Saved: 2018-02-04, 17:38:08 -->
+<!-- Saved: 2018-02-13, 22:56:22 -->
 <!-- Copyright (C) 2018 Rafael Häuselmann, rafi.haeuselmann@hispeed.ch -->
 <Project version="6.0">
   <Language></Language>
@@ -33,7 +33,7 @@
     <Source>solvers/RandomMouseSolver.py</Source>
     <Source>solvers/RightWallFollowerSolver.py</Source>
     <Source>solvers/Solver.py</Source>
-    <Source>solvers/TrémauxSolver.py</Source>
+    <Source>solvers/TremauxSolver.py</Source>
     <Source>solvers/__init__.py</Source>
     <Source>test/Demo.py</Source>
     <Source>test/Tests.py</Source>
@@ -42,11 +42,19 @@
     <Source>test/generatorstest/AbstractBaseGeneratorTest.py</Source>
     <Source>test/generatorstest/BinaryTreeGeneratorTest.py</Source>
     <Source>test/generatorstest/DepthFirstSearchGeneratorTest.py</Source>
+    <Source>test/generatorstest/KruskalGeneratorTest.py</Source>
+    <Source>test/generatorstest/PrimGeneratorTest.py</Source>
+    <Source>test/generatorstest/RecursiveDivisionGeneratorTest.py</Source>
     <Source>test/generatorstest/__init__.py</Source>
     <Source>test/modeltest/CellTest.py</Source>
     <Source>test/modeltest/MeshTest.py</Source>
     <Source>test/modeltest/WallTest.py</Source>
     <Source>test/modeltest/__init__.py</Source>
+    <Source>test/solverstest/AbstractBaseSolverTest.py</Source>
+    <Source>test/solverstest/LeftWallFollowerSolverTest.py</Source>
+    <Source>test/solverstest/RandomMouseSolverTest.py</Source>
+    <Source>test/solverstest/RightWallFollowerSolverTest.py</Source>
+    <Source>test/solverstest/__init__.py</Source>
   </Sources>
   <Others>
     <Other>.travis.yml</Other>
