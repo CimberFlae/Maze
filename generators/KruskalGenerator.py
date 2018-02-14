@@ -7,7 +7,7 @@ class KruskalGenerator(Generator.Generator):
         Generator.Generator.__init__(self)
 
     def __generateMaze__(self, size, top = True, bottom = True, entry = True, exit = True):
-        """implement Kruskal's Algorithm"""
+        """ Kruskal's Algorithm"""
         mesh = Mesh.Mesh(size)
         while (mesh.hasMultipleSets()):
             cell = mesh.chooseCell()

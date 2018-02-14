@@ -55,4 +55,3 @@ class Demo:
     maze = generator.generateRandomMaze(size)
     drawer.drawMaze(maze)
     print("All tests finished")
-    print(True+True)

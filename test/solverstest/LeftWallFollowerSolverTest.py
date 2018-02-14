@@ -8,6 +8,7 @@ import solverstest.AbstractBaseSolverTest as AbstractBaseSolverTest
 class LeftWallFollowerSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest, unittest.TestCase):
     
     def setUp(self):
+        super(LeftWallFollowerSolverTest, self).setUp()
         self.solver = LeftWallFollowerSolver.LeftWallFollowerSolver()
     
     def test_cleanPathLevel1(self):

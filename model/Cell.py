@@ -2,7 +2,7 @@ import model.Wall as Wall
 import random
 
 class Cell:
-    def __init__(self,x,y,set,wallsRemoved=False):
+    def __init__(self, x, y, set, wallsRemoved=False):
         self.leftWall = Wall.Wall(wallsRemoved)
         self.rightWall = Wall.Wall(wallsRemoved)
         self.topWall = Wall.Wall(wallsRemoved)
@@ -20,7 +20,7 @@ class Cell:
         else:
             print("BUG")
 
-    def setSet(self,set):
+    def setSet(self, set):
         self.set = set
 
     def getSet(self):

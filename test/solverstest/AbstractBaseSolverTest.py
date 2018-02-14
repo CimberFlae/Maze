@@ -3,46 +3,67 @@ import sys
 import os
 from abc import ABC, abstractmethod
 import model.Mesh as Mesh
+import model.Cell as Cell
+import generators.KruskalGenerator as KruskalGenerator
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
 tc = unittest.TestCase('__init__')
-
 class AbstractBaseSolverTest(ABC):
     
     @abstractmethod
     def setUp(self):
+        self.cell1 = Cell.Cell(1, 1, 1)
+        self.cell2 = Cell.Cell(2, 2, 2)
+        self.cell3 = Cell.Cell(3, 3, 3)
+        self.cell4 = Cell.Cell(4, 4, 4)
+        self.cell5 = Cell.Cell(5, 5, 5)
+        self.cell6 = Cell.Cell(6, 6, 6)
+        self.cell7 = Cell.Cell(7, 7, 7)
+        self.cell8 = Cell.Cell(8, 8, 8)
+        self.cell9 = Cell.Cell(9, 9, 9)
         pass
     
     # check correctness and completeness of cleanPath
     def test_cleanPathLevel1(self):
-        self.solver.path = ['->', '<-']
+        self.solver.path = [self.cell1, self.cell2, self.cell1]
         self.solver.cleanPath()
-        tc.assertEmpty(self.solver.path)
-        self.solver.path = ['^', '<-', 'v', '^', '^', '->']
+        tc.assertEquals(len(self.solver.path), 1)
+        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell3,
+            self.cell5, self.cell6]
         self.solver.cleanPath()
-        tc.assertEquals(len(self.solver.path), 4)
-        tc.assertEquals(self.solver.path, ['^', '<-', '^', '->'])
+        tc.assertEquals(len(self.solver.path), 5)
+        tc.assertEquals(self.solver.path, [self.cell1, self.cell2, self.cell3, self.cell5,
+            self.cell6])
 
     def test_cleanPathLevel2(self):
-        self.solver.path = ['<-', 'v', '^', '->']
+        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell2, self.cell1]
         self.solver.cleanPath()
-        tc.assertEmpty(self.solver.path)
-        self.solver.path = ['v', '->', '^', '->', '^', 'v', '<-', '^', '^']
-        tc.assertEquals(len(self.solver.path), 5)
-        tc.assertEquals(self.solver.path,  ['v', '->', '^', '^', '^'])
+        tc.assertEquals(len(self.solver.path), 1)
+        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell5,
+            self.cell6, self.cell5, self.cell4, self.cell7, self.cell8]
+        self.solver.cleanPath()
+        tc.assertEquals(len(self.solver.path), 6)
+        tc.assertEquals(self.solver.path, [self.cell1, self.cell2, self.cell3, self.cell4,
+            self.cell7, self.cell8])
 
     def test_cleanPathLevel3(self):
-        self.solver.path = ['<-', '<-', 'v', '^', '->', '->']
+        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell3,
+            self.cell2, self.cell1]
         self.solver.cleanPath()
-        tc.assertEmpty(self.solver.path)
-        self.solver.path = ['v', '->', '^', '->', '^', '<-', '->', 'v', '<-', '^', '^']
-        tc.assertEquals(len(self.solver.path), 5)
-        tc.assertEquals(self.solver.path,  ['v', '->', '^', '^', '^'])
+        tc.assertEquals(len(self.solver.path), 1)
+        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell5,
+            self.cell6, self.cell7, self.cell6, self.cell5, self.cell4, self.cell8, self.cell9]
+        self.solver.cleanPath()
+        tc.assertEquals(len(self.solver.path), 6)
+        tc.assertEquals(self.solver.path,  [self.cell1, self.cell2, self.cell3, self.cell4,
+            self.cell8, self.cell9])
 
     def test_solveMaze(self):
         mesh = Mesh.Mesh(4)
         # Openings
         mesh.matrix[0][2].topWall.removed = True
         mesh.matrix[1][3].rightWall.removed = True
+        mesh.entrance = mesh.matrix[0][2]
+        mesh.exit = mesh.matrix[1][3]
         # Maze
         mesh.matrix[0][0].rightWall.removed = True
         mesh.matrix[0][1].bottomWall.removed = True
@@ -59,6 +80,39 @@ class AbstractBaseSolverTest(ABC):
         mesh.matrix[3][0].rightWall.removed = True
         mesh.matrix[3][1].rightWall.removed = True
         mesh.matrix[3][2].rightWall.removed = True
-        expectedPath = ['v', '<-', 'v', '<-', 'v', '->', 'v', '->', '->', '^', '<-', '^', '->', '->']
+        expectedPath = [mesh.matrix[0][2], mesh.matrix[0][1], mesh.matrix[1][1],
+            mesh.matrix[1][0], mesh.matrix[2][0], mesh.matrix[2][1], mesh.matrix[3][1],
+                mesh.matrix[3][2], mesh.matrix[3][3], mesh.matrix[2][3], mesh.matrix[2][2],
+                    mesh.matrix[1][2], mesh.matrix[1][3]]
         actualPath = self.solver.solveMaze(mesh)
         tc.assertEquals(actualPath, expectedPath)
+
+    # This is a random test, i.e. the test data is randomized
+    def test_path(self):
+        generator = KruskalGenerator.KruskalGenerator()
+        maze = generator.generateRandomMaze(10)
+        path = self.solver.solveMaze(maze)
+        # Check if first cell is entry
+        tc.assertEquals(path[0], maze.getEntrance())
+        # Check if last cell is exit
+        tc.assertEquals(path[-1], maze.getExit())
+        # Check if every cell transition is allowed (not through a wall)
+        for i in range(0, len(path)-1):
+            cell1 = path[i]
+            x1 = cell1.getX()
+            y1 = cell1.getY()
+            cell2 = path[i+1]
+            x2 = cell2.getX()
+            y2 = cell2.getY()
+            if x1 < x2:
+                tc.assertTrue(cell1.getBottom().isRemoved())
+                tc.assertTrue(cell2.getTop().isRemoved())
+            if x1 > x2:
+                tc.assertTrue(cell1.getTop().isRemoved())
+                tc.assertTrue(cell2.getBottom().isRemoved())
+            if y1 < y2:
+                tc.assertTrue(cell1.getRight().isRemoved())
+                tc.assertTrue(cell2.getLeft().isRemoved())
+            if y1 > y2:
+                tc.assertTrue(cell1.getLeft().isRemoved())
+                tc.assertTrue(cell2.getRight().isRemoved())
