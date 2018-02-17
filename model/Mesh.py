@@ -36,15 +36,23 @@ class Mesh:
         return self.matrix[x][y]
 
     def getLeftNeighbour(self, cell):
+        if (cell.getY()-1 < 0):
+            return None
         return self.matrix[cell.getX()][cell.getY()-1]
 
     def getRightNeighbour(self, cell):
+        if (cell.getY()+1 >= self.size):
+            return None
         return self.matrix[cell.getX()][cell.getY()+1]
 
     def getTopNeighbour(self, cell):
+        if (cell.getX()-1 < 0):
+            return None
         return self.matrix[cell.getX()-1][cell.getY()]
 
     def getBottomNeighbour(self, cell):
+        if (cell.getX()+1 >= self.size):
+            return None
         return self.matrix[cell.getX()+1][cell.getY()]
 
     def moveCell(self, fromSet, toSet):
@@ -191,47 +199,62 @@ class Mesh:
                     return wall
         return None
 
-    def getLeft(self,cell):
+    # ToDo: replace uses of this function by cell.getLeft()
+    def getLeft(self, cell):
         return cell.getLeft()
-
-    def getRight(self,cell):
+    
+    # ToDo: replace uses of this function by cell.getRight()
+    def getRight(self, cell):
         return cell.getRight()
 
-    def getTop(self,cell):
+    # ToDo: replace uses of this function by cell.getTop()
+    def getTop(self, cell):
         return cell.getTop()
 
-    def getBottom(self,cell):
+    # ToDo: replace uses of this function by cell.getBottom()
+    def getBottom(self, cell):
         return cell.getBottom()
 
-    def getSet(self,cell):
+    # ToDo: replace uses of this function by cell.getSet()
+    def getSet(self, cell):
         return cell.getSet()
 
-    def removeLeft(self,cell):
+    # ToDo: replace uses of this function by cell.removeLeft()
+    def removeLeft(self, cell):
         cell.removeLeft()
 
-    def createLeft(self,cell):
+    # ToDo: replace uses of this function by cell.createLeft()
+    def createLeft(self, cell):
         cell.createLeft()
 
-    def removeRight(self,cell):
+    # ToDo: replace uses of this function by cell.removeRight()
+    def removeRight(self, cell):
         cell.removeRight()
 
-    def createRight(self,cell):
+    # ToDo: replace uses of this function by cell.createRight()
+    def createRight(self, cell):
         cell.createRight()
 
-    def removeTop(self,cell):
+    # ToDo: replace uses of this function by cell.removeTop()
+    def removeTop(self, cell):
         cell.removeTop()
 
-    def createTop(self,cell):
+    # ToDo: replace uses of this function by cell.createTop()
+    def createTop(self, cell):
         cell.createTop()
 
-    def removeBottom(self,cell):
+    # ToDo: replace uses of this function by cell.removeBottom()
+    def removeBottom(self, cell):
         cell.removeBottom()
 
-    def createBottom(self,cell):
+    # ToDo: replace uses of this function by cell.createBottom()
+    def createBottom(self, cell):
         cell.createBottom()
 
-    def getX(self,cell):
+    # ToDo: replace uses of this function by cell.getX()
+    def getX(self, cell):
         return cell.getX()
 
-    def getY(self,cell):
+    # ToDo: replace uses of this function by cell.getY()
+    def getY(self, cell):
         return cell.getY()

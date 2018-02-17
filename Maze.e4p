@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project Maze -->
-<!-- Saved: 2018-02-13, 22:56:22 -->
+<!-- Saved: 2018-02-14, 22:46:00 -->
 <!-- Copyright (C) 2018 Rafael Häuselmann, rafi.haeuselmann@hispeed.ch -->
 <Project version="6.0">
   <Language></Language>
@@ -54,6 +54,7 @@
     <Source>test/solverstest/LeftWallFollowerSolverTest.py</Source>
     <Source>test/solverstest/RandomMouseSolverTest.py</Source>
     <Source>test/solverstest/RightWallFollowerSolverTest.py</Source>
+    <Source>test/solverstest/TremauxSolverTest.py</Source>
     <Source>test/solverstest/__init__.py</Source>
   </Sources>
   <Others>

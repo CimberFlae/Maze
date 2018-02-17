@@ -103,3 +103,6 @@ class Cell:
             wall = available[n]
             return wall
         return None
+
+    def __repr__(self):
+        return "[" + str(self.x) + "," + str(self.y) + "]"

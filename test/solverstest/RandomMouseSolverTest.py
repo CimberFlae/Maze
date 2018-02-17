@@ -8,6 +8,7 @@ import solverstest.AbstractBaseSolverTest as AbstractBaseSolverTest
 class RandomMouseSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest, unittest.TestCase):
     
     def setUp(self):
+        super(RandomMouseSolverTest, self).setUp()
         self.solver = RandomMouseSolver.RandomMouseSolver()
     
     def test_cleanPathLevel1(self):
