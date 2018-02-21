@@ -1,10 +1,12 @@
 import solvers.Solver as Solver
 import random
+import sys
 
 class TremauxSolver(Solver.Solver):
 
     def __init__(self):
         Solver.Solver.__init__(self)
+        self.counter = 0
 
     def solveMaze(self, maze):
         """implement Tremaux's algorithm"""
@@ -22,7 +24,7 @@ class TremauxSolver(Solver.Solver):
         if ((x == 0) & (y != 0)):
             self.tryRandomFromTop(maze, previous, current)
         elif ((x != 0) & (y == 0)):
-            self.tryRandomFromLeft(maze, current)
+            self.tryRandomFromLeft(maze, previous, current)
         elif ((x == y == 0) & maze.getTop(current).isRemoved()):
             self.chooseDirection([self.tryBottom, self.tryRight], maze, previous, current)
         while (self.path[-1] != maze.getExit()):    
@@ -34,6 +36,7 @@ class TremauxSolver(Solver.Solver):
         print("tryBottom")
         print(current)
         if (current.getBottom().isRemoved() and maze.getBottomNeighbour(current) != None):
+            self.mark(current, current.getBottom())
             previous = current
             current = maze.getBottomNeighbour(current)
             self.path.append(current)
@@ -43,6 +46,7 @@ class TremauxSolver(Solver.Solver):
         print("tryLeft")
         print(current)
         if (current.getLeft().isRemoved() and maze.getLeftNeighbour(current) != None):
+            self.mark(current, current.getLeft())
             previous = current
             current = maze.getLeftNeighbour(current)
             self.path.append(current)
@@ -52,6 +56,7 @@ class TremauxSolver(Solver.Solver):
         print("tryTop")
         print(current)
         if (current.getTop().isRemoved() and maze.getTopNeighbour(current) != None):
+            self.mark(current, current.getTop())
             previous = current
             current = maze.getTopNeighbour(current)
             self.path.append(current)
@@ -61,6 +66,7 @@ class TremauxSolver(Solver.Solver):
         print("tryRight")
         print(current)
         if (current.getRight().isRemoved() and maze.getRightNeighbour(current) != None):
+            self.mark(current, current.getRight())
             previous = current
             current = maze.getRightNeighbour(current)
             self.path.append(current)
@@ -97,24 +103,31 @@ class TremauxSolver(Solver.Solver):
         directions[n](maze, previous, current)
 
     def decideNext(self, maze, previous, current):
+        self.counter += 1
+        #if (self.counter > 200):
+            #sys.exit(1)
         print("decideNext")
         print(current)
         if (current != maze.getExit()):
             if (current.wallCount() < 2): # junction
-                if (not current in self.junctions):
+                if (not current in self.junctions): # new junction
                     self.junctions.append(current)
                     if (self.cameFromTop(maze, previous, current)):
                         self.mark(current, current.getTop())
-                        self.tryRandomFromTop(maze, previous, current)
+                        while (self.path[-1] == current and self.path[-1] != maze.getExit()):
+                            self.tryRandomFromTop(maze, previous, current)
                     elif (self.cameFromBottom(maze, previous, current)):
                         self.mark(current, current.getBottom())
-                        self.tryRandomFromBottom(maze, previous, current)
+                        while (self.path[-1] == current and self.path[-1] != maze.getExit()):
+                            self.tryRandomFromBottom(maze, previous, current)
                     elif (self.cameFromLeft(maze, previous, current)):
                         self.mark(current, current.getLeft())
-                        self.tryRandomFromLeft(maze, previous, current)
+                        while (self.path[-1] == current and self.path[-1] != maze.getExit()):
+                            self.tryRandomFromLeft(maze, previous, current)
                     else:
                         self.mark(current, current.getRight())
-                        self.tryRandomFromRight(maze, previous, current)
+                        while (self.path[-1] == current and self.path[-1] != maze.getExit()):
+                            self.tryRandomFromRight(maze, previous, current)
                 else: # have been here before
                     key = self.getKey(current)
                     if (self.cameFromTop(maze, previous, current)):

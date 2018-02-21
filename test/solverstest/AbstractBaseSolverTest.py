@@ -5,6 +5,7 @@ from abc import ABC, abstractmethod
 import model.Mesh as Mesh
 import model.Cell as Cell
 import generators.KruskalGenerator as KruskalGenerator
+import drawers.ASCIIDrawer as ASCIIDrawer
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
 tc = unittest.TestCase('__init__')
 class AbstractBaseSolverTest(ABC):
@@ -71,26 +72,26 @@ class AbstractBaseSolverTest(ABC):
 #        actualPath = self.solver.solveMaze(mesh)
 #        tc.assertEqual(actualPath, expectedPath)
 
-    def test_solveMediumMaze(self):
-        mesh = Mesh.Mesh(3)
-        # Openings
-        mesh.matrix[0][0].topWall.removed = True
-        mesh.matrix[2][2].rightWall.removed = True
-        mesh.entrance = mesh.matrix[0][0]
-        mesh.exit = mesh.matrix[2][2]
-        # Maze
-        mesh.matrix[0][0].bottomWall.removed = True
-        mesh.matrix[0][1].bottomWall.removed = True
-        mesh.matrix[0][2].bottomWall.removed = True
-        mesh.matrix[1][0].rightWall.removed = True
-        mesh.matrix[1][1].rightWall.removed = True
-        mesh.matrix[1][1].bottomWall.removed = True
-        mesh.matrix[2][0].rightWall.removed = True
-        mesh.matrix[2][1].rightWall.removed = True
-        expectedPath = [mesh.matrix[0][0], mesh.matrix[1][0], mesh.matrix[1][1], mesh.matrix[2][1],
-            mesh.matrix[2][2]]
-        actualPath = self.solver.solveMaze(mesh)
-        tc.assertEqual(actualPath, expectedPath)
+#    def test_solveMediumMaze(self):
+#        mesh = Mesh.Mesh(3)
+#        # Openings
+#        mesh.matrix[0][0].topWall.removed = True
+#        mesh.matrix[2][2].rightWall.removed = True
+#        mesh.entrance = mesh.matrix[0][0]
+#        mesh.exit = mesh.matrix[2][2]
+#        # Maze
+#        mesh.matrix[0][0].bottomWall.removed = True
+#        mesh.matrix[0][1].bottomWall.removed = True
+#        mesh.matrix[0][2].bottomWall.removed = True
+#        mesh.matrix[1][0].rightWall.removed = True
+#        mesh.matrix[1][1].rightWall.removed = True
+#        mesh.matrix[1][1].bottomWall.removed = True
+#        mesh.matrix[2][0].rightWall.removed = True
+#        mesh.matrix[2][1].rightWall.removed = True
+#        expectedPath = [mesh.matrix[0][0], mesh.matrix[1][0], mesh.matrix[1][1], mesh.matrix[2][1],
+#            mesh.matrix[2][2]]
+#        actualPath = self.solver.solveMaze(mesh)
+#        tc.assertEqual(actualPath, expectedPath)
 
 #    def test_solveHardMaze(self):
 #        mesh = Mesh.Mesh(4)
@@ -123,31 +124,33 @@ class AbstractBaseSolverTest(ABC):
 #        tc.assertEqual(actualPath, expectedPath)
 
 #    # This is a random test, i.e. the test data is randomized
-#    def test_path(self):
-#        generator = KruskalGenerator.KruskalGenerator()
-#        maze = generator.generateRandomMaze(10)
-#        path = self.solver.solveMaze(maze)
-#        # Check if first cell is entry
-#        tc.assertEquals(path[0], maze.getEntrance())
-#        # Check if last cell is exit
-#        tc.assertEquals(path[-1], maze.getExit())
-#        # Check if every cell transition is allowed (not through a wall)
-#        for i in range(0, len(path)-1):
-#            cell1 = path[i]
-#            x1 = cell1.getX()
-#            y1 = cell1.getY()
-#            cell2 = path[i+1]
-#            x2 = cell2.getX()
-#            y2 = cell2.getY()
-#            if x1 < x2:
-#                tc.assertTrue(cell1.getBottom().isRemoved())
-#                tc.assertTrue(cell2.getTop().isRemoved())
-#            if x1 > x2:
-#                tc.assertTrue(cell1.getTop().isRemoved())
-#                tc.assertTrue(cell2.getBottom().isRemoved())
-#            if y1 < y2:
-#                tc.assertTrue(cell1.getRight().isRemoved())
-#                tc.assertTrue(cell2.getLeft().isRemoved())
-#            if y1 > y2:
-#                tc.assertTrue(cell1.getLeft().isRemoved())
-#                tc.assertTrue(cell2.getRight().isRemoved())
+    def test_path(self):
+        generator = KruskalGenerator.KruskalGenerator()
+        maze = generator.generateRandomMaze(10)
+        drawer = ASCIIDrawer.ASCIIDrawer()
+        drawer.drawMaze(maze)
+        path = self.solver.solveMaze(maze)
+        # Check if first cell is entry
+        tc.assertEquals(path[0], maze.getEntrance())
+        # Check if last cell is exit
+        tc.assertEquals(path[-1], maze.getExit())
+        # Check if every cell transition is allowed (not through a wall)
+        for i in range(0, len(path)-1):
+            cell1 = path[i]
+            x1 = cell1.getX()
+            y1 = cell1.getY()
+            cell2 = path[i+1]
+            x2 = cell2.getX()
+            y2 = cell2.getY()
+            if x1 < x2:
+                tc.assertTrue(cell1.getBottom().isRemoved())
+                tc.assertTrue(cell2.getTop().isRemoved())
+            if x1 > x2:
+                tc.assertTrue(cell1.getTop().isRemoved())
+                tc.assertTrue(cell2.getBottom().isRemoved())
+            if y1 < y2:
+                tc.assertTrue(cell1.getRight().isRemoved())
+                tc.assertTrue(cell2.getLeft().isRemoved())
+            if y1 > y2:
+                tc.assertTrue(cell1.getLeft().isRemoved())
+                tc.assertTrue(cell2.getRight().isRemoved())
