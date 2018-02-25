@@ -5,25 +5,29 @@
 \deftab720
 \pard\pardeftab720\sl320\partightenfactor0
 
-\f0\fs24 \cf0 ToDo:\
-	- Unit Tests (Fix Tests/Solvers (Tremaux Solver: debug: write to file and kill after 1 second\expnd0\expndtw0\kerning0
-)\
+\f0\fs24 \cf0 ToDo:\expnd0\expndtw0\kerning0
+\
 	- Write all ToDo entries into git issues\
 	- Replace as many random choices as possible by arbitrary choices\
 	- Replace deprecated assertEquals by assertEqual everywhere\kerning1\expnd0\expndtw0 \
 	- Make Unit Tests executable from directory they are in\
+	- Change generators from using random random to use seed random, so tests can be made deterministic (always provide the same seed)\
+	- Replace ToDos by TODOs so Eric can display them in the TODO tab\
+	- In-Code-TODOs\
+	- Refactor RandomMouseSolver to use iteration instead of recursion to avoid hitting maximum recursion depth\
+	- Replace use of \'91current\'92 (cell) by path[-1] where possible\
+	- Replace concrete calls to super class by \'91super()\'92-call (already done in tests)\
 	- Check if concrete tests need to explicitly call abstract test methods (or if they are called automatically) \'97> No, not necessary: remove all unnecessary methods in concrete classes\
-	- Refactor Tremaux Solver: make maze a class field; uniform usage: try random or try one after another; cameFrom choice or own method (like tryRandomFrom) \'97> decrease code duplication\
+	- Refactor Tremaux Solver: make maze a class field; uniform usage: try random or try one after another; cameFrom choice or own method (like tryRandomFrom) \'97> decrease code duplication; use methods of abstract class (where possible)\
 	- Make (and rename) Abstract classes (Generator \'97> AbstractGenerator, Solver \'97> AbstractSolver)\
 	- Solvers: instead of making their own entrance/exit if there is none: throw exception\
 	- Include Tremaux Solver in Demo\
-	- Change generators from using random random to use seed random, so tests can be made deterministic (always provide the same seed)\
 	- Somehow make solvers deal with entry and exit (atm path only records the cell, not the direction)\
 	- Clean up unused methods\
-	- In-Code-TODOs\
 	- Distinct public and private methods (prefix/suffix __)\
 	- Normalize Generators (entry/exit)\
 	- Change x and y axis ??? or just API to make mapping ???\
 	- TkInter Drawer\
 	- Mazes and Solvers with Loops (needs Memory for Solver)\
-	- look at distutils}
+	- look at distutils\
+	- Make animation of solver solving maze}

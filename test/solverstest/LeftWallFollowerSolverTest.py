@@ -20,8 +20,8 @@ class LeftWallFollowerSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest, 
     def test_cleanPathLevel3(self):
         super(LeftWallFollowerSolverTest, self).test_cleanPathLevel3()
 
-    def test_solveMaze(self):
-        super(LeftWallFollowerSolverTest, self).test_solveMaze()
+    def test_solveEasyMaze(self):
+        super(LeftWallFollowerSolverTest, self).test_solveEasyMaze()
     
 suite = unittest.TestLoader().loadTestsFromTestCase(LeftWallFollowerSolverTest)
 unittest.TextTestRunner(verbosity=2).run(suite)

@@ -1,3 +1,5 @@
+import random
+
 class Solver:
 
     def __init__(self):
@@ -22,3 +24,53 @@ class Solver:
             self.cleanup(i-1, j+1)
         else:
             del self.path[(i+1):(j+1)]
+
+    def isJunction(self, cell):
+        return cell.wallCount() < 2
+
+    def cameFromTop(self, maze, previous, current):
+        return maze.getTopNeighbour(current) == previous
+
+    def cameFromRight(self, maze, previous, current):
+        return maze.getRightNeighbour(current) == previous
+
+    def cameFromBottom(self, maze, previous, current):
+        return maze.getBottomNeighbour(current) == previous
+
+    def cameFromLeft(self, maze, previous, current):
+        return maze.getLeftNeighbour(current) == previous
+
+    def findNext(self, maze, previous, current): # if there is only one way to go
+        if (self.cameFromBottom(maze, previous, current)): # came from bottom
+            if (current.getLeft().isRemoved()):
+                self.tryLeft(maze, current)
+            elif (current.getRight().isRemoved()):
+                self.tryRight(maze, current)
+            else:
+                self.tryTop(maze, current)
+        elif (self.cameFromLeft(maze, previous, current)): # came from left
+            if (current.getBottom().isRemoved()):
+                self.tryBottom(maze, current)
+            elif (current.getRight().isRemoved()):
+                self.tryRight(maze, current)
+            else:
+                self.tryTop(maze, current)
+        elif (self.cameFromRight(maze, previous, current)): # came from right
+            if (current.getBottom().isRemoved()):
+                self.tryBottom(maze, current)
+            elif (current.getLeft().isRemoved()):
+                self.tryLeft(maze, current)
+            else:
+                self.tryTop(maze, current)
+        else: # came from top
+            if (current.getBottom().isRemoved()):
+                self.tryBottom(maze, current)
+            elif (current.getLeft().isRemoved()):
+                self.tryLeft(maze, current)
+            else:
+                self.tryRight(maze, current)
+
+    # TODO: Has previous as an argument because TremauxSolver's method does...has to be uniformed and united
+    def chooseDirection(self, directions, maze, previous, current):
+        n = random.randint(0, len(directions)-1)
+        directions[n](maze, current)

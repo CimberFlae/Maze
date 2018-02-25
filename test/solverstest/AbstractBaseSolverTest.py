@@ -24,104 +24,104 @@ class AbstractBaseSolverTest(ABC):
         pass
     
     # check correctness and completeness of cleanPath
-#    def test_cleanPathLevel1(self):
-#        self.solver.path = [self.cell1, self.cell2, self.cell1]
-#        self.solver.cleanPath()
-#        tc.assertEqual(len(self.solver.path), 1)
-#        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell3,
-#            self.cell5, self.cell6]
-#        self.solver.cleanPath()
-#        tc.assertEqual(len(self.solver.path), 5)
-#        tc.assertEqual(self.solver.path, [self.cell1, self.cell2, self.cell3, self.cell5,
-#            self.cell6])
-#
-#    def test_cleanPathLevel2(self):
-#        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell2, self.cell1]
-#        self.solver.cleanPath()
-#        tc.assertEqual(len(self.solver.path), 1)
-#        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell5,
-#            self.cell6, self.cell5, self.cell4, self.cell7, self.cell8]
-#        self.solver.cleanPath()
-#        tc.assertEqual(len(self.solver.path), 6)
-#        tc.assertEqual(self.solver.path, [self.cell1, self.cell2, self.cell3, self.cell4,
-#            self.cell7, self.cell8])
-#
-#    def test_cleanPathLevel3(self):
-#        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell3,
-#            self.cell2, self.cell1]
-#        self.solver.cleanPath()
-#        tc.assertEqual(len(self.solver.path), 1)
-#        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell5,
-#            self.cell6, self.cell7, self.cell6, self.cell5, self.cell4, self.cell8, self.cell9]
-#        self.solver.cleanPath()
-#        tc.assertEqual(len(self.solver.path), 6)
-#        tc.assertEqual(self.solver.path,  [self.cell1, self.cell2, self.cell3, self.cell4,
-#            self.cell8, self.cell9])
+    def test_cleanPathLevel1(self):
+        self.solver.path = [self.cell1, self.cell2, self.cell1]
+        self.solver.cleanPath()
+        tc.assertEqual(len(self.solver.path), 1)
+        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell3,
+            self.cell5, self.cell6]
+        self.solver.cleanPath()
+        tc.assertEqual(len(self.solver.path), 5)
+        tc.assertEqual(self.solver.path, [self.cell1, self.cell2, self.cell3, self.cell5,
+            self.cell6])
 
-#    def test_solveEasyMaze(self):
-#        mesh = Mesh.Mesh(2)
-#        # Openings
-#        mesh.matrix[0][0].topWall.removed = True
-#        mesh.matrix[1][1].rightWall.removed = True
-#        mesh.entrance = mesh.matrix[0][0]
-#        mesh.exit = mesh.matrix[1][1]
-#        # Maze
-#        mesh.matrix[0][0].rightWall.removed = True
-#        mesh.matrix[0][1].bottomWall.removed = True
-#        expectedPath = [mesh.matrix[0][0], mesh.matrix[0][1], mesh.matrix[1][1]]
-#        actualPath = self.solver.solveMaze(mesh)
-#        tc.assertEqual(actualPath, expectedPath)
+    def test_cleanPathLevel2(self):
+        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell2, self.cell1]
+        self.solver.cleanPath()
+        tc.assertEqual(len(self.solver.path), 1)
+        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell5,
+            self.cell6, self.cell5, self.cell4, self.cell7, self.cell8]
+        self.solver.cleanPath()
+        tc.assertEqual(len(self.solver.path), 6)
+        tc.assertEqual(self.solver.path, [self.cell1, self.cell2, self.cell3, self.cell4,
+            self.cell7, self.cell8])
 
-#    def test_solveMediumMaze(self):
-#        mesh = Mesh.Mesh(3)
-#        # Openings
-#        mesh.matrix[0][0].topWall.removed = True
-#        mesh.matrix[2][2].rightWall.removed = True
-#        mesh.entrance = mesh.matrix[0][0]
-#        mesh.exit = mesh.matrix[2][2]
-#        # Maze
-#        mesh.matrix[0][0].bottomWall.removed = True
-#        mesh.matrix[0][1].bottomWall.removed = True
-#        mesh.matrix[0][2].bottomWall.removed = True
-#        mesh.matrix[1][0].rightWall.removed = True
-#        mesh.matrix[1][1].rightWall.removed = True
-#        mesh.matrix[1][1].bottomWall.removed = True
-#        mesh.matrix[2][0].rightWall.removed = True
-#        mesh.matrix[2][1].rightWall.removed = True
-#        expectedPath = [mesh.matrix[0][0], mesh.matrix[1][0], mesh.matrix[1][1], mesh.matrix[2][1],
-#            mesh.matrix[2][2]]
-#        actualPath = self.solver.solveMaze(mesh)
-#        tc.assertEqual(actualPath, expectedPath)
+    def test_cleanPathLevel3(self):
+        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell3,
+            self.cell2, self.cell1]
+        self.solver.cleanPath()
+        tc.assertEqual(len(self.solver.path), 1)
+        self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell5,
+            self.cell6, self.cell7, self.cell6, self.cell5, self.cell4, self.cell8, self.cell9]
+        self.solver.cleanPath()
+        tc.assertEqual(len(self.solver.path), 6)
+        tc.assertEqual(self.solver.path,  [self.cell1, self.cell2, self.cell3, self.cell4,
+            self.cell8, self.cell9])
 
-#    def test_solveHardMaze(self):
-#        mesh = Mesh.Mesh(4)
-#        # Openings
-#        mesh.matrix[0][2].topWall.removed = True
-#        mesh.matrix[1][3].rightWall.removed = True
-#        mesh.entrance = mesh.matrix[0][2]
-#        mesh.exit = mesh.matrix[1][3]
-#        # Maze
-#        mesh.matrix[0][0].rightWall.removed = True
-#        mesh.matrix[0][1].bottomWall.removed = True
-#        mesh.matrix[0][1].rightWall.removed = True
-#        mesh.matrix[0][3].bottomWall.removed = True
-#        mesh.matrix[1][0].bottomWall.removed = True
-#        mesh.matrix[1][0].rightWall.removed = True
-#        mesh.matrix[1][2].bottomWall.removed = True
-#        mesh.matrix[1][2].rightWall.removed = True
-#        mesh.matrix[2][0].rightWall.removed = True
-#        mesh.matrix[2][1].bottomWall.removed = True
-#        mesh.matrix[2][2].rightWall.removed = True
-#        mesh.matrix[2][3].bottomWall.removed = True
-#        mesh.matrix[3][0].rightWall.removed = True
-#        mesh.matrix[3][1].rightWall.removed = True
-#        mesh.matrix[3][2].rightWall.removed = True
-#        expectedPath = [mesh.matrix[0][2], mesh.matrix[0][1], mesh.matrix[1][1],
-#            mesh.matrix[1][0], mesh.matrix[2][0], mesh.matrix[2][1], mesh.matrix[3][1],
-#                mesh.matrix[3][2], mesh.matrix[3][3], mesh.matrix[2][3], mesh.matrix[2][2],
-#                    mesh.matrix[1][2], mesh.matrix[1][3]]
-#        actualPath = self.solver.solveMaze(mesh)
-#        tc.assertEqual(actualPath, expectedPath)
+    def test_solveEasyMaze(self):
+        mesh = Mesh.Mesh(2)
+        # Openings
+        mesh.matrix[0][0].topWall.removed = True
+        mesh.matrix[1][1].rightWall.removed = True
+        mesh.entrance = mesh.matrix[0][0]
+        mesh.exit = mesh.matrix[1][1]
+        # Maze
+        mesh.matrix[0][0].rightWall.removed = True
+        mesh.matrix[0][1].bottomWall.removed = True
+        expectedPath = [mesh.matrix[0][0], mesh.matrix[0][1], mesh.matrix[1][1]]
+        actualPath = self.solver.solveMaze(mesh)
+        tc.assertEqual(actualPath, expectedPath)
+
+    def test_solveMediumMaze(self):
+        mesh = Mesh.Mesh(3)
+        # Openings
+        mesh.matrix[0][0].topWall.removed = True
+        mesh.matrix[2][2].rightWall.removed = True
+        mesh.entrance = mesh.matrix[0][0]
+        mesh.exit = mesh.matrix[2][2]
+        # Maze
+        mesh.matrix[0][0].bottomWall.removed = True
+        mesh.matrix[0][1].bottomWall.removed = True
+        mesh.matrix[0][2].bottomWall.removed = True
+        mesh.matrix[1][0].rightWall.removed = True
+        mesh.matrix[1][1].rightWall.removed = True
+        mesh.matrix[1][1].bottomWall.removed = True
+        mesh.matrix[2][0].rightWall.removed = True
+        mesh.matrix[2][1].rightWall.removed = True
+        expectedPath = [mesh.matrix[0][0], mesh.matrix[1][0], mesh.matrix[1][1], mesh.matrix[2][1],
+            mesh.matrix[2][2]]
+        actualPath = self.solver.solveMaze(mesh)
+        tc.assertEqual(actualPath, expectedPath)
+
+    def test_solveHardMaze(self):
+        mesh = Mesh.Mesh(4)
+        # Openings
+        mesh.matrix[0][2].topWall.removed = True
+        mesh.matrix[1][3].rightWall.removed = True
+        mesh.entrance = mesh.matrix[0][2]
+        mesh.exit = mesh.matrix[1][3]
+        # Maze
+        mesh.matrix[0][0].rightWall.removed = True
+        mesh.matrix[0][1].bottomWall.removed = True
+        mesh.matrix[0][1].rightWall.removed = True
+        mesh.matrix[0][3].bottomWall.removed = True
+        mesh.matrix[1][0].bottomWall.removed = True
+        mesh.matrix[1][0].rightWall.removed = True
+        mesh.matrix[1][2].bottomWall.removed = True
+        mesh.matrix[1][2].rightWall.removed = True
+        mesh.matrix[2][0].rightWall.removed = True
+        mesh.matrix[2][1].bottomWall.removed = True
+        mesh.matrix[2][2].rightWall.removed = True
+        mesh.matrix[2][3].bottomWall.removed = True
+        mesh.matrix[3][0].rightWall.removed = True
+        mesh.matrix[3][1].rightWall.removed = True
+        mesh.matrix[3][2].rightWall.removed = True
+        expectedPath = [mesh.matrix[0][2], mesh.matrix[0][1], mesh.matrix[1][1],
+            mesh.matrix[1][0], mesh.matrix[2][0], mesh.matrix[2][1], mesh.matrix[3][1],
+                mesh.matrix[3][2], mesh.matrix[3][3], mesh.matrix[2][3], mesh.matrix[2][2],
+                    mesh.matrix[1][2], mesh.matrix[1][3]]
+        actualPath = self.solver.solveMaze(mesh)
+        tc.assertEqual(actualPath, expectedPath)
 
 #    # This is a random test, i.e. the test data is randomized
     def test_path(self):
