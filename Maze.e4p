@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project Maze -->
-<!-- Saved: 2018-02-24, 00:58:38 -->
+<!-- Saved: 2018-02-25, 22:05:58 -->
 <!-- Copyright (C) 2018 Rafael Häuselmann, rafi.haeuselmann@hispeed.ch -->
 <Project version="6.0">
   <Language></Language>
@@ -61,8 +61,6 @@
     <Other>.travis.yml</Other>
     <Other>Maze.e4p</Other>
     <Other>README.md</Other>
-    <Other>test/trace1 Kopie.txt</Other>
-    <Other>test/trace1.txt</Other>
   </Others>
   <Vcs>
     <VcsType>None</VcsType>
