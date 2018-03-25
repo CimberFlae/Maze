@@ -17,16 +17,13 @@ class TremauxSolver(Solver.Solver):
         self.walls = {}
         self.junctions = []
         self.path.append(current)
-        x = maze.getX(current)
-        y = maze.getY(current)
-        if ((x == 0) & (y != 0)):
-            self.tryRandomFromTop(maze, previous, current)
-        elif ((x != 0) & (y == 0)):
-            self.tryRandomFromLeft(maze, previous, current)
-        elif ((x == y == 0) & maze.getTop(current).isRemoved()):
-            self.chooseDirection([self.tryBottom, self.tryRight], maze, previous, current)
-        while (self.path[-1] != maze.getExit()):    
-            self.chooseDirection([self.tryBottom, self.tryLeft, self.tryRight, self.tryTop], maze, previous, current)
+        self.tryBottom(maze, previous, current) # arbitrary choice to start with
+        while (self.path[-1] != maze.getExit()):
+            # arbitrary order of directions
+            self.tryBottom(maze, previous, current)
+            self.tryLeft(maze, previous, current)
+            self.tryRight(maze, previous, current)
+            self.tryTop(maze, previous, current)
         self.cleanPath()
         return self.path
 
@@ -89,20 +86,26 @@ class TremauxSolver(Solver.Solver):
                     self.junctions.append(current)
                     if (self.cameFromTop(maze, previous, current)):
                         self.mark(current, current.getTop())
-                        while (self.path[-1] == current and self.path[-1] != maze.getExit()):
+                        while (self.notProgressedAndNotFinished(maze, current)):
                             self.tryRandomFromTop(maze, previous, current)
                     elif (self.cameFromBottom(maze, previous, current)):
                         self.mark(current, current.getBottom())
-                        while (self.path[-1] == current and self.path[-1] != maze.getExit()):
+                        while (self.notProgressedAndNotFinished(maze, current)):
                             self.tryRandomFromBottom(maze, previous, current)
                     elif (self.cameFromLeft(maze, previous, current)):
                         self.mark(current, current.getLeft())
-                        while (self.path[-1] == current and self.path[-1] != maze.getExit()):
+                        while (self.notProgressedAndNotFinished(maze, current)):
                             self.tryRandomFromLeft(maze, previous, current)
                     else:
                         self.mark(current, current.getRight())
-                        while (self.path[-1] == current and self.path[-1] != maze.getExit()):
-                            self.tryRandomFromRight(maze, previous, current)
+                        while (self.notProgressedAndNotFinished(maze, current)):
+                            # HERE: change the other while loops to this form to replace random by arbitrary choices
+                            # arbitrary order
+                            self.tryBottom(maze, previous, current)
+                            if (self.notProgressedAndNotFinished(maze, current)):
+                                self.tryLeft(maze, previous, current)
+                            if (self.notProgressedAndNotFinished(maze, current)):
+                                self.tryTop(maze, previous, current)
                 else: # have been here before
                     key = self.getKey(current)
                     if (self.cameFromTop(maze, previous, current)):
@@ -144,6 +147,9 @@ class TremauxSolver(Solver.Solver):
                     self.tryLeft(maze, previous, current)
                 else:
                     self.tryRight(maze, previous, current)
+
+    def notProgressedAndNotFinished(self, maze, cell):
+        return self.path[-1] == cell and self.path[-1] != maze.getExit()
 
     # Cannot (currently) use method of abstract class due to different prototype
     def findNext(self, maze, previous, current): # if there is only one way to go
