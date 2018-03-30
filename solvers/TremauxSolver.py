@@ -1,5 +1,4 @@
 import solvers.Solver as Solver
-import random
 
 class TremauxSolver(Solver.Solver):
 
@@ -59,26 +58,6 @@ class TremauxSolver(Solver.Solver):
             self.path.append(current)
             self.decideNext(maze, previous, current)
 
-    def tryRandomFromTop(self, maze, previous, current):
-        list = [self.tryBottom, self.tryLeft, self.tryRight]
-        self.chooseDirection(list, maze, previous, current)
-
-    def tryRandomFromBottom(self, maze, previous, current):
-        list = [self.tryTop, self.tryLeft, self.tryRight]
-        self.chooseDirection(list, maze, previous, current)
-
-    def tryRandomFromLeft(self, maze, previous, current):
-        list = [self.tryBottom, self.tryTop, self.tryRight]
-        self.chooseDirection(list, maze, previous, current)
-
-    def tryRandomFromRight(self, maze, previous, current):
-        list = [self.tryBottom, self.tryLeft, self.tryTop]
-        self.chooseDirection(list, maze, previous, current)
-
-    def chooseDirection(self, directions, maze, previous, current):
-        n = random.randint(0, len(directions)-1)
-        directions[n](maze, previous, current)
-
     def decideNext(self, maze, previous, current):
         if (current != maze.getExit()):
             if (current.wallCount() < 2): # junction
@@ -87,19 +66,33 @@ class TremauxSolver(Solver.Solver):
                     if (self.cameFromTop(maze, previous, current)):
                         self.mark(current, current.getTop())
                         while (self.notProgressedAndNotFinished(maze, current)):
-                            self.tryRandomFromTop(maze, previous, current)
+                            # arbitrary order
+                            self.tryBottom(maze, previous, current)
+                            if (self.notProgressedAndNotFinished(maze, current)):
+                                self.tryLeft(maze, previous, current)
+                            if (self.notProgressedAndNotFinished(maze, current)):
+                                self.tryRight(maze, previous, current)
                     elif (self.cameFromBottom(maze, previous, current)):
                         self.mark(current, current.getBottom())
                         while (self.notProgressedAndNotFinished(maze, current)):
-                            self.tryRandomFromBottom(maze, previous, current)
+                            # arbitrary order
+                            self.tryTop(maze, previous, current)
+                            if (self.notProgressedAndNotFinished(maze, current)):
+                                self.tryLeft(maze, previous, current)
+                            if (self.notProgressedAndNotFinished(maze, current)):
+                                self.tryRight(maze, previous, current)
                     elif (self.cameFromLeft(maze, previous, current)):
                         self.mark(current, current.getLeft())
                         while (self.notProgressedAndNotFinished(maze, current)):
-                            self.tryRandomFromLeft(maze, previous, current)
+                            # arbitrary order
+                            self.tryBottom(maze, previous, current)
+                            if (self.notProgressedAndNotFinished(maze, current)):
+                                self.tryTop(maze, previous, current)
+                            if (self.notProgressedAndNotFinished(maze, current)):
+                                self.tryRight(maze, previous, current)
                     else:
                         self.mark(current, current.getRight())
                         while (self.notProgressedAndNotFinished(maze, current)):
-                            # HERE: change the other while loops to this form to replace random by arbitrary choices
                             # arbitrary order
                             self.tryBottom(maze, previous, current)
                             if (self.notProgressedAndNotFinished(maze, current)):

@@ -86,7 +86,7 @@ class RandomMouseSolver(Solver.Solver):
             else:
                 directions = [self.tryBottom,  self.tryTop,  self.tryLeft]
             while (cell == self.path[-1] and cell != maze.getExit()):
-                super(RandomMouseSolver, self).chooseDirection(directions, maze, previous, cell)
+                super(RandomMouseSolver, self).chooseDirection(directions, maze, cell)
         elif (cell.wallCount() == 2): # normal path
             super(RandomMouseSolver, self).findNext(maze, previous, cell)
         else: # dead end; do nothing and go back

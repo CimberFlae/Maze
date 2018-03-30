@@ -70,7 +70,6 @@ class Solver:
             else:
                 self.tryRight(maze, current)
 
-    # TODO: Has previous as an argument because TremauxSolver's method does...has to be uniformed and united
-    def chooseDirection(self, directions, maze, previous, current):
+    def chooseDirection(self, directions, maze, current):
         n = random.randint(0, len(directions)-1)
         directions[n](maze, current)
