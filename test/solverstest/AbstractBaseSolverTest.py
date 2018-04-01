@@ -131,9 +131,9 @@ class AbstractBaseSolverTest(ABC):
         drawer.drawMaze(maze)
         path = self.solver.solveMaze(maze)
         # Check if first cell is entry
-        tc.assertEquals(path[0], maze.getEntrance())
+        tc.assertEqual(path[0], maze.getEntrance())
         # Check if last cell is exit
-        tc.assertEquals(path[-1], maze.getExit())
+        tc.assertEqual(path[-1], maze.getExit())
         # Check if every cell transition is allowed (not through a wall)
         for i in range(0, len(path)-1):
             cell1 = path[i]
