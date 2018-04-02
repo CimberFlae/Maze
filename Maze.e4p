@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project Maze -->
-<!-- Saved: 2018-02-25, 22:05:58 -->
+<!-- Saved: 2018-04-01, 18:47:53 -->
 <!-- Copyright (C) 2018 Rafael Häuselmann, rafi.haeuselmann@hispeed.ch -->
 <Project version="6.0">
   <Language></Language>
@@ -38,7 +38,6 @@
     <Source>test/Demo.py</Source>
     <Source>test/Tests.py</Source>
     <Source>test/__init__.py</Source>
-    <Source>test/context.py</Source>
     <Source>test/generatorstest/AbstractBaseGeneratorTest.py</Source>
     <Source>test/generatorstest/BinaryTreeGeneratorTest.py</Source>
     <Source>test/generatorstest/DepthFirstSearchGeneratorTest.py</Source>
