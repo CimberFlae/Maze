@@ -9,8 +9,9 @@ class DepthFirstSearchGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGenera
     
     def setUp(self):
         self.size = 5
+        seed = 2
         generator = DepthFirstSearchGenerator.DepthFirstSearchGenerator()
-        self.maze = generator.generateRandomMaze(self.size)
+        self.maze = generator.generateRandomMaze(self.size, seed = seed)
     
     def test_validEntry(self):
         super(DepthFirstSearchGeneratorTest, self).test_validEntry()

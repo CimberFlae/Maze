@@ -9,8 +9,9 @@ class RecursiveDivisionGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGener
     
     def setUp(self):
         self.size = 5
+        seed = 5
         generator = RecursiveDivisionGenerator.RecursiveDivisionGenerator()
-        self.maze = generator.generateRandomMaze(self.size)
+        self.maze = generator.generateRandomMaze(self.size, seed = seed)
     
     def test_validEntry(self):
         super(RecursiveDivisionGeneratorTest, self).test_validEntry()

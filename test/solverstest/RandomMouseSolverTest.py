@@ -14,6 +14,8 @@ class RandomMouseSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest, unitt
     def test_path(self):
         # skip this test because atm this solver is working recursively and hits maximum level of recursion in
         # big mazes like this
+        # When activating this test after #7, override the solveMaze and path tests to use random seed
+        # (Cannot do that in abstract method, since other solvers don't use random
         pass
     
 suite = unittest.TestLoader().loadTestsFromTestCase(RandomMouseSolverTest)

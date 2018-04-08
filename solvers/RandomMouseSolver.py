@@ -6,7 +6,9 @@ class RandomMouseSolver(Solver.Solver):
     def __init__(self):
         Solver.Solver.__init__(self)
 
-    def solveMaze(self, maze):
+    def solveMaze(self, maze, seed = 0):
+        if (seed != 0):
+            random.seed(seed)
         """implement random mouse algorithm"""
         """this means: always follow a given path to a junction and from there try a direction at random"""
         """caution: this algorithms only terminates in acceptable amount of time for very small paths (often seen in very small mazes)"""

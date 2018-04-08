@@ -9,8 +9,9 @@ class KruskalGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest, 
     
     def setUp(self):
         self.size = 5
+        seed = 3
         generator = KruskalGenerator.KruskalGenerator()
-        self.maze = generator.generateRandomMaze(self.size)
+        self.maze = generator.generateRandomMaze(self.size, seed = seed)
     
     def test_validEntry(self):
         super(KruskalGeneratorTest, self).test_validEntry()

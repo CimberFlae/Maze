@@ -9,8 +9,9 @@ class PrimGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest,  un
     
     def setUp(self):
         self.size = 5
+        seed = 4
         generator = PrimGenerator.PrimGenerator()
-        self.maze = generator.generateRandomMaze(self.size)
+        self.maze = generator.generateRandomMaze(self.size, seed = seed)
     
     def test_validEntry(self):
         super(PrimGeneratorTest, self).test_validEntry()

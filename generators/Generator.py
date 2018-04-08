@@ -5,11 +5,13 @@ class Generator:
     def __init__(self):
         print ("generating a " + self.__class__.__name__)
 
-    def __generateMaze__(self, size, top = True, bottom = True, entry = True, exit = True):
+    def __generateMaze__(self, size, top = True, bottom = True, entry = True, exit = True, seed = 0):
         """Generate a Maze using a specific algorithm"""
 
-    def generateRandomMaze(self, size):
-        maze = self.__generateMaze__(size)
+    def generateRandomMaze(self, size, seed = 0):
+        if (seed != 0):
+            random.seed(seed)
+        maze = self.__generateMaze__(size, seed = seed)
         if random.getrandbits(1) == 0:
             self.setRandomTopEntrance(maze)
         else:
@@ -20,8 +22,8 @@ class Generator:
             self.setRandomRightExit(maze)
         return maze
     
-    def generateCustomMaze(self, size, x1, y1, x2, y2):
-        maze = self.__generateMaze__(size)
+    def generateCustomMaze(self, size, x1, y1, x2, y2, seed = 0):
+        maze = self.__generateMaze__(size, seed = seed)
         maze.setCustomOpening(x1, y1, True)
         maze.setCustomOpening(x2, y2, True)
         return maze
