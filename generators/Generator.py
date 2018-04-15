@@ -13,16 +13,12 @@ class Generator:
             random.seed(seed)
         maze = self.__generateMaze__(size, seed = seed)
         if random.getrandbits(1) == 0:
-            print("randomTopEntrance")
             self.setRandomTopEntrance(maze)
         else:
-            print("randomLeftEntrance")
             self.setRandomLeftEntrance(maze)
         if random.getrandbits(1) == 0:
-            print("randomBottomExit")
             self.setRandomBottomExit(maze)
         else:
-            print("randomRightExit")
             self.setRandomRightExit(maze)
         return maze
     
