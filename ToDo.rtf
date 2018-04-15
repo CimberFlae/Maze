@@ -7,7 +7,7 @@
 
 \f0\fs24 \cf0 ToDo:\expnd0\expndtw0\kerning0
 \
-	- Tremaux Unit Test is hanging (see test data in separate file)\kerning1\expnd0\expndtw0 \
+	- Unit tests get executed twice when testing with \'93python3 -m unittest filename.py\'94\kerning1\expnd0\expndtw0 \
 	- Make Unit Tests executable from directory they are in\
 	- Remove unused parameters in generateMaze implementations (legacy parameters for opening)\
 	- Replace ToDos by TODOs so Eric can display them in the TODO tab\
@@ -19,12 +19,14 @@
 	- Refactor Tremaux Solver: make maze a class field; uniform usage: try random or try one after another; cameFrom choice or own method (like tryRandomFrom) \'97> decrease code duplication; use methods of abstract class (where possible)\
 	- Make (and rename) Abstract classes (Generator \'97> AbstractGenerator, Solver \'97> AbstractSolver)\
 	- Solvers: instead of making their own entrance/exit if there is none: throw exception\
+	- Throw exception if generateMaze(<2) is called\
 	- Include Tremaux Solver in Demo\
 	- Somehow make solvers deal with entry and exit (atm path only records the cell, not the direction)\
 	- Clean up unused methods\
 	- Distinguish public and private methods (prefix/suffix __)\
 	- Normalize Generators (entry/exit)\
 	- Change x and y axis ??? or just API to make mapping ???\
+	- Enhance drawer to draw into different outputs (std, file)\
 	- TkInter Drawer\
 	- Mazes and Solvers with Loops (needs Memory for Solver)\
 	- look at distutils\

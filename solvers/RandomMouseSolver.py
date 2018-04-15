@@ -13,9 +13,9 @@ class RandomMouseSolver(Solver.Solver):
         """this means: always follow a given path to a junction and from there try a direction at random"""
         """caution: this algorithms only terminates in acceptable amount of time for very small paths (often seen in very small mazes)"""
         if (maze.getEntrance() == None):
-            maze.setStandardEntrance()
+            maze.setCustomOpening(0, 0)
         if (maze.getExit() == None):
-            maze.setStandardExit()
+            maze.setCustomOpening(maze.getSize() - 1, maze.getSize() - 1)
         cell = maze.getEntrance()
         self.path.append(cell)
         x = maze.getX(cell)

@@ -6,11 +6,12 @@ class TremauxSolver(Solver.Solver):
         Solver.Solver.__init__(self)
 
     def solveMaze(self, maze):
+        self.path = []
         """implement Tremaux's algorithm"""
         if (maze.getEntrance() == None):
-            maze.setStandardEntrance()
+            maze.setCustomOpening(0, 0)
         if (maze.getExit() == None):
-            maze.setStandardExit()
+            maze.setCustomOpening(maze.getSize() - 1, maze.getSize() - 1)
         current = maze.getEntrance()
         previous = None
         self.walls = {}
@@ -20,9 +21,12 @@ class TremauxSolver(Solver.Solver):
         while (self.path[-1] != maze.getExit()):
             # arbitrary order of directions
             self.tryBottom(maze, previous, current)
-            self.tryLeft(maze, previous, current)
-            self.tryRight(maze, previous, current)
-            self.tryTop(maze, previous, current)
+            if (self.path[-1] != maze.getExit()):
+                self.tryLeft(maze, previous, current)
+            if (self.path[-1] != maze.getExit()):
+                self.tryRight(maze, previous, current)
+            if (self.path[-1] != maze.getExit()):
+                self.tryTop(maze, previous, current)
         self.cleanPath()
         return self.path
 

@@ -126,7 +126,7 @@ class AbstractBaseSolverTest(ABC):
 #    # This is a random test, i.e. the test data is randomized
     def test_path(self):
         generator = KruskalGenerator.KruskalGenerator()
-        maze = generator.generateRandomMaze(10)
+        maze = generator.generateRandomMaze(10, 23)
         drawer = ASCIIDrawer.ASCIIDrawer()
         drawer.drawMaze(maze)
         path = self.solver.solveMaze(maze)
