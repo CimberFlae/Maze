@@ -25,5 +25,6 @@ class PrimGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest,  un
     def test_oneExit(self):
         super(PrimGeneratorTest, self).test_oneExit()
 
-suite = unittest.TestLoader().loadTestsFromTestCase(PrimGeneratorTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+if __name__ == "__main__":
+    suite = unittest.TestLoader().loadTestsFromTestCase(PrimGeneratorTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)

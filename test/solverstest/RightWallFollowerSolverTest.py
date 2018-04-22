@@ -22,6 +22,7 @@ class RightWallFollowerSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest,
 
     def test_solveEasyMaze(self):
         super(RightWallFollowerSolverTest, self).test_solveEasyMaze()
-    
-suite = unittest.TestLoader().loadTestsFromTestCase(RightWallFollowerSolverTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+
+if __name__ == "__main__":
+    suite = unittest.TestLoader().loadTestsFromTestCase(RightWallFollowerSolverTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)

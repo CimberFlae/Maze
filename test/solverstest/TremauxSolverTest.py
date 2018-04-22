@@ -10,6 +10,7 @@ class TremauxSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest, unittest.
     def setUp(self):
         super(TremauxSolverTest, self).setUp()
         self.solver = TremauxSolver.TremauxSolver()
-    
-suite = unittest.TestLoader().loadTestsFromTestCase(TremauxSolverTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+
+if __name__ == "__main__":
+    suite = unittest.TestLoader().loadTestsFromTestCase(TremauxSolverTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)

@@ -22,6 +22,7 @@ class WallTest(unittest.TestCase):
         
     def test_isRemoved(self):
         self.assertEqual(self.wall.isRemoved(), self.wall.removed, 'isRemoved returns wrong value.')
-    
-suite = unittest.TestLoader().loadTestsFromTestCase(WallTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+
+if __name__ == "__main__":
+    suite = unittest.TestLoader().loadTestsFromTestCase(WallTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)

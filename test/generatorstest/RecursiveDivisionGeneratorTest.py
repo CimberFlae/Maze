@@ -25,5 +25,6 @@ class RecursiveDivisionGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGener
     def test_oneExit(self):
         super(RecursiveDivisionGeneratorTest, self).test_oneExit()
 
-suite = unittest.TestLoader().loadTestsFromTestCase(RecursiveDivisionGeneratorTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+if __name__ == "__main__":
+    suite = unittest.TestLoader().loadTestsFromTestCase(RecursiveDivisionGeneratorTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)

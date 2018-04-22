@@ -25,5 +25,6 @@ class KruskalGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest, 
     def test_oneExit(self):
         super(KruskalGeneratorTest, self).test_oneExit()
 
-suite = unittest.TestLoader().loadTestsFromTestCase(KruskalGeneratorTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+if __name__ == "__main__":
+    suite = unittest.TestLoader().loadTestsFromTestCase(KruskalGeneratorTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)

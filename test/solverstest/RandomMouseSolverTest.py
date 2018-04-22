@@ -17,6 +17,7 @@ class RandomMouseSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest, unitt
         # When activating this test after #7, override the solveMaze and path tests to use random seed
         # (Cannot do that in abstract method, since other solvers don't use random
         pass
-    
-suite = unittest.TestLoader().loadTestsFromTestCase(RandomMouseSolverTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+
+if __name__ == "__main__":
+    suite = unittest.TestLoader().loadTestsFromTestCase(RandomMouseSolverTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)

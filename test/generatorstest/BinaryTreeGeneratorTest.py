@@ -43,6 +43,7 @@ class BinaryTreeGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTes
     def test_leftRow(self):
         for i in range(1, self.size):
             self.assertTrue(self.maze.getCell(i, 0).getTop().isRemoved(), 'Cell in left row still has top Wall.')
-        
-suite = unittest.TestLoader().loadTestsFromTestCase(BinaryTreeGeneratorTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+
+if __name__ == "__main__":
+    suite = unittest.TestLoader().loadTestsFromTestCase(BinaryTreeGeneratorTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)

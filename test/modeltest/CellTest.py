@@ -131,5 +131,6 @@ class CellTest(unittest.TestCase):
         wall = self.cell.chooseWall()
         self.assertIsNone(wall, 'A wall could be chosen.')
 
-suite = unittest.TestLoader().loadTestsFromTestCase(CellTest)
-unittest.TextTestRunner(verbosity=2).run(suite)
+if __name__ == "__main__":
+    suite = unittest.TestLoader().loadTestsFromTestCase(CellTest)
+    unittest.TextTestRunner(verbosity=2).run(suite)
