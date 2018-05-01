@@ -2,7 +2,7 @@ import unittest
 import sys
 import os
 from abc import ABC, abstractmethod
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 tc = unittest.TestCase('__init__')
 
 class AbstractBaseGeneratorTest(ABC):

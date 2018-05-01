@@ -1,7 +1,7 @@
 import unittest
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import solvers.RightWallFollowerSolver as RightWallFollowerSolver
 import solverstest.AbstractBaseSolverTest as AbstractBaseSolverTest
 

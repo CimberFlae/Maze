@@ -6,7 +6,7 @@ import model.Mesh as Mesh
 import model.Cell as Cell
 import generators.KruskalGenerator as KruskalGenerator
 import drawers.ASCIIDrawer as ASCIIDrawer
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '../..'))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 tc = unittest.TestCase('__init__')
 class AbstractBaseSolverTest(ABC):
     
