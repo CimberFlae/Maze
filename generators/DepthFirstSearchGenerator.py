@@ -6,7 +6,7 @@ class DepthFirstSearchGenerator(Generator.Generator):
     def __init__(self):
         Generator.Generator.__init__(self)
 
-    def __generateMaze__(self, size, entry = True, exit = True, seed = 0):
+    def __generateMaze__(self, size, seed = 0):
         """implement Depth-first Search Algorithm"""
         mesh = Mesh.Mesh(size)
         cell = mesh.chooseCell()
