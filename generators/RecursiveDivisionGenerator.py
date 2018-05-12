@@ -12,7 +12,7 @@ class RecursiveDivisionGenerator(Generator.Generator):
             random.seed(seed)
         """implement Recursive Division Algorithm"""
         mesh = Mesh.Mesh(size,True)
-        for i in range(0,size):#create boundary walls
+        for i in range(0,size): # create boundary walls
             mesh.createLeft(mesh.getCell(i,0))
             mesh.createRight(mesh.getCell(i,size-1))
             mesh.createTop(mesh.getCell(0,i))

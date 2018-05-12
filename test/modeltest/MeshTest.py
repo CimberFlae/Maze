@@ -107,7 +107,7 @@ class MeshTest(unittest.TestCase):
         self.assertRaises(IndexError, self.mesh.setCustomOpening, 10, 9)
         self.mesh.setCustomOpening(0, 0, True)
         self.assertTrue(self.mesh.matrix[0][0].getTop().isRemoved(), 'Cell (0,0) is not removed.')
-        #TODO: test more functionality
+        # TODO: test more functionality
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(MeshTest)

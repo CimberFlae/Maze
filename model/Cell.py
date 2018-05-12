@@ -12,7 +12,7 @@ class Cell:
         self.y = y
         self.set = set
 
-    #only for debugging
+    # only for debugging
     def checkInvariant(self):
         if (self.wallList[0] == self.leftWall) & (self.wallList[1] == self.rightWall) & \
             (self.wallList[2] == self.topWall) & (self.wallList[3] == self.bottomWall):
@@ -95,7 +95,7 @@ class Cell:
         return (not self.leftWall.isRemoved()) + (not self.rightWall.isRemoved()) + \
                 (not self.topWall.isRemoved()) + (not self.bottomWall.isRemoved())
 
-    def chooseWall(self):#returns a random wall that is nor removed nor a border. returns None if there is no such wall
+    def chooseWall(self): # returns a random wall that is nor removed nor a border. returns None if there is no such wall
         available = [wall for wall in self.wallList if not wall.isRemoved()]
         nofWalls = len(available)
         if (nofWalls > 0):

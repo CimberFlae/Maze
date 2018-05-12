@@ -5,7 +5,7 @@ class LeftWallFollowerSolver(Solver.Solver):
     def __init__(self):
         Solver.Solver.__init__(self)
 
-    def solveMaze(self,maze):
+    def solveMaze(self, maze):
         """implement left wall following"""
         """this means: always try going in directions in the following order: left, forward, right, backward"""
         if (maze.getEntrance() == None):
@@ -32,29 +32,29 @@ class LeftWallFollowerSolver(Solver.Solver):
             if (maze.getBottom(cell).isRemoved()):
                 cell = maze.getBottomNeighbour(cell)
                 self.path.append(cell)
-                self.tryRight(maze,cell)
+                self.tryRight(maze, cell)
             else:
                 self.tryLeft(maze, cell)
 
-    def tryLeft(self,maze,cell):
+    def tryLeft(self, maze, cell):
         if (cell != maze.getExit()):
             if (maze.getLeft(cell).isRemoved()):
                 cell = maze.getLeftNeighbour(cell)
                 self.path.append(cell)
-                self.tryBottom(maze,cell)
+                self.tryBottom(maze, cell)
             else:
                 self.tryTop(maze,cell)
 
-    def tryTop(self,maze,cell):
+    def tryTop(self, maze, cell):
         if (cell != maze.getExit()):
             if (maze.getTop(cell).isRemoved()):
                 cell = maze.getTopNeighbour(cell)
                 self.path.append(cell)
-                self.tryLeft(maze,cell)
+                self.tryLeft(maze, cell)
             else:
                 self.tryRight(maze, cell)
 
-    def tryRight(self,maze,cell):
+    def tryRight(self, maze, cell):
         if (cell != maze.getExit()):
             if (maze.getRight(cell).isRemoved()):
                 cell = maze.getRightNeighbour(cell)

@@ -123,7 +123,6 @@ class AbstractBaseSolverTest(ABC):
         actualPath = self.solver.solveMaze(mesh)
         tc.assertEqual(actualPath, expectedPath)
 
-#    # This is a random test, i.e. the test data is randomized
     def test_path(self):
         generator = KruskalGenerator.KruskalGenerator()
         maze = generator.generateRandomMaze(10, 23)

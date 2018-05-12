@@ -22,10 +22,10 @@ class Mesh:
         self.exit = None
 
     def synchronizeWalls(self):
-        for i in range (0, self.size-1):#synchronize all horizontal walls
+        for i in range (0, self.size-1): # synchronize all horizontal walls
             for j in range (0, self.size):
                 self.matrix[i][j].setBottom(self.matrix[i+1][j].getTop())
-        for i in range (0, self.size):#synchronize all vertical walls
+        for i in range (0, self.size): # synchronize all vertical walls
             for j in range (0, self.size-1):
                 self.matrix[i][j].setRight(self.matrix[i][j+1].getLeft())
 
@@ -63,13 +63,13 @@ class Mesh:
             self.sets[fromSet][i].setSet(toSet)
         self.sets[fromSet][:] = []
 
-    def hasMultipleSets(self):#returns True if Maze has more than one set
+    def hasMultipleSets(self): # returns True if Maze has more than one set
         for i in range (len(self.sets)):
             if (len(self.sets[i]) == self.size*self.size):
                 return False
         return True
 
-    def chooseCell(self):#returns cell with an existing not-border wall, returns None if there is none
+    def chooseCell(self): # returns cell with an existing not-border wall, returns None if there is none
         hasResult = False
         for i in range(self.size):
             for j in range(self.size):
@@ -97,8 +97,8 @@ class Mesh:
         set4 = self.tryGetCell(x,y-1,cell).getSet()
         return not (set == set1 == set2 == set3 == set4)
     
-    #TODO: get rid of this function
-    def tryGetCell(self,x,y,default):#return the cell if index in range, returns default otherwise
+    # TODO: get rid of this function
+    def tryGetCell(self,x,y,default): # return the cell if index in range, returns default otherwise
         if (0 <= x < self.size) & (0 <= y < self.size):
             return self.matrix[x][y]
         else:
@@ -169,14 +169,14 @@ class Mesh:
         n = random.randint(0, self.size-1)
         self.setCustomOpening(n, self.size-1, False)
 
-    def clearEntrance(self):#clear entrance to get sure a maze only has one entrance
+    def clearEntrance(self): # clear entrance to get sure a maze only has one entrance
         if (self.entrance != None):
             if (self.entrance.getX() == 0):
                 self.entrance.createTop()
             if (self.entrance.getY() == 0):
                 self.entrance.createLeft()
 
-    def clearExit(self):#clear exit to get sure a maze only has one exit
+    def clearExit(self): # clear exit to get sure a maze only has one exit
         if (self.exit != None):
             if (self.exit.getX() == self.size-1):
                 self.exit.createBottom()
@@ -189,9 +189,9 @@ class Mesh:
     def getExit(self):
         return self.exit
 
-    #delegate methods
+    # delegate methods
 
-    def chooseWall(self, cell):#returns None if there is no non-border wall that is not removed
+    def chooseWall(self, cell): # returns None if there is no non-border wall that is not removed
         if len([wall for wall in cell.getWallList() if not (self.isBorder(cell, wall) or wall.isRemoved())]) > 0:
             while(True):
                 wall = cell.chooseWall()
@@ -199,62 +199,62 @@ class Mesh:
                     return wall
         return None
 
-    # ToDo: replace uses of this function by cell.getLeft()
+    # TODO: replace uses of this function by cell.getLeft()
     def getLeft(self, cell):
         return cell.getLeft()
     
-    # ToDo: replace uses of this function by cell.getRight()
+    # TODO: replace uses of this function by cell.getRight()
     def getRight(self, cell):
         return cell.getRight()
 
-    # ToDo: replace uses of this function by cell.getTop()
+    # TODO: replace uses of this function by cell.getTop()
     def getTop(self, cell):
         return cell.getTop()
 
-    # ToDo: replace uses of this function by cell.getBottom()
+    # TODO: replace uses of this function by cell.getBottom()
     def getBottom(self, cell):
         return cell.getBottom()
 
-    # ToDo: replace uses of this function by cell.getSet()
+    # TODO: replace uses of this function by cell.getSet()
     def getSet(self, cell):
         return cell.getSet()
 
-    # ToDo: replace uses of this function by cell.removeLeft()
+    # TODO: replace uses of this function by cell.removeLeft()
     def removeLeft(self, cell):
         cell.removeLeft()
 
-    # ToDo: replace uses of this function by cell.createLeft()
+    # TODO: replace uses of this function by cell.createLeft()
     def createLeft(self, cell):
         cell.createLeft()
 
-    # ToDo: replace uses of this function by cell.removeRight()
+    # TODO: replace uses of this function by cell.removeRight()
     def removeRight(self, cell):
         cell.removeRight()
 
-    # ToDo: replace uses of this function by cell.createRight()
+    # TODO: replace uses of this function by cell.createRight()
     def createRight(self, cell):
         cell.createRight()
 
-    # ToDo: replace uses of this function by cell.removeTop()
+    # TODO: replace uses of this function by cell.removeTop()
     def removeTop(self, cell):
         cell.removeTop()
 
-    # ToDo: replace uses of this function by cell.createTop()
+    # TODO: replace uses of this function by cell.createTop()
     def createTop(self, cell):
         cell.createTop()
 
-    # ToDo: replace uses of this function by cell.removeBottom()
+    # TODO: replace uses of this function by cell.removeBottom()
     def removeBottom(self, cell):
         cell.removeBottom()
 
-    # ToDo: replace uses of this function by cell.createBottom()
+    # TODO: replace uses of this function by cell.createBottom()
     def createBottom(self, cell):
         cell.createBottom()
 
-    # ToDo: replace uses of this function by cell.getX()
+    # TODO: replace uses of this function by cell.getX()
     def getX(self, cell):
         return cell.getX()
 
-    # ToDo: replace uses of this function by cell.getY()
+    # TODO: replace uses of this function by cell.getY()
     def getY(self, cell):
         return cell.getY()
