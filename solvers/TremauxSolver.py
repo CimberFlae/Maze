@@ -64,86 +64,94 @@ class TremauxSolver(Solver.Solver):
 
     def decideNext(self, maze, previous, current):
         if (current != maze.getExit()):
-            if (current.wallCount() < 2): # junction
-                if (not current in self.junctions): # new junction
-                    self.junctions.append(current)
-                    if (self.cameFromTop(maze, previous, current)):
-                        self.mark(current, current.getTop())
-                        while (self.notProgressedAndNotFinished(maze, current)):
-                            # arbitrary order
-                            self.tryBottom(maze, previous, current)
-                            if (self.notProgressedAndNotFinished(maze, current)):
-                                self.tryLeft(maze, previous, current)
-                            if (self.notProgressedAndNotFinished(maze, current)):
-                                self.tryRight(maze, previous, current)
-                    elif (self.cameFromBottom(maze, previous, current)):
-                        self.mark(current, current.getBottom())
-                        while (self.notProgressedAndNotFinished(maze, current)):
-                            # arbitrary order
-                            self.tryTop(maze, previous, current)
-                            if (self.notProgressedAndNotFinished(maze, current)):
-                                self.tryLeft(maze, previous, current)
-                            if (self.notProgressedAndNotFinished(maze, current)):
-                                self.tryRight(maze, previous, current)
-                    elif (self.cameFromLeft(maze, previous, current)):
-                        self.mark(current, current.getLeft())
-                        while (self.notProgressedAndNotFinished(maze, current)):
-                            # arbitrary order
-                            self.tryBottom(maze, previous, current)
-                            if (self.notProgressedAndNotFinished(maze, current)):
-                                self.tryTop(maze, previous, current)
-                            if (self.notProgressedAndNotFinished(maze, current)):
-                                self.tryRight(maze, previous, current)
-                    else:
-                        self.mark(current, current.getRight())
-                        while (self.notProgressedAndNotFinished(maze, current)):
-                            # arbitrary order
-                            self.tryBottom(maze, previous, current)
-                            if (self.notProgressedAndNotFinished(maze, current)):
-                                self.tryLeft(maze, previous, current)
-                            if (self.notProgressedAndNotFinished(maze, current)):
-                                self.tryTop(maze, previous, current)
-                else: # have been here before
-                    key = self.getKey(current)
-                    if (self.cameFromTop(maze, previous, current)):
-                        if (self.walls[key].count(current.getTop()) > 0): # this way has been taken
-                            self.mark(current, current.getTop())
-                            while (self.hasNVisitedPath(maze, previous, current, 0) and self.path[-1] != maze.getExit()):
-                                self.chooseNVisitedPath(maze, previous, current, 0)
-                            while (self.hasNVisitedPath(maze, previous, current, 1) and self.path[-1] != maze.getExit()):
-                                self.chooseNVisitedPath(maze, previous, current, 1)
-                    elif (self.cameFromBottom(maze, previous, current)):
-                        if (self.walls[key].count(current.getBottom()) > 0):
-                            self.mark(current, current.getBottom())
-                            while (self.hasNVisitedPath(maze, previous, current, 0) and self.path[-1] != maze.getExit()):
-                                self.chooseNVisitedPath(maze, previous, current, 0)
-                            while (self.hasNVisitedPath(maze, previous, current, 1) and self.path[-1] != maze.getExit()):
-                                self.chooseNVisitedPath(maze, previous, current, 1)
-                    elif (self.cameFromLeft(maze, previous, current)):
-                        if (self.walls[key].count(current.getLeft()) > 0):
-                            self.mark(current, current.getLeft())
-                            while (self.hasNVisitedPath(maze, previous, current, 0) and self.path[-1] != maze.getExit()):
-                                self.chooseNVisitedPath(maze, previous, current, 0)
-                            while (self.hasNVisitedPath(maze, previous, current, 1) and self.path[-1] != maze.getExit()):
-                                self.chooseNVisitedPath(maze, previous, current, 1)
-                    else:
-                        if (self.walls[key].count(current.getRight()) > 0):
-                            self.mark(current, current.getRight())
-                            while (self.hasNVisitedPath(maze, previous, current, 0) and self.path[-1] != maze.getExit()):
-                                self.chooseNVisitedPath(maze, previous, current, 0)
-                            while (self.hasNVisitedPath(maze, previous, current, 1) and self.path[-1] != maze.getExit()):
-                                self.chooseNVisitedPath(maze, previous, current, 1)
-            elif (current.wallCount() == 2): # normal path
-                self.findNext(maze, previous, current)
+            if super(TremauxSolver, self).isJunction(current):
+                self.handleJunction(maze, previous, current)
+            elif super(TremauxSolver, self).isPath(current):
+                super(TremauxSolver, self).handlePath(maze, previous, current)
             else: # dead end; do nothing and go back
-                if (self.cameFromTop(maze, previous, current)):
-                    self.tryTop(maze, previous, current)
-                elif (self.cameFromBottom(maze, previous, current)):
+                self.handleDeadEnd(maze, previous, current)
+
+    # @Override
+    def handleJunction(self, maze, previous, current):
+        if (not current in self.junctions): # new junction
+            self.junctions.append(current)
+            if (self.cameFromTop(maze, previous, current)):
+                self.mark(current, current.getTop())
+                while (self.notProgressedAndNotFinished(maze, current)):
+                    # arbitrary order
                     self.tryBottom(maze, previous, current)
-                elif (self.cameFromLeft(maze, previous, current)):
-                    self.tryLeft(maze, previous, current)
-                else:
-                    self.tryRight(maze, previous, current)
+                    if (self.notProgressedAndNotFinished(maze, current)):
+                        self.tryLeft(maze, previous, current)
+                    if (self.notProgressedAndNotFinished(maze, current)):
+                        self.tryRight(maze, previous, current)
+            elif (self.cameFromBottom(maze, previous, current)):
+                self.mark(current, current.getBottom())
+                while (self.notProgressedAndNotFinished(maze, current)):
+                    # arbitrary order
+                    self.tryTop(maze, previous, current)
+                    if (self.notProgressedAndNotFinished(maze, current)):
+                        self.tryLeft(maze, previous, current)
+                    if (self.notProgressedAndNotFinished(maze, current)):
+                        self.tryRight(maze, previous, current)
+            elif (self.cameFromLeft(maze, previous, current)):
+                self.mark(current, current.getLeft())
+                while (self.notProgressedAndNotFinished(maze, current)):
+                    # arbitrary order
+                    self.tryBottom(maze, previous, current)
+                    if (self.notProgressedAndNotFinished(maze, current)):
+                        self.tryTop(maze, previous, current)
+                    if (self.notProgressedAndNotFinished(maze, current)):
+                        self.tryRight(maze, previous, current)
+            else:
+                self.mark(current, current.getRight())
+                while (self.notProgressedAndNotFinished(maze, current)):
+                    # arbitrary order
+                    self.tryBottom(maze, previous, current)
+                    if (self.notProgressedAndNotFinished(maze, current)):
+                        self.tryLeft(maze, previous, current)
+                    if (self.notProgressedAndNotFinished(maze, current)):
+                        self.tryTop(maze, previous, current)
+        else: # have been here before
+            key = self.getKey(current)
+            if (self.cameFromTop(maze, previous, current)):
+                if (self.walls[key].count(current.getTop()) > 0): # this way has been taken
+                    self.mark(current, current.getTop())
+                    while (self.hasNVisitedPath(maze, previous, current, 0) and self.path[-1] != maze.getExit()):
+                        self.chooseNVisitedPath(maze, previous, current, 0)
+                    while (self.hasNVisitedPath(maze, previous, current, 1) and self.path[-1] != maze.getExit()):
+                        self.chooseNVisitedPath(maze, previous, current, 1)
+            elif (self.cameFromBottom(maze, previous, current)):
+                if (self.walls[key].count(current.getBottom()) > 0):
+                    self.mark(current, current.getBottom())
+                    while (self.hasNVisitedPath(maze, previous, current, 0) and self.path[-1] != maze.getExit()):
+                        self.chooseNVisitedPath(maze, previous, current, 0)
+                    while (self.hasNVisitedPath(maze, previous, current, 1) and self.path[-1] != maze.getExit()):
+                        self.chooseNVisitedPath(maze, previous, current, 1)
+            elif (self.cameFromLeft(maze, previous, current)):
+                if (self.walls[key].count(current.getLeft()) > 0):
+                    self.mark(current, current.getLeft())
+                    while (self.hasNVisitedPath(maze, previous, current, 0) and self.path[-1] != maze.getExit()):
+                        self.chooseNVisitedPath(maze, previous, current, 0)
+                    while (self.hasNVisitedPath(maze, previous, current, 1) and self.path[-1] != maze.getExit()):
+                        self.chooseNVisitedPath(maze, previous, current, 1)
+            else:
+                if (self.walls[key].count(current.getRight()) > 0):
+                    self.mark(current, current.getRight())
+                    while (self.hasNVisitedPath(maze, previous, current, 0) and self.path[-1] != maze.getExit()):
+                        self.chooseNVisitedPath(maze, previous, current, 0)
+                    while (self.hasNVisitedPath(maze, previous, current, 1) and self.path[-1] != maze.getExit()):
+                        self.chooseNVisitedPath(maze, previous, current, 1)
+
+    # @Override
+    def handleDeadEnd(self, maze, previous, current):
+        if (self.cameFromTop(maze, previous, current)):
+            self.tryTop(maze, previous, current)
+        elif (self.cameFromBottom(maze, previous, current)):
+            self.tryBottom(maze, previous, current)
+        elif (self.cameFromLeft(maze, previous, current)):
+            self.tryLeft(maze, previous, current)
+        else:
+            self.tryRight(maze, previous, current)
 
     def notProgressedAndNotFinished(self, maze, cell):
         return self.path[-1] == cell and self.path[-1] != maze.getExit()

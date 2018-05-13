@@ -28,6 +28,9 @@ class Solver:
     def isJunction(self, cell):
         return cell.wallCount() < 2
 
+    def isPath(self, cell):
+        return cell.wallCount() == 2
+
     def cameFromTop(self, maze, previous, current):
         return maze.getTopNeighbour(current) == previous
 
@@ -73,3 +76,37 @@ class Solver:
     def chooseDirection(self, directions, maze, current):
         n = random.randint(0, len(directions)-1)
         directions[n](maze, current)
+
+    def decideNext(self, maze, previous, cell):
+        if self.isJunction(cell):
+            self.handleJunction(maze, previous, cell)
+        elif self.isPath(cell):
+            self.handlePath(maze, previous, cell)
+        else: # dead end; do nothing and go back
+            self.handleDeadEnd(maze, previous, cell)
+
+    def handleJunction(self, maze, previous, cell):
+        directions = [];
+        if (self.cameFromTop(maze, previous, cell)):
+            directions = [self.tryBottom,  self.tryRight,  self.tryLeft]
+        elif (self.cameFromBottom(maze, previous, cell)):
+            directions = [self.tryTop,  self.tryRight,  self.tryLeft]
+        elif (self.cameFromLeft(maze, previous, cell)):
+            directions = [self.tryBottom,  self.tryRight,  self.tryTop]
+        else:
+            directions = [self.tryBottom,  self.tryTop,  self.tryLeft]
+        while (cell == self.path[-1] and cell != maze.getExit()):
+            self.chooseDirection(directions, maze, cell)
+
+    def handlePath(self, maze, previous, cell):
+        self.findNext(maze, previous, cell)
+
+    def handleDeadEnd(self, maze, previous, cell):
+        if (self.cameFromTop(maze, previous, cell)):
+            self.tryTop(maze, cell)
+        elif (self.cameFromBottom(maze, previous, cell)):
+            self.tryBottom(maze, cell)
+        elif (self.cameFromLeft(maze, previous, cell)):
+            self.tryLeft(maze, cell)
+        else:
+            self.tryRight(maze, cell)
