@@ -88,22 +88,22 @@ class Mesh:
                 ((cell.y == 0) & (wall == cell.leftWall)) | ((cell.y == self.size-1) & (wall == cell.rightWall))
 
     def hasNeighbourInDifferentSet(self, cell):#checks if cell has a neighbour which is not in the same set
-        x = cell.getX()
-        y = cell.getY()
         set = cell.getSet()
-        set1 = self.tryGetCell(x+1,y,cell).getSet()
-        set2 = self.tryGetCell(x-1,y,cell).getSet()
-        set3 = self.tryGetCell(x,y+1,cell).getSet()
-        set4 = self.tryGetCell(x,y-1,cell).getSet()
-        return not (set == set1 == set2 == set3 == set4)
+
+        top = self.getTopNeighbour(cell)
+        setTop = top == None or top.getSet() == set
+
+        bottom = self.getBottomNeighbour(cell)
+        setBottom = bottom == None or bottom.getSet() == set
+
+        right = self.getRightNeighbour(cell)
+        setRight = right == None or right.getSet() == set
+
+        left = self.getLeftNeighbour(cell)
+        setLeft = left == None or left.getSet() == set
+
+        return not (setTop and setBottom and setRight and setLeft)
     
-    # TODO: get rid of this function
-    def tryGetCell(self,x,y,default): # return the cell if index in range, returns default otherwise
-        if (0 <= x < self.size) & (0 <= y < self.size):
-            return self.matrix[x][y]
-        else:
-            return default
-            
     def setCustomOpening(self, x, y, vertical = True):
         if x >= self.size or y >= self.size:
             raise IndexError('Opening cell has to part of the maze - check your indexes')
