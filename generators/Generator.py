@@ -13,13 +13,13 @@ class Generator:
             random.seed(seed)
         maze = self.__generateMaze__(size, seed = seed)
         if random.getrandbits(1) == 0:
-            self.setRandomTopEntrance(maze)
+            maze.setRandomTopEntrance()
         else:
-            self.setRandomLeftEntrance(maze)
+            maze.setRandomLeftEntrance()
         if random.getrandbits(1) == 0:
-            self.setRandomBottomExit(maze)
+            maze.setRandomBottomExit()
         else:
-            self.setRandomRightExit(maze)
+            maze.setRandomRightExit()
         return maze
     
     def generateCustomMaze(self, size, x1, y1, x2, y2, seed = 0):
@@ -47,16 +47,3 @@ class Generator:
             maze = self.setStandardEntrance(maze, top)
         if exit:
             maze = self.setStandardExit(maze, bottom)
-
-    #TODO: replace uses of these functions by the direct call? if it doesn't create more calls!
-    def setRandomTopEntrance(self, maze):
-        maze.setRandomTopEntrance()
-
-    def setRandomLeftEntrance(self, maze):
-        maze.setRandomLeftEntrance()
-
-    def setRandomBottomExit(self, maze):
-        maze.setRandomBottomExit()
-
-    def setRandomRightExit(self, maze):
-        maze.setRandomRightExit()

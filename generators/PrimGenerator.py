@@ -21,25 +21,25 @@ class PrimGenerator(Generator.Generator):
             if (wall == cell.getLeft()):
                 neighbour = mesh.getLeftNeighbour(cell)
                 if (cell.getSet() != neighbour.getSet()):
-                    mesh.removeLeft(cell)
+                    cell.removeLeft()
                     mesh.moveCell(neighbour.getSet(), cell.getSet())
                     queue.append(neighbour)
             elif (wall == cell.getRight()):
                 neighbour = mesh.getRightNeighbour(cell)
                 if (cell.getSet() != neighbour.getSet()):
-                    mesh.removeRight(cell)
+                    cell.removeRight()
                     mesh.moveCell(neighbour.getSet(), cell.getSet())
                     queue.append(neighbour)
             elif (wall == cell.getTop()):
                 neighbour = mesh.getTopNeighbour(cell)
                 if (cell.getSet() != neighbour.getSet()):
-                    mesh.removeTop(cell)
+                    cell.removeTop()
                     mesh.moveCell(neighbour.getSet(), cell.getSet())
                     queue.append(neighbour)
             elif (wall == cell.getBottom()):
                 neighbour = mesh.getBottomNeighbour(cell)
                 if (cell.getSet() != neighbour.getSet()):
-                    mesh.removeBottom(cell)
+                    cell.removeBottom()
                     mesh.moveCell(neighbour.getSet(), cell.getSet())
                     queue.append(neighbour)
             if (not mesh.hasNeighbourInDifferentSet(cell)):

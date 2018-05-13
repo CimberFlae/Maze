@@ -12,24 +12,24 @@ class KruskalGenerator(Generator.Generator):
         while (mesh.hasMultipleSets()):
             cell = mesh.chooseCell()
             wall = mesh.chooseWall(cell)
-            if (wall == mesh.getLeft(cell)):
+            if (wall == cell.getLeft()):
                 neighbour = mesh.getLeftNeighbour(cell)
-                if (mesh.getSet(neighbour) != mesh.getSet(cell)):
-                    mesh.removeLeft(cell)
-                    mesh.moveCell(neighbour.getSet(),cell.getSet())
-            elif (wall == mesh.getRight(cell)):
+                if (neighbour.getSet() != cell.getSet()):
+                    cell.removeLeft()
+                    mesh.moveCell(neighbour.getSet(), cell.getSet())
+            elif (wall == cell.getRight()):
                 neighbour = mesh.getRightNeighbour(cell)
-                if (mesh.getSet(neighbour) != mesh.getSet(cell)):
-                    mesh.removeRight(cell)
-                    mesh.moveCell(neighbour.getSet(),cell.getSet())
-            elif (wall == mesh.getTop(cell)):
+                if (neighbour.getSet() != cell.getSet()):
+                    cell.removeRight()
+                    mesh.moveCell(neighbour.getSet(), cell.getSet())
+            elif (wall == cell.getTop()):
                 neighbour = mesh.getTopNeighbour(cell)
-                if (mesh.getSet(neighbour) != mesh.getSet(cell)):
-                    mesh.removeTop(cell)
-                    mesh.moveCell(neighbour.getSet(),cell.getSet())
-            elif (wall == mesh.getBottom(cell)):
+                if (neighbour.getSet() != cell.getSet()):
+                    cell.removeTop()
+                    mesh.moveCell(neighbour.getSet(), cell.getSet())
+            elif (wall == cell.getBottom()):
                 neighbour = mesh.getBottomNeighbour(cell)
-                if (mesh.getSet(neighbour) != mesh.getSet(cell)):
-                    mesh.removeBottom(cell)
-                    mesh.moveCell(neighbour.getSet(),cell.getSet())
+                if (neighbour.getSet() != cell.getSet()):
+                    cell.removeBottom()
+                    mesh.moveCell(neighbour.getSet(), cell.getSet())
         return mesh

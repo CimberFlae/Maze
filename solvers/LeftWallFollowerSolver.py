@@ -14,22 +14,22 @@ class LeftWallFollowerSolver(Solver.Solver):
             maze.setCustomOpening(maze.getSize() - 1, maze.getSize() - 1)
         cell = maze.getEntrance()
         self.path.append(cell)
-        x = maze.getX(cell)
-        y = maze.getY(cell)
+        x = cell.getX()
+        y = cell.getY()
         if ((x == 0) & (y != 0)):
             self.tryRight(maze, cell)
         elif ((x != 0) & (y == 0)):
             self.tryTop(maze, cell)
-        elif ((x == y == 0) & maze.getTop(cell).isRemoved()):
+        elif ((x == y == 0) & cell.getTop().isRemoved()):
             self.tryRight(maze, cell)
-        elif ((x == y == 0) & maze.getLeft(cell).isRemoved()):
+        elif ((x == y == 0) & cell.getLeft().isRemoved()):
             self.tryTop(maze, cell)
         self.cleanPath()
         return self.path
 
-    def tryBottom(self,maze,cell):
+    def tryBottom(self,maze, cell):
         if (cell != maze.getExit()):
-            if (maze.getBottom(cell).isRemoved()):
+            if (cell.getBottom().isRemoved()):
                 cell = maze.getBottomNeighbour(cell)
                 self.path.append(cell)
                 self.tryRight(maze, cell)
@@ -38,7 +38,7 @@ class LeftWallFollowerSolver(Solver.Solver):
 
     def tryLeft(self, maze, cell):
         if (cell != maze.getExit()):
-            if (maze.getLeft(cell).isRemoved()):
+            if (cell.getLeft().isRemoved()):
                 cell = maze.getLeftNeighbour(cell)
                 self.path.append(cell)
                 self.tryBottom(maze, cell)
@@ -47,7 +47,7 @@ class LeftWallFollowerSolver(Solver.Solver):
 
     def tryTop(self, maze, cell):
         if (cell != maze.getExit()):
-            if (maze.getTop(cell).isRemoved()):
+            if (cell.getTop().isRemoved()):
                 cell = maze.getTopNeighbour(cell)
                 self.path.append(cell)
                 self.tryLeft(maze, cell)
@@ -56,7 +56,7 @@ class LeftWallFollowerSolver(Solver.Solver):
 
     def tryRight(self, maze, cell):
         if (cell != maze.getExit()):
-            if (maze.getRight(cell).isRemoved()):
+            if (cell.getRight().isRemoved()):
                 cell = maze.getRightNeighbour(cell)
                 self.path.append(cell)
                 self.tryTop(maze, cell)
