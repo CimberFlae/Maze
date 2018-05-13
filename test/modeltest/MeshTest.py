@@ -107,7 +107,74 @@ class MeshTest(unittest.TestCase):
         self.assertRaises(IndexError, self.mesh.setCustomOpening, 10, 9)
         self.mesh.setCustomOpening(0, 0, True)
         self.assertTrue(self.mesh.matrix[0][0].getTop().isRemoved(), 'Cell (0,0) is not removed.')
-        # TODO: test more functionality
+
+    def test_setRandomTopEntrance(self):
+        self.mesh.setRandomTopEntrance()
+        found = False
+        for i in range(0, 10):
+            if self.mesh.matrix[0][i].getTop().isRemoved():
+                found = True
+        if not found:
+            self.assertTrue(False, 'No top entrance found')
+
+    def test_setRandomLeftEntrance(self):
+        self.mesh.setRandomLeftEntrance()
+        found = False
+        for i in range(0, 10):
+            if self.mesh.matrix[i][0].getLeft().isRemoved():
+                found = True
+        if not found:
+            self.assertTrue(False, 'No left entrance found')
+
+    def test_setRandomBottomExit(self):
+        self.mesh.setRandomBottomExit()
+        found = False
+        for i in range(0, 10):
+            if self.mesh.matrix[9][i].getBottom().isRemoved():
+                found = True
+        if not found:
+            self.assertTrue(False, 'No bottom exit found')
+
+    def test_setRandomRightExit(self):
+        self.mesh.setRandomRightExit()
+        found = False
+        for i in range(0, 10):
+            if self.mesh.matrix[i][9].getRight().isRemoved():
+                found = True
+        if not found:
+            self.assertTrue(False, 'No right exit found')
+
+    def test_clearEntrance(self):
+        self.mesh.setCustomOpening(0, 0)
+        self.mesh.clearEntrance()
+        self.assertFalse(self.mesh.matrix[0][0].getTop().isRemoved(), 'Entrance was not cleared')
+        self.assertFalse(self.mesh.matrix[0][0].getLeft().isRemoved(), 'Entrance was not cleared')
+
+    def test_clearExit(self):
+        self.mesh.setCustomOpening(9, 9)
+        self.mesh.clearExit()
+        self.assertFalse(self.mesh.matrix[9][9].getBottom().isRemoved(), 'Exit was not cleared')
+        self.assertFalse(self.mesh.matrix[9][9].getRight().isRemoved(), 'Exit was not cleared')
+
+    def test_getEntrance(self):
+        self.mesh.setCustomOpening(0, 0)
+        self.assertEqual(self.mesh.getEntrance(), self.mesh.matrix[0][0], 'getEntrance returned wrong value')
+
+    def test_getExit(self):
+        self.mesh.setCustomOpening(9, 9)
+        self.assertEqual(self.mesh.getExit(), self.mesh.matrix[9][9], 'getExit returned wrong value')
+
+    def test_chooseWall(self):
+        cell = self.mesh.matrix[0][5]
+        cell.removeLeft()
+        wall = self.mesh.chooseWall(cell)
+        self.assertIsNotNone(wall, 'No wall was chosen')
+        self.assertNotEqual(wall, cell.getLeft(), 'A removed wall was chosen')
+        self.assertNotEqual(wall, cell.getTop, 'A border wall was chosen')
+        cell.removeRight()
+        cell.removeBottom()
+        wall = self.mesh.chooseWall(cell)
+        self.assertIsNone(wall, 'A (removed or border) wall was chosen')
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(MeshTest)

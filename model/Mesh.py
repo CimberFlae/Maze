@@ -175,6 +175,7 @@ class Mesh:
                 self.entrance.createTop()
             if (self.entrance.getY() == 0):
                 self.entrance.createLeft()
+            self.entrance = None
 
     def clearExit(self): # clear exit to get sure a maze only has one exit
         if (self.exit != None):
@@ -182,6 +183,7 @@ class Mesh:
                 self.exit.createBottom()
             if (self.exit.getY() == self.size-1):
                 self.exit.createRight()
+            self.exit = None
 
     def getEntrance(self):
         return self.entrance
