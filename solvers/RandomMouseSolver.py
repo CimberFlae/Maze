@@ -11,63 +11,47 @@ class RandomMouseSolver(Solver.Solver):
             random.seed(seed)
         """implement random mouse algorithm"""
         """this means: always follow a given path to a junction and from there try a direction at random"""
-        """caution: this algorithms only terminates in acceptable amount of time for very small paths (often seen in very small mazes)"""
+        """caution: this algorithms may take longer than anticipated (since it is random)"""
         if (maze.getEntrance() == None):
             maze.setCustomOpening(0, 0)
         if (maze.getExit() == None):
             maze.setCustomOpening(maze.getSize() - 1, maze.getSize() - 1)
         cell = maze.getEntrance()
         self.path.append(cell)
-        x = cell.getX()
-        y = cell.getY()
-        if ((x == 0) & (y != 0)):
-            self.tryBottom(maze, cell)
-        elif ((x != 0) & (y == 0)):
-            self.tryRight(maze, cell)
-        elif ((x == y == 0) & cell.getTop().isRemoved()):
-            self.tryBottom(maze, cell)
-        elif ((x == y == 0) & cell.getLeft().isRemoved()):
-            self.tryRight(maze, cell)
+        previous = None
         while (self.path[-1] != maze.getExit()):
-            self.tryRandom(maze, cell)
+            super(RandomMouseSolver, self).decideNext(maze, previous, self.path[-1])
+            previous = self.path[-2]
         self.cleanPath()
         return self.path
 
     def tryBottom(self, maze, cell):
-        previous = cell
         if (cell != maze.getExit()):
             bottom = cell.getBottom()
             if (bottom.isRemoved() & (not maze.isBorder(cell, bottom))):
                 cell = maze.getBottomNeighbour(cell)
                 self.path.append(cell)
-                super(RandomMouseSolver, self).decideNext(maze, previous, cell)
 
     def tryLeft(self, maze, cell):
-        previous = cell
         if (cell != maze.getExit()):
             left = cell.getLeft()
             if (left.isRemoved() & (not maze.isBorder(cell, left))):
                 cell = maze.getLeftNeighbour(cell)
                 self.path.append(cell)
-                super(RandomMouseSolver, self).decideNext(maze, previous, cell)
 
     def tryTop(self, maze, cell):
-        previous = cell
         if (cell != maze.getExit()):
             top = cell.getTop()
             if (top.isRemoved() & (not maze.isBorder(cell, top))):
                 cell = maze.getTopNeighbour(cell)
                 self.path.append(cell)
-                super(RandomMouseSolver, self).decideNext(maze, previous, cell)
 
     def tryRight(self, maze, cell):
-        previous = cell
         if (cell != maze.getExit()):
             right = cell.getRight()
             if (right.isRemoved() & (not maze.isBorder(cell, right))):
                 cell = maze.getRightNeighbour(cell)
                 self.path.append(cell)
-                super(RandomMouseSolver, self).decideNext(maze, previous, cell)
 
     def tryRandom(self, maze, cell):
         list = [self.tryBottom, self.tryLeft, self.tryTop, self.tryRight]
