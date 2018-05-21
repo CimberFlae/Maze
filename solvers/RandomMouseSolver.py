@@ -18,35 +18,37 @@ class RandomMouseSolver(Solver.Solver):
             maze.setCustomOpening(maze.getSize() - 1, maze.getSize() - 1)
         cell = maze.getEntrance()
         self.path.append(cell)
-        previous = None
         while (self.path[-1] != maze.getExit()):
-            super(RandomMouseSolver, self).decideNext(maze, previous, self.path[-1])
-            previous = self.path[-2]
+            super(RandomMouseSolver, self).decideNext(maze)
         self.cleanPath()
         return self.path
 
-    def tryBottom(self, maze, cell):
+    def tryBottom(self, maze):
+        cell = self.path[-1]
         if (cell != maze.getExit()):
             bottom = cell.getBottom()
             if (bottom.isRemoved() & (not maze.isBorder(cell, bottom))):
                 cell = maze.getBottomNeighbour(cell)
                 self.path.append(cell)
 
-    def tryLeft(self, maze, cell):
+    def tryLeft(self, maze):
+        cell = self.path[-1]
         if (cell != maze.getExit()):
             left = cell.getLeft()
             if (left.isRemoved() & (not maze.isBorder(cell, left))):
                 cell = maze.getLeftNeighbour(cell)
                 self.path.append(cell)
 
-    def tryTop(self, maze, cell):
+    def tryTop(self, maze):
+        cell = self.path[-1]
         if (cell != maze.getExit()):
             top = cell.getTop()
             if (top.isRemoved() & (not maze.isBorder(cell, top))):
                 cell = maze.getTopNeighbour(cell)
                 self.path.append(cell)
 
-    def tryRight(self, maze, cell):
+    def tryRight(self, maze):
+        cell = self.path[-1]
         if (cell != maze.getExit()):
             right = cell.getRight()
             if (right.isRemoved() & (not maze.isBorder(cell, right))):

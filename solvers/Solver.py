@@ -31,82 +31,92 @@ class Solver:
     def isPath(self, cell):
         return cell.wallCount() == 2
 
-    def cameFromTop(self, maze, previous, current):
-        return maze.getTopNeighbour(current) == previous
+    def cameFromTop(self, maze):
+        previous = self.getPrevious()
+        return maze.getTopNeighbour(self.path[-1]) == previous
 
-    def cameFromRight(self, maze, previous, current):
-        return maze.getRightNeighbour(current) == previous
+    def cameFromRight(self, maze):
+        previous = self.getPrevious()
+        return maze.getRightNeighbour(self.path[-1]) == previous
 
-    def cameFromBottom(self, maze, previous, current):
-        return maze.getBottomNeighbour(current) == previous
+    def cameFromBottom(self, maze):
+        previous = self.getPrevious()
+        return maze.getBottomNeighbour(self.path[-1]) == previous
 
-    def cameFromLeft(self, maze, previous, current):
-        return maze.getLeftNeighbour(current) == previous
+    def cameFromLeft(self, maze):
+        previous = self.getPrevious()
+        return maze.getLeftNeighbour(self.path[-1]) == previous
 
-    def findNext(self, maze, previous, current): # if there is only one way to go
-        if (self.cameFromBottom(maze, previous, current)): # came from bottom
+    def getPrevious(self):
+        return self.path[-2] if len(self.path) > 1 else None
+
+    def findNext(self, maze): # if there is only one way to go
+        current = self.path[-1]
+        if (self.cameFromBottom(maze)): # came from bottom
             if (current.getLeft().isRemoved()):
-                self.tryLeft(maze, current)
+                self.tryLeft(maze)
             elif (current.getRight().isRemoved()):
-                self.tryRight(maze, current)
+                self.tryRight(maze)
             else:
-                self.tryTop(maze, current)
-        elif (self.cameFromLeft(maze, previous, current)): # came from left
+                self.tryTop(maze)
+        elif (self.cameFromLeft(maze)): # came from left
             if (current.getBottom().isRemoved()):
-                self.tryBottom(maze, current)
+                self.tryBottom(maze)
             elif (current.getRight().isRemoved()):
-                self.tryRight(maze, current)
+                self.tryRight(maze)
             else:
-                self.tryTop(maze, current)
-        elif (self.cameFromRight(maze, previous, current)): # came from right
+                self.tryTop(maze)
+        elif (self.cameFromRight(maze)): # came from right
             if (current.getBottom().isRemoved()):
-                self.tryBottom(maze, current)
+                self.tryBottom(maze)
             elif (current.getLeft().isRemoved()):
-                self.tryLeft(maze, current)
+                self.tryLeft(maze)
             else:
-                self.tryTop(maze, current)
+                self.tryTop(maze)
         else: # came from top
             if (current.getBottom().isRemoved()):
-                self.tryBottom(maze, current)
+                self.tryBottom(maze)
             elif (current.getLeft().isRemoved()):
-                self.tryLeft(maze, current)
+                self.tryLeft(maze)
             else:
-                self.tryRight(maze, current)
+                self.tryRight(maze)
 
-    def chooseDirection(self, directions, maze, current):
+    def chooseDirection(self, directions, maze):
         n = random.randint(0, len(directions)-1)
-        directions[n](maze, current)
+        directions[n](maze)
 
-    def decideNext(self, maze, previous, cell):
-        if self.isJunction(cell):
-            self.handleJunction(maze, previous, cell)
-        elif self.isPath(cell):
-            self.handlePath(maze, previous, cell)
+    def decideNext(self, maze):
+        current = self.path[-1]
+        if self.isJunction(current):
+            self.handleJunction(maze)
+        elif self.isPath(current):
+            self.handlePath(maze)
         else: # dead end; do nothing and go back
-            self.handleDeadEnd(maze, previous, cell)
+            self.handleDeadEnd(maze)
 
-    def handleJunction(self, maze, previous, cell):
+    def handleJunction(self, maze):
+        current = self.path[-1]
         directions = [];
-        if (self.cameFromTop(maze, previous, cell)):
-            directions = [self.tryBottom,  self.tryRight,  self.tryLeft]
-        elif (self.cameFromBottom(maze, previous, cell)):
-            directions = [self.tryTop,  self.tryRight,  self.tryLeft]
-        elif (self.cameFromLeft(maze, previous, cell)):
-            directions = [self.tryBottom,  self.tryRight,  self.tryTop]
+        if (self.cameFromTop(maze)):
+            directions = [self.tryBottom, self.tryRight, self.tryLeft]
+        elif (self.cameFromBottom(maze)):
+            directions = [self.tryTop, self.tryRight, self.tryLeft]
+        elif (self.cameFromLeft(maze)):
+            directions = [self.tryBottom, self.tryRight, self.tryTop]
         else:
-            directions = [self.tryBottom,  self.tryTop,  self.tryLeft]
-        while (cell == self.path[-1] and cell != maze.getExit()):
-            self.chooseDirection(directions, maze, cell)
+            directions = [self.tryBottom, self.tryTop, self.tryLeft]
+        while (current == self.path[-1] and current != maze.getExit()):
+            self.chooseDirection(directions, maze)
 
-    def handlePath(self, maze, previous, cell):
-        self.findNext(maze, previous, cell)
+    def handlePath(self, maze):
+        self.findNext(maze)
 
-    def handleDeadEnd(self, maze, previous, cell):
-        if (self.cameFromTop(maze, previous, cell)):
-            self.tryTop(maze, cell)
-        elif (self.cameFromBottom(maze, previous, cell)):
-            self.tryBottom(maze, cell)
-        elif (self.cameFromLeft(maze, previous, cell)):
-            self.tryLeft(maze, cell)
+    def handleDeadEnd(self, maze):
+        if (self.cameFromTop(maze)):
+            self.tryTop(maze)
+        elif (self.cameFromBottom(maze)):
+            self.tryBottom(maze)
+        elif (self.cameFromLeft(maze)):
+            self.tryLeft(maze)
         else:
-            self.tryRight(maze, cell)
+            self.tryRight(maze)
