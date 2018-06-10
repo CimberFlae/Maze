@@ -19,7 +19,7 @@ class RandomMouseSolver(Solver.Solver):
         cell = maze.getEntrance()
         self.path.append(cell)
         while (self.path[-1] != maze.getExit()):
-            super(RandomMouseSolver, self).decideNext(maze)
+            self.decideNext(maze)
         self.cleanPath()
         return self.path
 
