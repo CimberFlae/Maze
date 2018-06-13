@@ -42,6 +42,8 @@ class DepthFirstSearchGenerator(Generator.Generator):
                         mesh.moveCell(neighbour.getSet(), cell.getSet())
                         stack.append(cell)
                         cell = neighbour
+                else:
+                    raise Exception('Invalid wall')
             else:
                 cell = stack.pop()
         return mesh

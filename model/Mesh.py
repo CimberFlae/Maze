@@ -122,9 +122,11 @@ class Mesh:
                 else:
                     cell.removeRight()
                     self.exit = cell
-            else:
+            elif y > 0 and y < self.size - 1:
                 cell.removeTop()
                 self.entrance = cell
+            else:
+                raise Exception('Invalid y-coordinate')
         elif x == self.size - 1:
             if y == self.size - 1:
                 if vertical:
@@ -142,12 +144,14 @@ class Mesh:
             else:
                 cell.removeBottom()
                 self.exit = cell
-        elif y == 0:
+        elif x > 0 and x < self.size - 1 and y == 0:
             cell.removeLeft()
             self.entrance = cell
-        else:
+        elif x > 0 and x < self.size - 1 and y == self.size - 1:
             cell.removeRight()
             self.exit = cell
+        else:
+            raise Exception('Invalid coordinates')
 
     def setRandomTopEntrance(self):
         self.clearEntrance()

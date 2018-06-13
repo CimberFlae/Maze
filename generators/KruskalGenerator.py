@@ -32,4 +32,6 @@ class KruskalGenerator(Generator.Generator):
                 if (neighbour.getSet() != cell.getSet()):
                     cell.removeBottom()
                     mesh.moveCell(neighbour.getSet(), cell.getSet())
+            else:
+                raise Exception('Invalid wall')
         return mesh

@@ -42,6 +42,8 @@ class PrimGenerator(Generator.Generator):
                     cell.removeBottom()
                     mesh.moveCell(neighbour.getSet(), cell.getSet())
                     queue.append(neighbour)
+            else:
+                raise Exception('Invalid wall')
             if (not mesh.hasNeighbourInDifferentSet(cell)):
                 queue.remove(cell)
         return mesh

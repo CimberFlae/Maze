@@ -24,6 +24,8 @@ class RightWallFollowerSolver(Solver.Solver):
             self.tryLeft(maze, cell)
         elif ((x == y == 0) & cell.getLeft().isRemoved()):
             self.tryBottom(maze, cell)
+        else:
+            raise Exception('Invalid starting cell')
         self.cleanPath()
         return self.path
 

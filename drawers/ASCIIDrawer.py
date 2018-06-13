@@ -36,7 +36,6 @@ class ASCIIDrawer(Drawer.Drawer):
         """print path with ASCII signs"""
         for i in range (0,len(path)):
             sys.stdout.write("(" + path[i].getX().__str__() + "," + path[i].getY().__str__() + ")  ")
-            #print (maze.getX(path[i]),maze.getY(path[i]))
         print("")
         sys.stdout.write("( ")
         for i in range (0, len(path)-1):
@@ -50,7 +49,9 @@ class ASCIIDrawer(Drawer.Drawer):
                 sys.stdout.write("^ ")
             elif (y1 < y2):
                 sys.stdout.write("-> ")
-            else:
+            elif (y1 > y2):
                 sys.stdout.write("<- ")
+            else:
+                raise Exception('Invalid cell transition')
         sys.stdout.write(")")
         print("")

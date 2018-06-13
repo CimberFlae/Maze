@@ -49,6 +49,8 @@ class RecursiveDivisionGenerator(Generator.Generator):
                 mesh.getCell(column, rightHole).removeTop()
                 mesh.getCell(topHole, row).removeLeft()
                 mesh.getCell(bottomHole, row).removeLeft()
+            else:
+                raise Exception('Invalid random number')
             self.divideAndGenerate(mesh,leftBorder, row-1, topBorder, column-1)
             self.divideAndGenerate(mesh,row, rightBorder, topBorder, column-1)
             self.divideAndGenerate(mesh,leftBorder, row-1, column, bottomBorder)
