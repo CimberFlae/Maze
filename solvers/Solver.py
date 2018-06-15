@@ -32,7 +32,7 @@ class Solver:
         return cell.wallCount() == 2
 
     def isDeadEnd(self, cell):
-        return cell.wallCount() == 1
+        return cell.wallCount() == 3
 
     def cameFromTop(self, maze):
         previous = self.getPrevious()

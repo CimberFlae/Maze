@@ -91,7 +91,7 @@ class TremauxSolver(Solver.Solver):
                         self.tryTop(maze)
                     if (self.notFinished(maze)):
                         self.tryRight(maze)
-            else:
+            elif (self.cameFromRight(maze)):
                 self.mark(self.path[-1], self.path[-1].getRight())
                 while (self.notFinished(maze)):
                     # arbitrary order
@@ -100,6 +100,8 @@ class TremauxSolver(Solver.Solver):
                         self.tryLeft(maze)
                     if (self.notFinished(maze)):
                         self.tryTop(maze)
+            else:
+                raise Exception('Came from nowhere')
         else: # have been here before
             key = self.getKey(current)
             if (self.cameFromTop(maze)):
@@ -123,13 +125,15 @@ class TremauxSolver(Solver.Solver):
                         self.chooseNVisitedPath(maze, 0)
                     while (self.notFinished(maze) and self.hasNVisitedPath(maze, 1)):
                         self.chooseNVisitedPath(maze, 1)
-            else:
+            elif (self.cameFromRight(maze)):
                 if (self.walls[key].count(current.getRight()) > 0):
                     self.mark(current, current.getRight())
                     while (self.notFinished(maze) and self.hasNVisitedPath(maze, 0)):
                         self.chooseNVisitedPath(maze, 0)
                     while (self.notFinished(maze) and self.hasNVisitedPath(maze, 1)):
                         self.chooseNVisitedPath(maze, 1)
+            else:
+                raise Exception('Came from nowhere')
 
     def notFinished(self, maze):
         current = self.path[-1]
@@ -150,9 +154,11 @@ class TremauxSolver(Solver.Solver):
             elif (self.walls[key].count(current.getRight()) == n):
                 self.mark(current, current.getRight())
                 self.tryRight(maze)
-            else:
+            elif (self.walls[key].count(current.getTop()) == n):
                 self.mark(current, current.getTop())
                 self.tryTop(maze)
+            else:
+                raise Exception('Every path from here already visited ' + n + ' times')
         elif (self.cameFromLeft(maze)):
             if (self.walls[key].count(current.getBottom()) == n):
                 self.mark(current, current.getBottom())
@@ -160,9 +166,11 @@ class TremauxSolver(Solver.Solver):
             elif (self.walls[key].count(current.getRight()) == n):
                 self.mark(current, current.getRight())
                 self.tryRight(maze)
-            else:
+            elif (self.walls[key].count(current.getTop()) == n):
                 self.mark(current, current.getTop())
                 self.tryTop(maze)
+            else:
+                raise Exception('Every path from here already visited ' + n + ' times')
         elif (self.cameFromRight(maze)):
             if (self.walls[key].count(current.getLeft()) == n):
                 self.mark(current, current.getLeft())
@@ -170,19 +178,25 @@ class TremauxSolver(Solver.Solver):
             elif (self.walls[key].count(current.getBottom()) == n):
                 self.mark(current, current.getBottom())
                 self.tryBottom(maze)
-            else:
+            elif (self.walls[key].count(current.getTop()) == n):
                 self.mark(current, current.getTop())
                 self.tryTop(maze)
-        else:
+            else:
+                raise Exception('Every path from here already visited ' + n + ' times')
+        elif (self.cameFromTop(maze)):
             if (self.walls[key].count(current.getLeft()) == n):
                 self.mark(current, current.getLeft())
                 self.tryLeft(maze)
             elif (self.walls[key].count(current.getRight()) == n):
                 self.mark(current, current.getRight())
                 self.tryRight(maze)
-            else:
+            elif (self.walls[key].count(current.getBottom()) == n):
                 self.mark(current, current.getBottom())
                 self.tryBottom(maze)
+            else:
+                raise Exception('Every path from here already visited ' + n + ' times')
+        else:
+            raise Exception('Came from nowhere')
 
     def getKey(self, cell):
         return str(cell.getX()) + str(cell.getY())
