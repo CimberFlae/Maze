@@ -12,18 +12,6 @@ class PrimGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest,  un
         seed = 4
         generator = PrimGenerator.PrimGenerator()
         self.maze = generator.generateRandomMaze(self.size, seed = seed)
-    
-    def test_validEntry(self):
-        super(PrimGeneratorTest, self).test_validEntry()
-        
-    def test_oneEntry(self):
-        super(PrimGeneratorTest, self).test_oneEntry()
-        
-    def test_validExit(self):
-        super(PrimGeneratorTest, self).test_validExit()
-        
-    def test_oneExit(self):
-        super(PrimGeneratorTest, self).test_oneExit()
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(PrimGeneratorTest)

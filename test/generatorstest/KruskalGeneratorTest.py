@@ -12,18 +12,6 @@ class KruskalGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest, 
         seed = 3
         generator = KruskalGenerator.KruskalGenerator()
         self.maze = generator.generateRandomMaze(self.size, seed = seed)
-    
-    def test_validEntry(self):
-        super(KruskalGeneratorTest, self).test_validEntry()
-        
-    def test_oneEntry(self):
-        super(KruskalGeneratorTest, self).test_oneEntry()
-        
-    def test_validExit(self):
-        super(KruskalGeneratorTest, self).test_validExit()
-        
-    def test_oneExit(self):
-        super(KruskalGeneratorTest, self).test_oneExit()
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(KruskalGeneratorTest)

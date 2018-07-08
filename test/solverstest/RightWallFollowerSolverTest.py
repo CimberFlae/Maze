@@ -10,18 +10,6 @@ class RightWallFollowerSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest,
     def setUp(self):
         super(RightWallFollowerSolverTest, self).setUp()
         self.solver = RightWallFollowerSolver.RightWallFollowerSolver()
-    
-    def test_cleanPathLevel1(self):
-        super(RightWallFollowerSolverTest, self).test_cleanPathLevel1()
-
-    def test_cleanPathLevel2(self):
-        super(RightWallFollowerSolverTest, self).test_cleanPathLevel2()
-
-    def test_cleanPathLevel3(self):
-        super(RightWallFollowerSolverTest, self).test_cleanPathLevel3()
-
-    def test_solveEasyMaze(self):
-        super(RightWallFollowerSolverTest, self).test_solveEasyMaze()
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(RightWallFollowerSolverTest)
