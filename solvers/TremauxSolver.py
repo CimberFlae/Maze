@@ -78,20 +78,20 @@ class TremauxSolver(Solver.Solver):
                 self.mark(self.path[-1], self.path[-1].getBottom())
                 while (self.notFinished()):
                     # arbitrary order
-                    self.tryTop()
-                    if (self.notFinished()):
-                        self.tryLeft()
+                    self.tryLeft()
                     if (self.notFinished()):
                         self.tryRight()
+                    if (self.notFinished()):
+                        self.tryTop()
             elif (self.cameFromLeft()):
                 self.mark(self.path[-1], self.path[-1].getLeft())
                 while (self.notFinished()):
                     # arbitrary order
                     self.tryBottom()
                     if (self.notFinished()):
-                        self.tryTop()
-                    if (self.notFinished()):
                         self.tryRight()
+                    if (self.notFinished()):
+                        self.tryTop()
             elif (self.cameFromRight()):
                 self.mark(self.path[-1], self.path[-1].getRight())
                 while (self.notFinished()):
@@ -173,27 +173,27 @@ class TremauxSolver(Solver.Solver):
             else:
                 raise Exception('Every path from here already visited ' + n + ' times')
         elif (self.cameFromRight()):
-            if (self.walls[key].count(current.getLeft()) == n):
-                self.mark(current, current.getLeft())
-                self.tryLeft()
-            elif (self.walls[key].count(current.getBottom()) == n):
+            if (self.walls[key].count(current.getBottom()) == n):
                 self.mark(current, current.getBottom())
                 self.tryBottom()
+            elif (self.walls[key].count(current.getLeft()) == n):
+                self.mark(current, current.getLeft())
+                self.tryLeft()
             elif (self.walls[key].count(current.getTop()) == n):
                 self.mark(current, current.getTop())
                 self.tryTop()
             else:
                 raise Exception('Every path from here already visited ' + n + ' times')
         elif (self.cameFromTop()):
-            if (self.walls[key].count(current.getLeft()) == n):
+            if (self.walls[key].count(current.getBottom()) == n):
+                self.mark(current, current.getBottom())
+                self.tryBottom()
+            elif (self.walls[key].count(current.getLeft()) == n):
                 self.mark(current, current.getLeft())
                 self.tryLeft()
             elif (self.walls[key].count(current.getRight()) == n):
                 self.mark(current, current.getRight())
                 self.tryRight()
-            elif (self.walls[key].count(current.getBottom()) == n):
-                self.mark(current, current.getBottom())
-                self.tryBottom()
             else:
                 raise Exception('Every path from here already visited ' + n + ' times')
         else:

@@ -34,108 +34,109 @@ class Solver:
     def isDeadEnd(self, cell):
         return cell.wallCount() == 3
 
-    def cameFromTop(self, maze):
+    def cameFromTop(self):
         previous = self.getPrevious()
-        return maze.getTopNeighbour(self.path[-1]) == previous
+        return self.maze.getTopNeighbour(self.path[-1]) == previous
 
-    def cameFromRight(self, maze):
+    def cameFromRight(self):
         previous = self.getPrevious()
-        return maze.getRightNeighbour(self.path[-1]) == previous
+        return self.maze.getRightNeighbour(self.path[-1]) == previous
 
-    def cameFromBottom(self, maze):
+    def cameFromBottom(self):
         previous = self.getPrevious()
-        return maze.getBottomNeighbour(self.path[-1]) == previous
+        return self.maze.getBottomNeighbour(self.path[-1]) == previous
 
-    def cameFromLeft(self, maze):
+    def cameFromLeft(self):
         previous = self.getPrevious()
-        return maze.getLeftNeighbour(self.path[-1]) == previous
+        return self.maze.getLeftNeighbour(self.path[-1]) == previous
 
     def getPrevious(self):
         return self.path[-2] if len(self.path) > 1 else None
 
-    def findNext(self, maze): # if there is only one way to go
+    def findNext(self): # if there is only one way to go
         current = self.path[-1]
-        if (self.cameFromBottom(maze)):
+        if (self.cameFromBottom()):
             if (current.getLeft().isRemoved()):
-                self.tryLeft(maze)
+                self.tryLeft()
             elif (current.getRight().isRemoved()):
-                self.tryRight(maze)
+                self.tryRight()
             elif (current.getTop().isRemoved()):
-                self.tryTop(maze)
+                self.tryTop()
             else:
                 raise Exception('No way out')
-        elif (self.cameFromLeft(maze)):
+        elif (self.cameFromLeft()):
             if (current.getBottom().isRemoved()):
-                self.tryBottom(maze)
+                self.tryBottom()
             elif (current.getRight().isRemoved()):
-                self.tryRight(maze)
+                self.tryRight()
             elif (current.getTop().isRemoved()):
-                self.tryTop(maze)
+                self.tryTop()
             else:
                 raise Exception('No way out')
-        elif (self.cameFromRight(maze)):
+        elif (self.cameFromRight()):
             if (current.getBottom().isRemoved()):
-                self.tryBottom(maze)
+                self.tryBottom()
             elif (current.getLeft().isRemoved()):
-                self.tryLeft(maze)
+                self.tryLeft()
             elif (current.getTop().isRemoved()):
-                self.tryTop(maze)
+                self.tryTop()
             else:
                 raise Exception('No way out')
-        elif (self.cameFromTop(maze)):
+        elif (self.cameFromTop()):
             if (current.getBottom().isRemoved()):
-                self.tryBottom(maze)
+                self.tryBottom()
             elif (current.getLeft().isRemoved()):
-                self.tryLeft(maze)
+                self.tryLeft()
             elif (current.getRight().isRemoved()):
-                self.tryRight(maze)
+                self.tryRight()
             else:
                 raise Exception('No way out')
         else:
             raise Exception('Came from nowhere')
 
-    def chooseDirection(self, directions, maze):
+    def chooseDirection(self, directions):
         n = random.randint(0, len(directions)-1)
-        directions[n](maze)
+        directions[n]()
 
-    def decideNext(self, maze):
+    def decideNext(self):
         current = self.path[-1]
+        print(current)
         if self.isJunction(current):
-            self.handleJunction(maze)
+            self.handleJunction()
         elif self.isPath(current):
-            self.handlePath(maze)
+            self.handlePath()
         elif self.isDeadEnd(current): # do nothing and go back
-            self.handleDeadEnd(maze)
+            self.handleDeadEnd()
         else:
             raise Exception('Invalid wall count')
 
-    def handleJunction(self, maze):
+    def handleJunction(self):
         current = self.path[-1]
         directions = [];
-        if (self.cameFromTop(maze)):
-            directions = [self.tryBottom, self.tryRight, self.tryLeft]
-        elif (self.cameFromBottom(maze)):
-            directions = [self.tryTop, self.tryRight, self.tryLeft]
-        elif (self.cameFromLeft(maze)):
+        if (self.cameFromTop()):
+            directions = [self.tryBottom, self.tryLeft, self.tryRight]
+        elif (self.cameFromBottom()):
+            directions = [self.tryLeft, self.tryRight, self.tryTop]
+        elif (self.cameFromLeft()):
             directions = [self.tryBottom, self.tryRight, self.tryTop]
-        elif (self.cameFromRight(maze)):
-            directions = [self.tryBottom, self.tryTop, self.tryLeft]
+        elif (self.cameFromRight()):
+            directions = [self.tryBottom, self.tryLeft, self.tryTop]
         else:
             raise Exception('Came from nowhere')
-        while (current == self.path[-1] and current != maze.getExit()):
-            self.chooseDirection(directions, maze)
+        while (current == self.path[-1] and current != self.maze.getExit()):
+            self.chooseDirection(directions)
 
-    def handlePath(self, maze):
-        self.findNext(maze)
+    def handlePath(self):
+        self.findNext()
 
-    def handleDeadEnd(self, maze):
-        if (self.cameFromTop(maze)):
-            self.tryTop(maze)
-        elif (self.cameFromBottom(maze)):
-            self.tryBottom(maze)
-        elif (self.cameFromLeft(maze)):
-            self.tryLeft(maze)
-        elif (self.cameFromRight(maze)):
-            self.tryRight(maze)
+    def handleDeadEnd(self):
+        if (self.cameFromTop()):
+            self.tryTop()
+        elif (self.cameFromBottom()):
+            self.tryBottom()
+        elif (self.cameFromLeft()):
+            self.tryLeft()
+        elif (self.cameFromRight()):
+            self.tryRight()
         else:
             raise Exception('Came from nowhere')
