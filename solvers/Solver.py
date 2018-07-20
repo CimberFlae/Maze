@@ -29,26 +29,26 @@ class Solver:
         return cell.wallCount() < 2
 
     def isPath(self, cell):
-        return cell.wallCount() == 2
+        return cell.wallCount() == 2 and cell != self.maze.getEntrance()
 
     def isDeadEnd(self, cell):
-        return cell.wallCount() == 3
+        return cell.wallCount() == 3 or cell.wallCount() == 2 and cell == self.maze.getEntrance()
 
     def cameFromTop(self):
         previous = self.getPrevious()
-        return self.maze.getTopNeighbour(self.path[-1]) == previous
+        return previous != None and self.maze.getTopNeighbour(self.path[-1]) == previous
 
     def cameFromRight(self):
         previous = self.getPrevious()
-        return self.maze.getRightNeighbour(self.path[-1]) == previous
+        return previous != None and self.maze.getRightNeighbour(self.path[-1]) == previous
 
     def cameFromBottom(self):
         previous = self.getPrevious()
-        return self.maze.getBottomNeighbour(self.path[-1]) == previous
+        return previous != None and self.maze.getBottomNeighbour(self.path[-1]) == previous
 
     def cameFromLeft(self):
         previous = self.getPrevious()
-        return self.maze.getLeftNeighbour(self.path[-1]) == previous
+        return previous != None and self.maze.getLeftNeighbour(self.path[-1]) == previous
 
     def getPrevious(self):
         return self.path[-2] if len(self.path) > 1 else None
@@ -91,6 +91,8 @@ class Solver:
                 self.tryRight()
             else:
                 raise Exception('No way out')
+        elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
+            self.handleJunction()
         else:
             raise Exception('Came from nowhere')
 
@@ -100,7 +102,6 @@ class Solver:
 
     def decideNext(self):
         current = self.path[-1]
-        print(current)
         if self.isJunction(current):
             self.handleJunction()
         elif self.isPath(current):
@@ -121,6 +122,8 @@ class Solver:
             directions = [self.tryBottom, self.tryRight, self.tryTop]
         elif (self.cameFromRight()):
             directions = [self.tryBottom, self.tryLeft, self.tryTop]
+        elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
+            directions = [self.tryBottom, self.tryLeft, self.tryRight, self.tryTop]
         else:
             raise Exception('Came from nowhere')
         while (current == self.path[-1] and current != self.maze.getExit()):
@@ -138,5 +141,7 @@ class Solver:
             self.tryLeft()
         elif (self.cameFromRight()):
             self.tryRight()
+        elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
+            self.handleJunction()
         else:
             raise Exception('Came from nowhere')
