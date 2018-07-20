@@ -84,8 +84,8 @@ class Mesh:
         return None
     
     def isBorder(self, cell, wall):
-        return ((cell.x == 0) & (wall == cell.topWall)) | ((cell.x == self.size-1) & (wall == cell.bottomWall)) | \
-                ((cell.y == 0) & (wall == cell.leftWall)) | ((cell.y == self.size-1) & (wall == cell.rightWall))
+        return ((cell.x == 0) and (wall == cell.topWall)) or ((cell.x == self.size-1) and (wall == cell.bottomWall)) or \
+                ((cell.y == 0) and (wall == cell.leftWall)) or ((cell.y == self.size-1) and (wall == cell.rightWall))
 
     def hasNeighbourInDifferentSet(self, cell):#checks if cell has a neighbour which is not in the same set
         set = cell.getSet()
