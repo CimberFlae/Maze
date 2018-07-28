@@ -1,9 +1,9 @@
-import solvers.Solver as Solver
+import solvers.AbstractSolver as AbstractSolver
 
-class LeftWallFollowerSolver(Solver.Solver):
+class LeftWallFollowerSolver(AbstractSolver.AbstractSolver):
 
     def __init__(self):
-        Solver.Solver.__init__(self)
+        AbstractSolver.AbstractSolver.__init__(self)
 
     def solveMaze(self, maze):
         """implement left wall following"""

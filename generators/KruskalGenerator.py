@@ -1,10 +1,10 @@
-import generators.Generator as Generator
+import generators.AbstractGenerator as AbstractGenerator
 import model.Mesh as Mesh
 
-class KruskalGenerator(Generator.Generator):
+class KruskalGenerator(AbstractGenerator.AbstractGenerator):
 
     def __init__(self):
-        Generator.Generator.__init__(self)
+        AbstractGenerator.AbstractGenerator.__init__(self)
 
     def __generateMaze__(self, size, seed = 0):
         """ Kruskal's Algorithm"""

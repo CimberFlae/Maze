@@ -1,6 +1,6 @@
 import random
 
-class Generator:
+class AbstractGenerator:
 
     def __init__(self):
         print ("generating a " + self.__class__.__name__)

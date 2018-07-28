@@ -1,10 +1,10 @@
-import generators.Generator as Generator
+import generators.AbstractGenerator as AbstractGenerator
 import model.Mesh as Mesh
 
-class DepthFirstSearchGenerator(Generator.Generator):
+class DepthFirstSearchGenerator(AbstractGenerator.AbstractGenerator):
 
     def __init__(self):
-        Generator.Generator.__init__(self)
+        AbstractGenerator.AbstractGenerator.__init__(self)
 
     def __generateMaze__(self, size, seed = 0):
         """implement Depth-first Search Algorithm"""

@@ -1,10 +1,10 @@
-import drawers.Drawer as Drawer
+import drawers.AbstractDrawer as AbstractDrawer
 import sys
 
-class ASCIIDrawer(Drawer.Drawer):
+class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
 
     def __init__(self):
-        Drawer.Drawer.__init__(self)
+        AbstractDrawer.AbstractDrawer.__init__(self)
 
     def drawMaze(self, maze):
         """implement a drawing algorithm"""
