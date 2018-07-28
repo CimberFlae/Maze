@@ -13,6 +13,11 @@ class PrimGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest,  un
         generator = PrimGenerator.PrimGenerator()
         self.maze = generator.generateRandomMaze(self.size, seed = seed)
 
+    def test_invalidSize(self):
+        generator = PrimGenerator.PrimGenerator()
+        with self.assertRaises(Exception):
+            self.maze = generator.generateRandomMaze(1)
+
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(PrimGeneratorTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

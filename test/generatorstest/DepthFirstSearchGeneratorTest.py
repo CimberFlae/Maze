@@ -13,6 +13,11 @@ class DepthFirstSearchGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGenera
         generator = DepthFirstSearchGenerator.DepthFirstSearchGenerator()
         self.maze = generator.generateRandomMaze(self.size, seed = seed)
 
+    def test_invalidSize(self):
+        generator = DepthFirstSearchGenerator.DepthFirstSearchGenerator()
+        with self.assertRaises(Exception):
+            self.maze = generator.generateRandomMaze(1)
+
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(DepthFirstSearchGeneratorTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

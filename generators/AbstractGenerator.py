@@ -7,6 +7,8 @@ class AbstractGenerator:
 
     def __generateMaze__(self, size, seed = 0):
         """Generate a Maze using a specific algorithm"""
+        if (size < 2):
+            raise Exception('Invalid maze size!')
 
     def generateRandomMaze(self, size, seed = 0):
         if (seed != 0):
