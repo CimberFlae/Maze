@@ -13,10 +13,8 @@ class RandomMouseSolver(AbstractSolver.AbstractSolver):
         """implement random mouse algorithm"""
         """this means: always follow a given path to a junction and from there try a direction at random"""
         """caution: this algorithms may take longer than anticipated (since it is random)"""
-        if (maze.getEntrance() == None):
-            maze.setCustomOpening(0, 0)
-        if (maze.getExit() == None):
-            maze.setCustomOpening(maze.getSize() - 1, maze.getSize() - 1)
+        if (maze.getEntrance() == None or maze.getExit() == None):
+            raise Exception('Entrance or Exit is missing')
         cell = maze.getEntrance()
         self.path.append(cell)
         while (self.path[-1] != maze.getExit()):

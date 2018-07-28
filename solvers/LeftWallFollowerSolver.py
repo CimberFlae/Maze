@@ -9,10 +9,8 @@ class LeftWallFollowerSolver(AbstractSolver.AbstractSolver):
         """implement left wall following"""
         """this means: always try going in directions in the following order: left, forward, right, backward"""
         self.maze = maze
-        if (maze.getEntrance() == None):
-            maze.setCustomOpening(0, 0)
-        if (maze.getExit() == None):
-            maze.setCustomOpening(maze.getSize() - 1, maze.getSize() - 1)
+        if (maze.getEntrance() == None or maze.getExit() == None):
+            raise Exception('Entrance or Exit is missing')
         cell = maze.getEntrance()
         self.path.append(cell)
         x = cell.getX()

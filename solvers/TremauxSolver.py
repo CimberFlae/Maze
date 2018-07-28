@@ -9,10 +9,8 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
         self.path = []
         self.maze = maze;
         """implement Tremaux's algorithm"""
-        if (maze.getEntrance() == None):
-            maze.setCustomOpening(0, 0)
-        if (maze.getExit() == None):
-            maze.setCustomOpening(maze.getSize() - 1, maze.getSize() - 1)
+        if (maze.getEntrance() == None or maze.getExit() == None):
+            raise Exception('Entrance or Exit is missing')
         self.walls = {}
         self.junctions = []
         self.path.append(maze.getEntrance())
