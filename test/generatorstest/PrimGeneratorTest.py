@@ -16,8 +16,9 @@ class PrimGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest,  un
     def test_invalidSize(self):
         generator = PrimGenerator.PrimGenerator()
         with self.assertRaises(Exception):
-            self.maze = generator.generateRandomMaze(1)
+            generator.generateRandomMaze(1)
 
+# This is needed for the individual execution of this test class
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(PrimGeneratorTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

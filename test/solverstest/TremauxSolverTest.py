@@ -12,6 +12,7 @@ class TremauxSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest, unittest.
         super(TremauxSolverTest, self).setUp()
         self.solver = TremauxSolver.TremauxSolver()
 
+# This is needed for the individual execution of this test class
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(TremauxSolverTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

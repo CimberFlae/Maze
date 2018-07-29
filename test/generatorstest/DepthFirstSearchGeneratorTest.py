@@ -18,6 +18,7 @@ class DepthFirstSearchGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGenera
         with self.assertRaises(Exception):
             self.maze = generator.generateRandomMaze(1)
 
+# This is needed for the individual execution of this test class
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(DepthFirstSearchGeneratorTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

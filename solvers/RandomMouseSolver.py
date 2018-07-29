@@ -53,8 +53,3 @@ class RandomMouseSolver(AbstractSolver.AbstractSolver):
             if (right.isRemoved() & (not self.maze.isBorder(cell, right))):
                 cell = self.maze.getRightNeighbour(cell)
                 self.path.append(cell)
-
-    def tryRandom(self, cell):
-        list = [self.tryBottom, self.tryLeft, self.tryTop, self.tryRight]
-        n = random.randint(0, 3)
-        return list[n](cell)

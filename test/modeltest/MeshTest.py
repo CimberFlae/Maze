@@ -176,6 +176,7 @@ class MeshTest(unittest.TestCase):
         wall = self.mesh.chooseWall(cell)
         self.assertIsNone(wall, 'A (removed or border) wall was chosen')
 
+# This is needed for the individual execution of this test class
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(MeshTest)
     unittest.TextTestRunner(verbosity=2).run(suite)
