@@ -1,13 +1,16 @@
 import random
+import logging
 
 class AbstractGenerator:
 
     def __init__(self):
-        print ("generating a " + self.__class__.__name__)
+        self.log = logging.getLogger(__name__)
+        self.log.debug("generating a " + self.__class__.__name__)
 
     def __generateMaze__(self, size, seed = 0):
         """Generate a Maze using a specific algorithm"""
         if (size < 2):
+            self.log.error('Invalid maze size!')
             raise Exception('Invalid maze size!')
 
     def generateRandomMaze(self, size, seed = 0):

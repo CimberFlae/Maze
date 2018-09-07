@@ -1,11 +1,13 @@
 import generators.AbstractGenerator as AbstractGenerator
 import model.Mesh as Mesh
 import random
+import logging
 
 class PrimGenerator(AbstractGenerator.AbstractGenerator):
 
     def __init__(self):
         AbstractGenerator.AbstractGenerator.__init__(self)
+        self.log = logging.getLogger(__name__)
 
     def __generateMaze__(self, size, seed = 0):
         AbstractGenerator.AbstractGenerator.__generateMaze__(self, size)
@@ -44,6 +46,7 @@ class PrimGenerator(AbstractGenerator.AbstractGenerator):
                     mesh.moveCell(neighbour.getSet(), cell.getSet())
                     queue.append(neighbour)
             else:
+                self.log.error('Invalid wall')
                 raise Exception('Invalid wall')
             if (not mesh.hasNeighbourInDifferentSet(cell)):
                 queue.remove(cell)

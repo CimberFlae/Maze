@@ -1,10 +1,12 @@
 import solvers.AbstractSolver as AbstractSolver
 import random
+import logging
 
 class RandomMouseSolver(AbstractSolver.AbstractSolver):
 
     def __init__(self):
         AbstractSolver.AbstractSolver.__init__(self)
+        self.log = logging.getLogger(__name__)
 
     def solveMaze(self, maze, seed = 0):
         if (seed != 0):
@@ -14,6 +16,7 @@ class RandomMouseSolver(AbstractSolver.AbstractSolver):
         """this means: always follow a given path to a junction and from there try a direction at random"""
         """caution: this algorithms may take longer than anticipated (since it is random)"""
         if (maze.getEntrance() == None or maze.getExit() == None):
+            self.log.error('Entrance or Exit is missing')
             raise Exception('Entrance or Exit is missing')
         cell = maze.getEntrance()
         self.path.append(cell)

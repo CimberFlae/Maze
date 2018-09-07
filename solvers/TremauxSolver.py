@@ -1,15 +1,18 @@
 import solvers.AbstractSolver as AbstractSolver
+import logging
 
 class TremauxSolver(AbstractSolver.AbstractSolver):
 
     def __init__(self):
         AbstractSolver.AbstractSolver.__init__(self)
+        self.log = logging.getLogger(__name__)
 
     def solveMaze(self, maze):
         self.path = []
         self.maze = maze;
         """implement Tremaux's algorithm"""
         if (maze.getEntrance() == None or maze.getExit() == None):
+            self.log.error('Entrance or Exit is missing')
             raise Exception('Entrance or Exit is missing')
         self.walls = {}
         self.junctions = []
@@ -100,6 +103,7 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
                     if (self.notFinished()):
                         self.tryTop()
             else:
+                self.log.error('Came from nowhere')
                 raise Exception('Came from nowhere')
         else: # have been here before
             key = self.getKey(current)
@@ -132,6 +136,7 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
                     while (self.notFinished() and self.hasNVisitedPath(1)):
                         self.chooseNVisitedPath(1)
             else:
+                self.log.error('Came from nowhere')
                 raise Exception('Came from nowhere')
 
     def notFinished(self):
@@ -157,6 +162,7 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
                 self.mark(current, current.getTop())
                 self.tryTop()
             else:
+                self.log.error('Every path from here already visited ' + n + ' times')
                 raise Exception('Every path from here already visited ' + n + ' times')
         elif (self.cameFromLeft()):
             if (self.walls[key].count(current.getBottom()) == n):
@@ -169,6 +175,7 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
                 self.mark(current, current.getTop())
                 self.tryTop()
             else:
+                self.log.error('Every path from here already visited ' + n + ' times')
                 raise Exception('Every path from here already visited ' + n + ' times')
         elif (self.cameFromRight()):
             if (self.walls[key].count(current.getBottom()) == n):
@@ -181,6 +188,7 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
                 self.mark(current, current.getTop())
                 self.tryTop()
             else:
+                self.log.error('Every path from here already visited ' + n + ' times')
                 raise Exception('Every path from here already visited ' + n + ' times')
         elif (self.cameFromTop()):
             if (self.walls[key].count(current.getBottom()) == n):
@@ -193,8 +201,10 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
                 self.mark(current, current.getRight())
                 self.tryRight()
             else:
+                self.log.error('Every path from here already visited ' + n + ' times')
                 raise Exception('Every path from here already visited ' + n + ' times')
         else:
+            self.log.error('Came from nowhere')
             raise Exception('Came from nowhere')
 
     def getKey(self, cell):

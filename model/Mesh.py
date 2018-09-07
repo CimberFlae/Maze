@@ -1,9 +1,11 @@
 import model.Cell as Cell
 import random
+import logging
 
 class Mesh:
 
     def __init__(self, size, wallsRemoved = False):
+        self.log = logging.getLogger(__name__)
         self.size = size
         self.matrix = []
         self.sets = []
@@ -83,10 +85,9 @@ class Mesh:
             if (self.hasNeighbourInDifferentSet(cell)):
                 return cell
         return None
-    
-    # delegate method: could be implemented in cell
+
     def isBorder(self, cell, wall):
-        return ((cell.x == 0) and (wall == cell.topWall)) or ((cell.x == self.size-1) and (wall == cell.bottomWall)) or \
+        return ((cell.x == 0) and (wall == cell.topWall)) or ((cell.x == self.size-1) and (wall == cell.bottomWall)) or\
                 ((cell.y == 0) and (wall == cell.leftWall)) or ((cell.y == self.size-1) and (wall == cell.rightWall))
 
     def hasNeighbourInDifferentSet(self, cell):#checks if cell has a neighbour which is not in the same set
@@ -108,6 +109,7 @@ class Mesh:
     
     def setCustomOpening(self, x, y, vertical = True):
         if x >= self.size or y >= self.size:
+            self.log.error('Opening cell has to part of the maze - check your indexes')
             raise IndexError('Opening cell has to part of the maze - check your indexes')
         cell = self.matrix[x][y]
         if x == 0:
@@ -128,6 +130,7 @@ class Mesh:
                 cell.removeTop()
                 self.entrance = cell
             else:
+                self.log.error('Invalid y-coordinate')
                 raise Exception('Invalid y-coordinate')
         elif x == self.size - 1:
             if y == self.size - 1:
@@ -153,6 +156,7 @@ class Mesh:
             cell.removeRight()
             self.exit = cell
         else:
+            self.log.error('Invalid coordinates')
             raise Exception('Invalid coordinates')
 
     def setRandomTopEntrance(self):
@@ -197,7 +201,6 @@ class Mesh:
     def getExit(self):
         return self.exit
 
-    # delegate method: could be implemented in cell?
     def chooseWall(self, cell): # returns None if there is no non-border wall that is not removed
         if len([wall for wall in cell.getWallList() if not (self.isBorder(cell, wall) or wall.isRemoved())]) > 0:
             while(True):

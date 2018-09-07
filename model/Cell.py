@@ -1,8 +1,10 @@
 import model.Wall as Wall
 import random
+import logging
 
 class Cell:
     def __init__(self, x, y, set, wallsRemoved=False):
+        self.log = logging.getLogger(__name__)
         self.leftWall = Wall.Wall(wallsRemoved)
         self.rightWall = Wall.Wall(wallsRemoved)
         self.topWall = Wall.Wall(wallsRemoved)
@@ -16,9 +18,9 @@ class Cell:
     def checkInvariant(self):
         if (self.wallList[0] == self.leftWall) & (self.wallList[1] == self.rightWall) & \
             (self.wallList[2] == self.topWall) & (self.wallList[3] == self.bottomWall):
-            print("Everything correct")
+            self.log.debug("Everything correct")
         else:
-            print("BUG")
+            self.log.debug("BUG")
 
     def setSet(self, set):
         self.set = set
@@ -35,14 +37,14 @@ class Cell:
     def getLeft(self):
         return self.leftWall
 
-    def setLeft(self,wall):
+    def setLeft(self, wall):
         self.leftWall = wall
         self.wallList[0] = wall
 
     def getRight(self):
         return self.rightWall
 
-    def setRight(self,wall):
+    def setRight(self, wall):
         self.rightWall = wall
         self.wallList[1] = wall
 
@@ -56,7 +58,7 @@ class Cell:
     def getBottom(self):
         return self.bottomWall
 
-    def setBottom(self,wall):
+    def setBottom(self, wall):
         self.bottomWall = wall
         self.wallList[3] = wall
     

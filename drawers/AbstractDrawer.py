@@ -1,7 +1,10 @@
+import logging
+
 class AbstractDrawer:
 
     def __init__(self):
-        print("generating a drawer")
+        self.log = logging.getLogger(__name__)
+        self.log.debug("generating a drawer")
 
     def drawMaze(self,maze):
         """implement a drawing algorithm for the maze"""

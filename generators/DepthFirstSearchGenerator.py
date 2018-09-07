@@ -1,10 +1,12 @@
 import generators.AbstractGenerator as AbstractGenerator
 import model.Mesh as Mesh
+import logging
 
 class DepthFirstSearchGenerator(AbstractGenerator.AbstractGenerator):
 
     def __init__(self):
         AbstractGenerator.AbstractGenerator.__init__(self)
+        self.log = logging.getLogger(__name__)
 
     def __generateMaze__(self, size, seed = 0):
         AbstractGenerator.AbstractGenerator.__generateMaze__(self, size)
@@ -44,6 +46,7 @@ class DepthFirstSearchGenerator(AbstractGenerator.AbstractGenerator):
                         stack.append(cell)
                         cell = neighbour
                 else:
+                    self.log.error('Invalid wall')
                     raise Exception('Invalid wall')
             else:
                 cell = stack.pop()

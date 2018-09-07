@@ -1,15 +1,18 @@
 import solvers.AbstractSolver as AbstractSolver
+import logging
 
 class RightWallFollowerSolver(AbstractSolver.AbstractSolver):
 
     def __init__(self):
         AbstractSolver.AbstractSolver.__init__(self)
+        self.log = logging.getLogger(__name__)
 
     def solveMaze(self, maze):
         """implement right wall following"""
         """this means: always try going in directions in the following order: right, forward, left, backward"""
         self.maze = maze
         if (maze.getEntrance() == None or maze.getExit() == None):
+            self.log.error('Entrance or Exit is missing')
             raise Exception('Entrance or Exit is missing')
         cell = maze.getEntrance()
         self.path.append(cell)
@@ -24,6 +27,7 @@ class RightWallFollowerSolver(AbstractSolver.AbstractSolver):
         elif ((x == y == 0) & cell.getLeft().isRemoved()):
             self.tryBottom(cell)
         else:
+            self.log.error('Invalid starting cell')
             raise Exception('Invalid starting cell')
         self.cleanPath()
         return self.path

@@ -1,11 +1,13 @@
 import generators.AbstractGenerator as AbstractGenerator
 import model.Mesh as Mesh
 import random
+import logging
 
 class RecursiveDivisionGenerator(AbstractGenerator.AbstractGenerator):
 
     def __init__(self):
         AbstractGenerator.AbstractGenerator.__init__(self)
+        self.log = logging.getLogger(__name__)
 
     def __generateMaze__(self, size, seed = 0):
         AbstractGenerator.AbstractGenerator.__generateMaze__(self, size)
@@ -51,6 +53,7 @@ class RecursiveDivisionGenerator(AbstractGenerator.AbstractGenerator):
                 mesh.getCell(topHole, row).removeLeft()
                 mesh.getCell(bottomHole, row).removeLeft()
             else:
+                self.log.error('Invalid random number')
                 raise Exception('Invalid random number')
             self.divideAndGenerate(mesh,leftBorder, row-1, topBorder, column-1)
             self.divideAndGenerate(mesh,row, rightBorder, topBorder, column-1)

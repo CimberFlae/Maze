@@ -1,10 +1,12 @@
 import random
+import logging
 
 class AbstractSolver:
 
     def __init__(self):
+        self.log = logging.getLogger(__name__)
         self.path = []
-        print("generating a solver")
+        self.log.debug("generating a solver")
 
     def solveMaze(self, maze):
         """implement a solving algorithm"""
@@ -63,6 +65,7 @@ class AbstractSolver:
             elif (current.getTop().isRemoved()):
                 self.tryTop()
             else:
+                self.log.error('No way out')
                 raise Exception('No way out')
         elif (self.cameFromLeft()):
             if (current.getBottom().isRemoved()):
@@ -72,6 +75,7 @@ class AbstractSolver:
             elif (current.getTop().isRemoved()):
                 self.tryTop()
             else:
+                self.log.error('No way out')
                 raise Exception('No way out')
         elif (self.cameFromRight()):
             if (current.getBottom().isRemoved()):
@@ -81,6 +85,7 @@ class AbstractSolver:
             elif (current.getTop().isRemoved()):
                 self.tryTop()
             else:
+                self.log.error('No way out')
                 raise Exception('No way out')
         elif (self.cameFromTop()):
             if (current.getBottom().isRemoved()):
@@ -90,10 +95,12 @@ class AbstractSolver:
             elif (current.getRight().isRemoved()):
                 self.tryRight()
             else:
+                self.log.error('No way out')
                 raise Exception('No way out')
         elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
             self.handleJunction()
         else:
+            self.log.error('Came from nowhere')
             raise Exception('Came from nowhere')
 
     def chooseDirection(self, directions):
@@ -109,11 +116,11 @@ class AbstractSolver:
         elif self.isDeadEnd(current): # do nothing and go back
             self.handleDeadEnd()
         else:
+            self.log.error('Invalid wall count')
             raise Exception('Invalid wall count')
 
     def handleJunction(self):
         current = self.path[-1]
-        directions = [];
         if (self.cameFromTop()):
             directions = [self.tryBottom, self.tryLeft, self.tryRight]
         elif (self.cameFromBottom()):
@@ -125,6 +132,7 @@ class AbstractSolver:
         elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
             directions = [self.tryBottom, self.tryLeft, self.tryRight, self.tryTop]
         else:
+            self.log.error('Came from nowhere')
             raise Exception('Came from nowhere')
         while (current == self.path[-1] and current != self.maze.getExit()):
             self.chooseDirection(directions)
@@ -144,4 +152,5 @@ class AbstractSolver:
         elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
             self.handleJunction()
         else:
+            self.log.error('Came from nowhere')
             raise Exception('Came from nowhere')

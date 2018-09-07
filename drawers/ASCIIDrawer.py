@@ -1,10 +1,12 @@
 import drawers.AbstractDrawer as AbstractDrawer
 import sys
+import logging
 
 class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
 
     def __init__(self):
         AbstractDrawer.AbstractDrawer.__init__(self)
+        self.log = logging.getLogger(__name__)
 
     def drawMaze(self, maze):
         """implement a drawing algorithm"""
@@ -58,6 +60,7 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
             elif (y1 > y2):
                 sys.stdout.write("<- ")
             else:
+                self.log.error('Invalid cell transition')
                 raise Exception('Invalid cell transition')
         # Draw exit
         exit = maze.getExit()
