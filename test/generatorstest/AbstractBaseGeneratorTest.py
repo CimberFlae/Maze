@@ -13,12 +13,14 @@ class AbstractBaseGeneratorTest(ABC):
     
     # check wether the maze has a valid entry point
     def test_validEntry(self):
+        self.log.debug("test_validEntry")
         entry = self.maze.getEntrance()
         tc.assertIsNotNone(entry, 'Entry is None.')
         tc.assertTrue(entry.getX() == 0 or entry.getY() == 0, 'Entry is neither on the left nor on top side of the Maze')
         
     # check wether the maze has only one entry point
     def test_oneEntry(self):
+        self.log.debug("test_oneEntry")
         entries = 0
         for i in range(self.size):
             cell = self.maze.getCell(i, 0)
@@ -31,12 +33,14 @@ class AbstractBaseGeneratorTest(ABC):
     
     # check wether the maze has a valid exit point
     def test_validExit(self):
+        self.log.debug("test_validExit")
         exit = self.maze.getExit()
         tc.assertIsNotNone(exit, 'Exit is None.')
         tc.assertTrue(exit.getX() == self.size-1 or exit.getY() == self.size-1, 'Exit is neither on the right nor on the bottom side of the Maze')
     
     # check wether the maze has only one exit point
     def test_oneExit(self):
+        self.log.debug("test_oneExit")
         exits = 0
         for i in range(self.size):
             cell = self.maze.getCell(i, self.size-1)

@@ -2,23 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0eda087a-a7a3-4ada-9bf2-0d3c74d277a7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/LoggingConfiguration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ToDo.rtf" beforeDir="false" afterPath="$PROJECT_DIR$/ToDo.rtf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drawers/ASCIIDrawer.py" beforeDir="false" afterPath="$PROJECT_DIR$/drawers/ASCIIDrawer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drawers/AbstractDrawer.py" beforeDir="false" afterPath="$PROJECT_DIR$/drawers/AbstractDrawer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generators/AbstractGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/AbstractGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generators/DepthFirstSearchGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/DepthFirstSearchGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generators/KruskalGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/KruskalGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generators/PrimGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/PrimGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generators/RecursiveDivisionGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/RecursiveDivisionGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Cell.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/Cell.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Mesh.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/Mesh.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solvers/AbstractSolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/AbstractSolver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solvers/LeftWallFollowerSolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/LeftWallFollowerSolver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solvers/RandomMouseSolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/RandomMouseSolver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solvers/RightWallFollowerSolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/RightWallFollowerSolver.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/solvers/TremauxSolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/TremauxSolver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/generatorstest/AbstractBaseGeneratorTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/generatorstest/AbstractBaseGeneratorTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/generatorstest/BinaryTreeGeneratorTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/generatorstest/BinaryTreeGeneratorTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/generatorstest/DepthFirstSearchGeneratorTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/generatorstest/DepthFirstSearchGeneratorTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/generatorstest/KruskalGeneratorTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/generatorstest/KruskalGeneratorTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/generatorstest/PrimGeneratorTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/generatorstest/PrimGeneratorTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/generatorstest/RecursiveDivisionGeneratorTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/generatorstest/RecursiveDivisionGeneratorTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/modeltest/CellTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/modeltest/CellTest.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/modeltest/WallTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/modeltest/WallTest.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,22 +29,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="28" />
+          <entry key="py" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="28" />
+          <entry key="Python" value="36" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1534" />
+          <entry key="py" value="2369" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1534" />
+          <entry key="Python" value="2369" />
         </counts>
       </usages-collector>
     </session>
@@ -61,18 +52,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/drawers/AbstractDrawer.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/generatorstest/AbstractBaseGeneratorTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="466">
+              <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -80,11 +63,71 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/generatorstest/BinaryTreeGeneratorTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/generatorstest/DepthFirstSearchGeneratorTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/generatorstest/KruskalGeneratorTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/generatorstest/PrimGeneratorTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/generatorstest/RecursiveDivisionGeneratorTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generators/AbstractGenerator.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="12" column="47" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
+              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -93,13 +136,61 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/modeltest/WallTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+                <marker date="1536361948000" expanded="true" signature="520:529" ph="..." />
+                <marker date="1536361948000" expanded="true" signature="688:697" ph="..." />
+                <marker date="1536361948000" expanded="true" signature="859:868" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/modeltest/CellTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="422">
+              <caret line="152" column="43" selection-start-line="152" selection-start-column="43" selection-end-line="152" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+                <marker date="1536362172000" expanded="true" signature="1274:1283" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="1438:1447" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="1596:1605" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="1748:1757" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="1906:1915" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="2077:2086" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="2294:2303" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="2470:2479" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="2686:2695" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="2852:2861" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="3068:3077" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="3249:3258" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="3476:3485" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="3670:3679" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="3863:3872" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="4062:4071" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="4254:4263" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="4443:4452" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="4635:4644" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="4839:4848" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="5030:5039" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="5348:5357" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="6056:6065" ph="..." />
+                <marker date="1536362172000" expanded="true" signature="6260:6269" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/drawers/ASCIIDrawer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
+            <state relative-caret-position="930">
               <caret line="62" column="56" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
-              <folding>
-                <element signature="e#0#47#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -121,7 +212,6 @@
         <option value="$PROJECT_DIR$/LoggingConfiguration.py" />
         <option value="$PROJECT_DIR$/model/Cell.py" />
         <option value="$PROJECT_DIR$/model/Mesh.py" />
-        <option value="$PROJECT_DIR$/generators/AbstractGenerator.py" />
         <option value="$PROJECT_DIR$/generators/DepthFirstSearchGenerator.py" />
         <option value="$PROJECT_DIR$/generators/KruskalGenerator.py" />
         <option value="$PROJECT_DIR$/generators/PrimGenerator.py" />
@@ -132,8 +222,16 @@
         <option value="$PROJECT_DIR$/solvers/RightWallFollowerSolver.py" />
         <option value="$PROJECT_DIR$/solvers/TremauxSolver.py" />
         <option value="$PROJECT_DIR$/drawers/ASCIIDrawer.py" />
-        <option value="$PROJECT_DIR$/test/generatorstest/BinaryTreeGeneratorTest.py" />
         <option value="$PROJECT_DIR$/drawers/AbstractDrawer.py" />
+        <option value="$PROJECT_DIR$/test/generatorstest/BinaryTreeGeneratorTest.py" />
+        <option value="$PROJECT_DIR$/test/generatorstest/DepthFirstSearchGeneratorTest.py" />
+        <option value="$PROJECT_DIR$/test/generatorstest/KruskalGeneratorTest.py" />
+        <option value="$PROJECT_DIR$/test/generatorstest/PrimGeneratorTest.py" />
+        <option value="$PROJECT_DIR$/test/generatorstest/RecursiveDivisionGeneratorTest.py" />
+        <option value="$PROJECT_DIR$/test/generatorstest/AbstractBaseGeneratorTest.py" />
+        <option value="$PROJECT_DIR$/generators/AbstractGenerator.py" />
+        <option value="$PROJECT_DIR$/test/modeltest/WallTest.py" />
+        <option value="$PROJECT_DIR$/test/modeltest/CellTest.py" />
       </list>
     </option>
   </component>
@@ -143,6 +241,7 @@
     <option name="width" value="1400" />
     <option name="height" value="833" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -175,6 +274,12 @@
               <item name="Maze" type="462c0819:PsiDirectoryNode" />
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="generatorstest" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Maze" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Maze" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="modeltest" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -250,9 +355,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="26" selection-start-line="18" selection-start-column="26" selection-end-line="18" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -260,9 +362,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-719">
           <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -277,21 +376,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/generators/BinaryTreeGenerator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/generators/KruskalGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
           <caret line="38" column="45" selection-start-line="38" selection-start-column="45" selection-end-line="38" selection-end-column="45" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -309,16 +399,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="96">
           <caret line="158" column="48" selection-start-line="158" selection-start-column="48" selection-end-line="158" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#25#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/generators/RecursiveDivisionGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
-          <caret line="55" column="54" selection-start-line="55" selection-start-column="54" selection-end-line="55" selection-end-column="54" />
+        <state relative-caret-position="780">
+          <caret line="52" column="54" selection-start-line="52" selection-start-column="54" selection-end-line="52" selection-end-column="54" />
           <folding>
             <element signature="e#0#56#0" expanded="true" />
           </folding>
@@ -329,9 +416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="586">
           <caret line="154" column="46" selection-start-line="154" selection-start-column="46" selection-end-line="154" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -339,9 +423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1">
           <caret line="29" column="50" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -349,9 +430,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="56" selection-start-line="18" selection-start-column="56" selection-end-line="18" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -359,9 +437,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="435">
           <caret line="29" column="50" selection-start-line="29" selection-start-column="50" selection-end-line="29" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -369,47 +444,19 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1251">
           <caret line="206" column="46" selection-start-line="206" selection-start-column="46" selection-end-line="206" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/test/Demo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/test/Tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/generatorstest/BinaryTreeGeneratorTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="7" lean-forward="true" selection-start-line="5" selection-start-column="7" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/drawers/ASCIIDrawer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
+        <state relative-caret-position="930">
           <caret line="62" column="56" selection-start-line="62" selection-start-column="56" selection-end-line="62" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -420,9 +467,60 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/test/generatorstest/BinaryTreeGeneratorTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/generatorstest/DepthFirstSearchGeneratorTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/generatorstest/KruskalGeneratorTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/generatorstest/PrimGeneratorTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/generatorstest/RecursiveDivisionGeneratorTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="46" selection-start-line="11" selection-start-column="46" selection-end-line="11" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/generatorstest/AbstractBaseGeneratorTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="466">
+          <caret line="42" column="38" selection-start-line="42" selection-start-column="38" selection-end-line="42" selection-end-column="38" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -432,9 +530,56 @@
     <entry file="file://$PROJECT_DIR$/generators/AbstractGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="12" column="47" selection-start-line="12" selection-start-column="47" selection-end-line="12" selection-end-column="47" />
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/modeltest/WallTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <marker date="1536361948000" expanded="true" signature="520:529" ph="..." />
+            <marker date="1536361948000" expanded="true" signature="688:697" ph="..." />
+            <marker date="1536361948000" expanded="true" signature="859:868" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/modeltest/CellTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="152" column="43" selection-start-line="152" selection-start-column="43" selection-end-line="152" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <marker date="1536362172000" expanded="true" signature="1274:1283" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="1438:1447" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="1596:1605" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="1748:1757" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="1906:1915" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="2077:2086" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="2294:2303" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="2470:2479" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="2686:2695" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="2852:2861" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="3068:3077" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="3249:3258" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="3476:3485" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="3670:3679" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="3863:3872" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="4062:4071" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="4254:4263" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="4443:4452" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="4635:4644" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="4839:4848" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="5030:5039" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="5348:5357" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="6056:6065" ph="..." />
+            <marker date="1536362172000" expanded="true" signature="6260:6269" ph="..." />
           </folding>
         </state>
       </provider>
