@@ -1,4 +1,4 @@
-class Drawer:
+class AbstractDrawer:
 
     def __init__(self):
         print("generating a drawer")

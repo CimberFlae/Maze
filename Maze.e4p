@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-6.0.dtd">
 <!-- eric project file for project Maze -->
-<!-- Saved: 2018-04-01, 18:47:53 -->
+<!-- Saved: 2018-07-29, 00:34:08 -->
 <!-- Copyright (C) 2018 Rafael Häuselmann, rafi.haeuselmann@hispeed.ch -->
 <Project version="6.0">
   <Language></Language>
@@ -16,11 +16,11 @@
   <Sources>
     <Source>__init__.py</Source>
     <Source>drawers/ASCIIDrawer.py</Source>
-    <Source>drawers/Drawer.py</Source>
+    <Source>drawers/AbstractDrawer.py</Source>
     <Source>drawers/__init__.py</Source>
+    <Source>generators/AbstractGenerator.py</Source>
     <Source>generators/BinaryTreeGenerator.py</Source>
     <Source>generators/DepthFirstSearchGenerator.py</Source>
-    <Source>generators/Generator.py</Source>
     <Source>generators/KruskalGenerator.py</Source>
     <Source>generators/PrimGenerator.py</Source>
     <Source>generators/RecursiveDivisionGenerator.py</Source>
@@ -29,10 +29,10 @@
     <Source>model/Mesh.py</Source>
     <Source>model/Wall.py</Source>
     <Source>model/__init__.py</Source>
+    <Source>solvers/AbstractSolver.py</Source>
     <Source>solvers/LeftWallFollowerSolver.py</Source>
     <Source>solvers/RandomMouseSolver.py</Source>
     <Source>solvers/RightWallFollowerSolver.py</Source>
-    <Source>solvers/Solver.py</Source>
     <Source>solvers/TremauxSolver.py</Source>
     <Source>solvers/__init__.py</Source>
     <Source>test/Demo.py</Source>

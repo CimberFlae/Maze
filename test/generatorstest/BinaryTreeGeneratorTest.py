@@ -13,6 +13,11 @@ class BinaryTreeGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTes
         generator = BinaryTreeGenerator.BinaryTreeGenerator()
         self.maze = generator.generateRandomMaze(self.size, seed = seed)
 
+    def test_invalidSize(self):
+        generator = BinaryTreeGenerator.BinaryTreeGenerator()
+        with self.assertRaises(Exception):
+            self.maze = generator.generateRandomMaze(1)
+
     # check wether every cell in the maze has at least one of the left or top wall removed (except the top left cell)
     def test_cells(self):
         for i in range(self.size):
@@ -32,6 +37,7 @@ class BinaryTreeGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTes
         for i in range(1, self.size):
             self.assertTrue(self.maze.getCell(i, 0).getTop().isRemoved(), 'Cell in left row still has top Wall.')
 
+# This is needed for the individual execution of this test class
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(BinaryTreeGeneratorTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

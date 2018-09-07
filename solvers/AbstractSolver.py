@@ -1,6 +1,6 @@
 import random
 
-class Solver:
+class AbstractSolver:
 
     def __init__(self):
         self.path = []

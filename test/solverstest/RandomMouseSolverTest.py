@@ -11,6 +11,7 @@ class RandomMouseSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest, unitt
         super(RandomMouseSolverTest, self).setUp()
         self.solver = RandomMouseSolver.RandomMouseSolver()
 
+# This is needed for the individual execution of this test class
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(RandomMouseSolverTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

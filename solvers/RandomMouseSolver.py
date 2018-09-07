@@ -1,10 +1,10 @@
-import solvers.Solver as Solver
+import solvers.AbstractSolver as AbstractSolver
 import random
 
-class RandomMouseSolver(Solver.Solver):
+class RandomMouseSolver(AbstractSolver.AbstractSolver):
 
     def __init__(self):
-        Solver.Solver.__init__(self)
+        AbstractSolver.AbstractSolver.__init__(self)
 
     def solveMaze(self, maze, seed = 0):
         if (seed != 0):
@@ -13,10 +13,8 @@ class RandomMouseSolver(Solver.Solver):
         """implement random mouse algorithm"""
         """this means: always follow a given path to a junction and from there try a direction at random"""
         """caution: this algorithms may take longer than anticipated (since it is random)"""
-        if (maze.getEntrance() == None):
-            maze.setCustomOpening(0, 0)
-        if (maze.getExit() == None):
-            maze.setCustomOpening(maze.getSize() - 1, maze.getSize() - 1)
+        if (maze.getEntrance() == None or maze.getExit() == None):
+            raise Exception('Entrance or Exit is missing')
         cell = maze.getEntrance()
         self.path.append(cell)
         while (self.path[-1] != maze.getExit()):
@@ -55,8 +53,3 @@ class RandomMouseSolver(Solver.Solver):
             if (right.isRemoved() & (not self.maze.isBorder(cell, right))):
                 cell = self.maze.getRightNeighbour(cell)
                 self.path.append(cell)
-
-    def tryRandom(self, cell):
-        list = [self.tryBottom, self.tryLeft, self.tryTop, self.tryRight]
-        n = random.randint(0, 3)
-        return list[n](cell)

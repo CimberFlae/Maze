@@ -11,6 +11,7 @@ class RightWallFollowerSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest,
         super(RightWallFollowerSolverTest, self).setUp()
         self.solver = RightWallFollowerSolver.RightWallFollowerSolver()
 
+# This is needed for the individual execution of this test class
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(RightWallFollowerSolverTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

@@ -1,18 +1,16 @@
-import solvers.Solver as Solver
+import solvers.AbstractSolver as AbstractSolver
 
-class TremauxSolver(Solver.Solver):
+class TremauxSolver(AbstractSolver.AbstractSolver):
 
     def __init__(self):
-        Solver.Solver.__init__(self)
+        AbstractSolver.AbstractSolver.__init__(self)
 
     def solveMaze(self, maze):
         self.path = []
         self.maze = maze;
         """implement Tremaux's algorithm"""
-        if (maze.getEntrance() == None):
-            maze.setCustomOpening(0, 0)
-        if (maze.getExit() == None):
-            maze.setCustomOpening(maze.getSize() - 1, maze.getSize() - 1)
+        if (maze.getEntrance() == None or maze.getExit() == None):
+            raise Exception('Entrance or Exit is missing')
         self.walls = {}
         self.junctions = []
         self.path.append(maze.getEntrance())

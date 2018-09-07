@@ -131,6 +131,7 @@ class CellTest(unittest.TestCase):
         wall = self.cell.chooseWall()
         self.assertIsNone(wall, 'A wall could be chosen.')
 
+# This is needed for the individual execution of this test class
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(CellTest)
     unittest.TextTestRunner(verbosity=2).run(suite)

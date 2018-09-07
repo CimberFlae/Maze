@@ -1,10 +1,10 @@
-import drawers.Drawer as Drawer
+import drawers.AbstractDrawer as AbstractDrawer
 import sys
 
-class ASCIIDrawer(Drawer.Drawer):
+class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
 
     def __init__(self):
-        Drawer.Drawer.__init__(self)
+        AbstractDrawer.AbstractDrawer.__init__(self)
 
     def drawMaze(self, maze):
         """implement a drawing algorithm"""
@@ -34,10 +34,16 @@ class ASCIIDrawer(Drawer.Drawer):
 
     def drawPath(self, maze, path):
         """print path with ASCII signs"""
-        for i in range (0,len(path)):
-            sys.stdout.write("(" + path[i].getX().__str__() + "," + path[i].getY().__str__() + ")  ")
+        for i in range (0, len(path)):
+            sys.stdout.write("(" + path[i].getX().__str__() + "," + path[i].getY().__str__() + ") ")
         print("")
         sys.stdout.write("( ")
+        # Draw entrance
+        entrance = maze.getEntrance()
+        if (entrance.getLeft().isRemoved() and maze.getLeftNeighbour(entrance) == None):
+            sys.stdout.write("-> ")
+        else:
+            sys.stdout.write("v ")
         for i in range (0, len(path)-1):
             x1 = path[i].getX()
             x2 = path[i+1].getX()
@@ -53,5 +59,11 @@ class ASCIIDrawer(Drawer.Drawer):
                 sys.stdout.write("<- ")
             else:
                 raise Exception('Invalid cell transition')
+        # Draw exit
+        exit = maze.getExit()
+        if (exit.getRight().isRemoved() and maze.getRightNeighbour(exit) == None):
+            sys.stdout.write("-> ")
+        else:
+            sys.stdout.write(" v")
         sys.stdout.write(")")
         print("")

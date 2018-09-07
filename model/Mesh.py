@@ -2,6 +2,7 @@ import model.Cell as Cell
 import random
 
 class Mesh:
+
     def __init__(self, size, wallsRemoved = False):
         self.size = size
         self.matrix = []
@@ -83,9 +84,10 @@ class Mesh:
                 return cell
         return None
     
+    # delegate method: could be implemented in cell
     def isBorder(self, cell, wall):
-        return ((cell.x == 0) & (wall == cell.topWall)) | ((cell.x == self.size-1) & (wall == cell.bottomWall)) | \
-                ((cell.y == 0) & (wall == cell.leftWall)) | ((cell.y == self.size-1) & (wall == cell.rightWall))
+        return ((cell.x == 0) and (wall == cell.topWall)) or ((cell.x == self.size-1) and (wall == cell.bottomWall)) or \
+                ((cell.y == 0) and (wall == cell.leftWall)) or ((cell.y == self.size-1) and (wall == cell.rightWall))
 
     def hasNeighbourInDifferentSet(self, cell):#checks if cell has a neighbour which is not in the same set
         set = cell.getSet()
@@ -195,8 +197,7 @@ class Mesh:
     def getExit(self):
         return self.exit
 
-    # delegate methods
-
+    # delegate method: could be implemented in cell?
     def chooseWall(self, cell): # returns None if there is no non-border wall that is not removed
         if len([wall for wall in cell.getWallList() if not (self.isBorder(cell, wall) or wall.isRemoved())]) > 0:
             while(True):

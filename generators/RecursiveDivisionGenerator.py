@@ -1,13 +1,14 @@
-import generators.Generator as Generator
+import generators.AbstractGenerator as AbstractGenerator
 import model.Mesh as Mesh
 import random
 
-class RecursiveDivisionGenerator(Generator.Generator):
+class RecursiveDivisionGenerator(AbstractGenerator.AbstractGenerator):
 
     def __init__(self):
-        Generator.Generator.__init__(self)
+        AbstractGenerator.AbstractGenerator.__init__(self)
 
     def __generateMaze__(self, size, seed = 0):
+        AbstractGenerator.AbstractGenerator.__generateMaze__(self, size)
         if (seed != 0):
             random.seed(seed)
         """implement Recursive Division Algorithm"""

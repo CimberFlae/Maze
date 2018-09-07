@@ -58,6 +58,18 @@ class AbstractBaseSolverTest(ABC):
         tc.assertEqual(self.solver.path,  [self.cell1, self.cell2, self.cell3, self.cell4,
             self.cell8, self.cell9])
 
+    def test_noEntrance(self):
+        mesh = Mesh.Mesh(5)
+        mesh.exit = mesh.matrix[1][1]
+        with self.assertRaises(Exception):
+            self.solver.solveMaze(mesh)
+
+    def test_noExit(self):
+        mesh = Mesh.Mesh(5)
+        mesh.entrance = mesh.matrix[0][0]
+        with self.assertRaises(Exception):
+            self.solver.solveMaze(mesh)
+
     def test_solveEasyMaze(self):
         mesh = Mesh.Mesh(2)
         # Openings

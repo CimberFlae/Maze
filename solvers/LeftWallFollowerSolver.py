@@ -1,18 +1,16 @@
-import solvers.Solver as Solver
+import solvers.AbstractSolver as AbstractSolver
 
-class LeftWallFollowerSolver(Solver.Solver):
+class LeftWallFollowerSolver(AbstractSolver.AbstractSolver):
 
     def __init__(self):
-        Solver.Solver.__init__(self)
+        AbstractSolver.AbstractSolver.__init__(self)
 
     def solveMaze(self, maze):
         """implement left wall following"""
         """this means: always try going in directions in the following order: left, forward, right, backward"""
         self.maze = maze
-        if (maze.getEntrance() == None):
-            maze.setCustomOpening(0, 0)
-        if (maze.getExit() == None):
-            maze.setCustomOpening(maze.getSize() - 1, maze.getSize() - 1)
+        if (maze.getEntrance() == None or maze.getExit() == None):
+            raise Exception('Entrance or Exit is missing')
         cell = maze.getEntrance()
         self.path.append(cell)
         x = cell.getX()
