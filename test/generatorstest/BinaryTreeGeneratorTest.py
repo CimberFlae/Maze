@@ -5,10 +5,13 @@ sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import generators.BinaryTreeGenerator as BinaryTreeGenerator
 import generatorstest.AbstractBaseGeneratorTest as AbstractBaseGeneratorTest
 import logging
+import LoggingConfiguration
+import logging.config
 
 class BinaryTreeGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest, unittest.TestCase):
     
     def setUp(self):
+        logging.config.dictConfig(LoggingConfiguration.LOGGING)
         self.log = logging.getLogger(__name__)
         self.size = 5
         seed = 1

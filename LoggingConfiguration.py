@@ -11,7 +11,7 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': 'maze.log',
             'mode': 'w',
-            'formatter': 'detailed'
+            #'formatter': 'detailed'
         }
     },
     'root': {
@@ -19,3 +19,6 @@ LOGGING = {
         'handlers': ['file']
     },
 }
+
+if __name__ == '__main__':
+    logging.config.dictConfig(LOGGING)

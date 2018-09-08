@@ -25,6 +25,7 @@ class AbstractBaseSolverTest(ABC):
     
     # check correctness and completeness of cleanPath
     def test_cleanPathLevel1(self):
+        self.log.debug("test_cleanPathLevel1")
         self.solver.path = [self.cell1, self.cell2, self.cell1]
         self.solver.cleanPath()
         tc.assertEqual(len(self.solver.path), 1)
@@ -36,6 +37,7 @@ class AbstractBaseSolverTest(ABC):
             self.cell6])
 
     def test_cleanPathLevel2(self):
+        self.log.debug("test_cleanPathLevel2")
         self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell2, self.cell1]
         self.solver.cleanPath()
         tc.assertEqual(len(self.solver.path), 1)
@@ -47,6 +49,7 @@ class AbstractBaseSolverTest(ABC):
             self.cell7, self.cell8])
 
     def test_cleanPathLevel3(self):
+        self.log.debug("test_cleanPathLevel3")
         self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell3,
             self.cell2, self.cell1]
         self.solver.cleanPath()
@@ -59,18 +62,21 @@ class AbstractBaseSolverTest(ABC):
             self.cell8, self.cell9])
 
     def test_noEntrance(self):
+        self.log.debug("test_noEntrance")
         mesh = Mesh.Mesh(5)
         mesh.exit = mesh.matrix[1][1]
         with self.assertRaises(Exception):
             self.solver.solveMaze(mesh)
 
     def test_noExit(self):
+        self.log.debug("test_noExit")
         mesh = Mesh.Mesh(5)
         mesh.entrance = mesh.matrix[0][0]
         with self.assertRaises(Exception):
             self.solver.solveMaze(mesh)
 
     def test_solveEasyMaze(self):
+        self.log.debug("test_solveEasyMaze")
         mesh = Mesh.Mesh(2)
         # Openings
         mesh.matrix[0][0].topWall.removed = True
@@ -85,6 +91,7 @@ class AbstractBaseSolverTest(ABC):
         tc.assertEqual(actualPath, expectedPath)
 
     def test_solveMediumMaze(self):
+        self.log.debug("test_solveMediumMaze")
         mesh = Mesh.Mesh(3)
         # Openings
         mesh.matrix[0][0].topWall.removed = True
@@ -106,6 +113,7 @@ class AbstractBaseSolverTest(ABC):
         tc.assertEqual(actualPath, expectedPath)
 
     def test_solveHardMaze(self):
+        self.log.debug("test_solveHardMaze")
         mesh = Mesh.Mesh(4)
         # Openings
         mesh.matrix[0][2].topWall.removed = True
@@ -136,6 +144,7 @@ class AbstractBaseSolverTest(ABC):
         tc.assertEqual(actualPath, expectedPath)
 
     def test_path(self):
+        self.log.debug("test_path")
         generator = KruskalGenerator.KruskalGenerator()
         maze = generator.generateRandomMaze(10, 23)
         drawer = ASCIIDrawer.ASCIIDrawer()

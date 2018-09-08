@@ -1,6 +1,7 @@
 import unittest
 import sys
 import os
+import logging
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 print(sys.path)
 import solvers.TremauxSolver as TremauxSolver
@@ -10,6 +11,7 @@ class TremauxSolverTest(AbstractBaseSolverTest.AbstractBaseSolverTest, unittest.
     
     def setUp(self):
         super(TremauxSolverTest, self).setUp()
+        self.log = logging.getLogger(__name__)
         self.solver = TremauxSolver.TremauxSolver()
 
 # This is needed for the individual execution of this test class

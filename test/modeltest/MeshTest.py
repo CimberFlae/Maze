@@ -3,13 +3,16 @@ import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 import model.Mesh as Mesh
+import logging
 
 class MeshTest(unittest.TestCase):
     
     def setUp(self):
+        self.log = logging.getLogger(__name__)
         self.mesh = Mesh.Mesh(10)
     
     def test_MeshInit(self):
+        self.log.debug("test_MeshInit")
         mesh = self.mesh
         self.assertEqual(mesh.size, 10, 'Size is wrong.')
         self.assertEqual(len(mesh.matrix), mesh.size, 'Length of matrix does not match size.')
@@ -30,28 +33,35 @@ class MeshTest(unittest.TestCase):
             self.assertFalse(mesh.matrix[i][mesh.size - 1].getRight().isRemoved(), 'Mesh has an entry.')
     
     def test_getSize(self):
+        self.log.debug("test_getSize")
         self.assertEqual(self.mesh.getSize(), self.mesh.size, 'getSize returns wrong value.')
     
     def test_getCell(self):
+        self.log.debug("test_getCell")
         self.assertEqual(self.mesh.getCell(3, 7), self.mesh.matrix[3][7], 'getCell returns wrong value.')
     
     def test_getLeftNeighbour(self):
+        self.log.debug("test_getLeftNeighbour")
         cell = self.mesh.matrix[3][7]
         self.assertEqual(self.mesh.getLeftNeighbour(cell), self.mesh.matrix[cell.getX()][cell.getY()-1], 'getLeftNeighbour returns wrong value.')
     
     def test_getRightNeighbour(self):
+        self.log.debug("test_getRightNeighbour")
         cell = self.mesh.matrix[3][7]
         self.assertEqual(self.mesh.getRightNeighbour(cell), self.mesh.matrix[cell.getX()][cell.getY()+1], 'getRightNeighbour returns wrong value.')
     
     def test_getTopNeighbour(self):
+        self.log.debug("test_getTopNeighbour")
         cell = self.mesh.matrix[3][7]
         self.assertEqual(self.mesh.getTopNeighbour(cell), self.mesh.matrix[cell.getX()-1][cell.getY()], 'getTopNeighbour returns wrong value.')
     
     def test_getBottomNeighbour(self):
+        self.log.debug("test_getBottomNeighbour")
         cell = self.mesh.matrix[3][7]
         self.assertEqual(self.mesh.getBottomNeighbour(cell), self.mesh.matrix[cell.getX()+1][cell.getY()], 'getBottomNeighbour returns wrong value.')
     
     def test_moveCell(self):
+        self.log.debug("test_moveCell")
         cell1 = self.mesh.matrix[3][7]
         set1 = cell1.set
         cell2 = self.mesh.matrix[7][3]
@@ -67,22 +77,26 @@ class MeshTest(unittest.TestCase):
         self.assertEqual(len(self.mesh.sets[set1]), 0, 'Set still contains Cells.')
     
     def test_checkSets(self):
+        self.log.debug("test_checkSets")
         self.assertTrue(self.mesh.hasMultipleSets(), 'Mesh has only one non-empty Set.')
         for i in range(self.mesh.size**2):
             self.mesh.moveCell(i, 0)
         self.assertFalse(self.mesh.hasMultipleSets(), 'Not all Cells are in the same Set.')
     
     def test_chooseCellSuccess(self):
+        self.log.debug("test_chooseCellSuccess")
         cell = self.mesh.chooseCell()
         self.assertTrue(self.mesh.hasNeighbourInDifferentSet(cell), 'Cell without Wall to a neighbour has been chosen.')
     
     def test_chooseCellFail(self):
+        self.log.debug("test_chooseCellFail")
         for i in range(100):
             self.mesh.moveCell(i, 0)
         cell = self.mesh.chooseCell()
         self.assertIsNone(cell, 'A Cell could be chosen.')
     
     def test_isBorder(self):
+        self.log.debug("test_isBorder")
         cell37 = self.mesh.matrix[3][7]
         self.assertFalse(self.mesh.isBorder(cell37,  cell37.topWall), 'Cell is border.')
         self.assertFalse(self.mesh.isBorder(cell37,  cell37.leftWall), 'Cell is border.')
@@ -98,17 +112,20 @@ class MeshTest(unittest.TestCase):
         self.assertTrue(self.mesh.isBorder(cell97, cell97.bottomWall), 'Cell is not border.')
     
     def test_isLegitNeighbour(self):
+        self.log.debug("test_isLegitNeighbour")
         self.assertTrue(self.mesh.hasNeighbourInDifferentSet(self.mesh.matrix[3][7]), 'Cell has no neighbour in different Set.')
         self.mesh.moveCell(0, 1)
         self.mesh.moveCell(10, 1)
         self.assertFalse(self.mesh.hasNeighbourInDifferentSet(self.mesh.matrix[0][0]), 'Cells has neighbour in different Set.')
     
     def test_setCustomOpening(self):
+        self.log.debug("test_setCustomOpening")
         self.assertRaises(IndexError, self.mesh.setCustomOpening, 10, 9)
         self.mesh.setCustomOpening(0, 0, True)
         self.assertTrue(self.mesh.matrix[0][0].getTop().isRemoved(), 'Cell (0,0) is not removed.')
 
     def test_setRandomTopEntrance(self):
+        self.log.debug("test_setRandomTopEntrance")
         self.mesh.setRandomTopEntrance()
         found = False
         for i in range(0, 10):
@@ -118,6 +135,7 @@ class MeshTest(unittest.TestCase):
             self.assertTrue(False, 'No top entrance found')
 
     def test_setRandomLeftEntrance(self):
+        self.log.debug("test_setRandomLeftEntrance")
         self.mesh.setRandomLeftEntrance()
         found = False
         for i in range(0, 10):
@@ -127,6 +145,7 @@ class MeshTest(unittest.TestCase):
             self.assertTrue(False, 'No left entrance found')
 
     def test_setRandomBottomExit(self):
+        self.log.debug("test_setRandomBottomExit")
         self.mesh.setRandomBottomExit()
         found = False
         for i in range(0, 10):
@@ -136,6 +155,7 @@ class MeshTest(unittest.TestCase):
             self.assertTrue(False, 'No bottom exit found')
 
     def test_setRandomRightExit(self):
+        self.log.debug("test_setRandomRightExit")
         self.mesh.setRandomRightExit()
         found = False
         for i in range(0, 10):
@@ -145,26 +165,31 @@ class MeshTest(unittest.TestCase):
             self.assertTrue(False, 'No right exit found')
 
     def test_clearEntrance(self):
+        self.log.debug("test_clearEntrance")
         self.mesh.setCustomOpening(0, 0)
         self.mesh.clearEntrance()
         self.assertFalse(self.mesh.matrix[0][0].getTop().isRemoved(), 'Entrance was not cleared')
         self.assertFalse(self.mesh.matrix[0][0].getLeft().isRemoved(), 'Entrance was not cleared')
 
     def test_clearExit(self):
+        self.log.debug("test_clearExit")
         self.mesh.setCustomOpening(9, 9)
         self.mesh.clearExit()
         self.assertFalse(self.mesh.matrix[9][9].getBottom().isRemoved(), 'Exit was not cleared')
         self.assertFalse(self.mesh.matrix[9][9].getRight().isRemoved(), 'Exit was not cleared')
 
     def test_getEntrance(self):
+        self.log.debug("test_getEntrance")
         self.mesh.setCustomOpening(0, 0)
         self.assertEqual(self.mesh.getEntrance(), self.mesh.matrix[0][0], 'getEntrance returned wrong value')
 
     def test_getExit(self):
+        self.log.debug("test_getExit")
         self.mesh.setCustomOpening(9, 9)
         self.assertEqual(self.mesh.getExit(), self.mesh.matrix[9][9], 'getExit returned wrong value')
 
     def test_chooseWall(self):
+        self.log.debug("test_chooseWall")
         cell = self.mesh.matrix[0][5]
         cell.removeLeft()
         wall = self.mesh.chooseWall(cell)
