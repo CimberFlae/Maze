@@ -16,6 +16,7 @@ class KruskalGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest, 
         self.maze = generator.generateRandomMaze(self.size, seed = seed)
 
     def test_invalidSize(self):
+        self.log.debug("test_invalidSize")
         generator = KruskalGenerator.KruskalGenerator()
         with self.assertRaises(Exception):
             self.maze = generator.generateRandomMaze(1)

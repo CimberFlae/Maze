@@ -1,10 +1,13 @@
 import model.Cell as Cell
 import random
 import logging
+import LoggingConfiguration
+import logging.config
 
 class Mesh:
 
     def __init__(self, size, wallsRemoved = False):
+        logging.config.dictConfig(LoggingConfiguration.LOGGING)
         self.log = logging.getLogger(__name__)
         self.size = size
         self.matrix = []

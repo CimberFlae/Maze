@@ -16,6 +16,7 @@ class PrimGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest,  un
         self.maze = generator.generateRandomMaze(self.size, seed = seed)
 
     def test_invalidSize(self):
+        self.log.debug("test_invalidSize")
         generator = PrimGenerator.PrimGenerator()
         with self.assertRaises(Exception):
             generator.generateRandomMaze(1)

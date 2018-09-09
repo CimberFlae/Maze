@@ -11,7 +11,7 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
     def drawMaze(self, maze):
         """implement a drawing algorithm"""
         size = maze.getSize()
-        sys.stdout.write(" ")
+        sys.stdout.write("\n ")
         for i in range (0, size):
             if not maze.getCell(0, i).getTop().isRemoved():
                 sys.stdout.write("_ ")

@@ -16,6 +16,7 @@ class DepthFirstSearchGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGenera
         self.maze = generator.generateRandomMaze(self.size, seed = seed)
 
     def test_invalidSize(self):
+        self.log.debug("test_invalidSize")
         generator = DepthFirstSearchGenerator.DepthFirstSearchGenerator()
         with self.assertRaises(Exception):
             self.maze = generator.generateRandomMaze(1)

@@ -6,12 +6,18 @@ class LoggingConfiguration(logging.Filter):
 
 LOGGING = {
     'version': 1,
+    'formatters': {
+        'tests': {
+            'class': 'logging.Formatter',
+            'format': '%(asctime)s %(name)s %(levelname)s: %(message)s'
+        }
+    },
     'handlers': {
         'file': {
             'class': 'logging.FileHandler',
             'filename': 'maze.log',
             'mode': 'w',
-            #'formatter': 'detailed'
+            'formatter': 'tests'
         }
     },
     'root': {

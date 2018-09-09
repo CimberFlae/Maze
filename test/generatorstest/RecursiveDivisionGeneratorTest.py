@@ -16,6 +16,7 @@ class RecursiveDivisionGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGener
         self.maze = generator.generateRandomMaze(self.size, seed = seed)
 
     def test_invalidSize(self):
+        self.log.debug("test_invalidSize")
         generator = RecursiveDivisionGenerator.RecursiveDivisionGenerator()
         with self.assertRaises(Exception):
             self.maze = generator.generateRandomMaze(1)
