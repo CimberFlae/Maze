@@ -12,145 +12,157 @@ class AbstractSolver:
         """implement a solving algorithm"""
 
     # cleans the path of redundant moves
-    def cleanPath(self):
+    def __cleanPath__(self):
         i = 2
         while (i < len(self.path)):
             if (self.path[i-2] == self.path[i]):
-                self.cleanup(i-2, i)
+                self.__cleanup__(i - 2, i)
                 i = 2
             else:
                 i += 1
 
-    def cleanup(self, i, j):
+    def __cleanup__(self, i, j):
         if (i > 0 and j < len(self.path)-1 and self.path[i-1] == self.path[j+1]):
-            self.cleanup(i-1, j+1)
+            self.__cleanup__(i - 1, j + 1)
         else:
             del self.path[(i+1):(j+1)]
 
-    def isJunction(self, cell):
+    def __isJunction__(self, cell):
         return cell.wallCount() < 2
 
-    def isPath(self, cell):
+    def __isPath__(self, cell):
         return cell.wallCount() == 2 and cell != self.maze.getEntrance()
 
-    def isDeadEnd(self, cell):
+    def __isDeadEnd__(self, cell):
         return cell.wallCount() == 3 or cell.wallCount() == 2 and cell == self.maze.getEntrance()
 
-    def cameFromTop(self):
-        previous = self.getPrevious()
+    def __cameFromTop__(self):
+        previous = self.__getPrevious__()
         return previous != None and self.maze.getTopNeighbour(self.path[-1]) == previous
 
-    def cameFromRight(self):
-        previous = self.getPrevious()
+    def __cameFromRight__(self):
+        previous = self.__getPrevious__()
         return previous != None and self.maze.getRightNeighbour(self.path[-1]) == previous
 
-    def cameFromBottom(self):
-        previous = self.getPrevious()
+    def __cameFromBottom__(self):
+        previous = self.__getPrevious__()
         return previous != None and self.maze.getBottomNeighbour(self.path[-1]) == previous
 
-    def cameFromLeft(self):
-        previous = self.getPrevious()
+    def __cameFromLeft__(self):
+        previous = self.__getPrevious__()
         return previous != None and self.maze.getLeftNeighbour(self.path[-1]) == previous
 
-    def getPrevious(self):
+    def __getPrevious__(self):
         return self.path[-2] if len(self.path) > 1 else None
 
-    def findNext(self): # if there is only one way to go
+    def __findNext__(self): # if there is only one way to go
         current = self.path[-1]
-        if (self.cameFromBottom()):
+        if (self.__cameFromBottom__()):
             if (current.getLeft().isRemoved()):
-                self.tryLeft()
+                self.__tryLeft__()
             elif (current.getRight().isRemoved()):
-                self.tryRight()
+                self.__tryRight__()
             elif (current.getTop().isRemoved()):
-                self.tryTop()
+                self.__tryTop__()
             else:
                 self.log.error('No way out')
                 raise Exception('No way out')
-        elif (self.cameFromLeft()):
+        elif (self.__cameFromLeft__()):
             if (current.getBottom().isRemoved()):
-                self.tryBottom()
+                self.__tryBottom__()
             elif (current.getRight().isRemoved()):
-                self.tryRight()
+                self.__tryRight__()
             elif (current.getTop().isRemoved()):
-                self.tryTop()
+                self.__tryTop__()
             else:
                 self.log.error('No way out')
                 raise Exception('No way out')
-        elif (self.cameFromRight()):
+        elif (self.__cameFromRight__()):
             if (current.getBottom().isRemoved()):
-                self.tryBottom()
+                self.__tryBottom__()
             elif (current.getLeft().isRemoved()):
-                self.tryLeft()
+                self.__tryLeft__()
             elif (current.getTop().isRemoved()):
-                self.tryTop()
+                self.__tryTop__()
             else:
                 self.log.error('No way out')
                 raise Exception('No way out')
-        elif (self.cameFromTop()):
+        elif (self.__cameFromTop__()):
             if (current.getBottom().isRemoved()):
-                self.tryBottom()
+                self.__tryBottom__()
             elif (current.getLeft().isRemoved()):
-                self.tryLeft()
+                self.__tryLeft__()
             elif (current.getRight().isRemoved()):
-                self.tryRight()
+                self.__tryRight__()
             else:
                 self.log.error('No way out')
                 raise Exception('No way out')
         elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
-            self.handleJunction()
+            self.__handleJunction__()
         else:
             self.log.error('Came from nowhere')
             raise Exception('Came from nowhere')
 
-    def chooseDirection(self, directions):
+    def __chooseDirection__(self, directions):
         n = random.randint(0, len(directions)-1)
         directions[n]()
 
-    def decideNext(self):
+    def __decideNext__(self):
         current = self.path[-1]
-        if self.isJunction(current):
-            self.handleJunction()
-        elif self.isPath(current):
-            self.handlePath()
-        elif self.isDeadEnd(current): # do nothing and go back
-            self.handleDeadEnd()
+        if self.__isJunction__(current):
+            self.__handleJunction__()
+        elif self.__isPath__(current):
+            self.__handlePath__()
+        elif self.__isDeadEnd__(current): # do nothing and go back
+            self.__handleDeadEnd__()
         else:
             self.log.error('Invalid wall count')
             raise Exception('Invalid wall count')
 
-    def handleJunction(self):
+    def __handleJunction__(self):
         current = self.path[-1]
-        if (self.cameFromTop()):
-            directions = [self.tryBottom, self.tryLeft, self.tryRight]
-        elif (self.cameFromBottom()):
-            directions = [self.tryLeft, self.tryRight, self.tryTop]
-        elif (self.cameFromLeft()):
-            directions = [self.tryBottom, self.tryRight, self.tryTop]
-        elif (self.cameFromRight()):
-            directions = [self.tryBottom, self.tryLeft, self.tryTop]
+        if (self.__cameFromTop__()):
+            directions = [self.__tryBottom__, self.__tryLeft__, self.__tryRight__]
+        elif (self.__cameFromBottom__()):
+            directions = [self.__tryLeft__, self.__tryRight__, self.__tryTop__]
+        elif (self.__cameFromLeft__()):
+            directions = [self.__tryBottom__, self.__tryRight__, self.__tryTop__]
+        elif (self.__cameFromRight__()):
+            directions = [self.__tryBottom__, self.__tryLeft__, self.__tryTop__]
         elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
-            directions = [self.tryBottom, self.tryLeft, self.tryRight, self.tryTop]
+            directions = [self.__tryBottom__, self.__tryLeft__, self.__tryRight__, self.__tryTop__]
         else:
             self.log.error('Came from nowhere')
             raise Exception('Came from nowhere')
         while (current == self.path[-1] and current != self.maze.getExit()):
-            self.chooseDirection(directions)
+            self.__chooseDirection__(directions)
 
-    def handlePath(self):
-        self.findNext()
+    def __handlePath__(self):
+        self.__findNext__()
 
-    def handleDeadEnd(self):
-        if (self.cameFromTop()):
-            self.tryTop()
-        elif (self.cameFromBottom()):
-            self.tryBottom()
-        elif (self.cameFromLeft()):
-            self.tryLeft()
-        elif (self.cameFromRight()):
-            self.tryRight()
+    def __handleDeadEnd__(self):
+        if (self.__cameFromTop__()):
+            self.__tryTop__()
+        elif (self.__cameFromBottom__()):
+            self.__tryBottom__()
+        elif (self.__cameFromLeft__()):
+            self.__tryLeft__()
+        elif (self.__cameFromRight__()):
+            self.__tryRight__()
         elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
-            self.handleJunction()
+            self.__handleJunction__()
         else:
             self.log.error('Came from nowhere')
             raise Exception('Came from nowhere')
+
+    def __tryBottom__(self):
+        pass # to be implemented in subclass
+
+    def __tryLeft__(self):
+        pass  # to be implemented in subclass
+
+    def __tryRight__(self):
+        pass  # to be implemented in subclass
+
+    def __tryTop__(self):
+        pass  # to be implemented in subclass

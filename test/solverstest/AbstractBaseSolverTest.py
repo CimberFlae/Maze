@@ -23,15 +23,15 @@ class AbstractBaseSolverTest(ABC):
         self.cell9 = Cell.Cell(9, 9, 9)
         pass
     
-    # check correctness and completeness of cleanPath
+    # check correctness and completeness of __cleanPath__
     def test_cleanPathLevel1(self):
         self.log.debug("test_cleanPathLevel1")
         self.solver.path = [self.cell1, self.cell2, self.cell1]
-        self.solver.cleanPath()
+        self.solver.__cleanPath__()
         tc.assertEqual(len(self.solver.path), 1)
         self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell3,
             self.cell5, self.cell6]
-        self.solver.cleanPath()
+        self.solver.__cleanPath__()
         tc.assertEqual(len(self.solver.path), 5)
         tc.assertEqual(self.solver.path, [self.cell1, self.cell2, self.cell3, self.cell5,
             self.cell6])
@@ -39,11 +39,11 @@ class AbstractBaseSolverTest(ABC):
     def test_cleanPathLevel2(self):
         self.log.debug("test_cleanPathLevel2")
         self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell2, self.cell1]
-        self.solver.cleanPath()
+        self.solver.__cleanPath__()
         tc.assertEqual(len(self.solver.path), 1)
         self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell5,
             self.cell6, self.cell5, self.cell4, self.cell7, self.cell8]
-        self.solver.cleanPath()
+        self.solver.__cleanPath__()
         tc.assertEqual(len(self.solver.path), 6)
         tc.assertEqual(self.solver.path, [self.cell1, self.cell2, self.cell3, self.cell4,
             self.cell7, self.cell8])
@@ -52,11 +52,11 @@ class AbstractBaseSolverTest(ABC):
         self.log.debug("test_cleanPathLevel3")
         self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell3,
             self.cell2, self.cell1]
-        self.solver.cleanPath()
+        self.solver.__cleanPath__()
         tc.assertEqual(len(self.solver.path), 1)
         self.solver.path = [self.cell1, self.cell2, self.cell3, self.cell4, self.cell5,
             self.cell6, self.cell7, self.cell6, self.cell5, self.cell4, self.cell8, self.cell9]
-        self.solver.cleanPath()
+        self.solver.__cleanPath__()
         tc.assertEqual(len(self.solver.path), 6)
         tc.assertEqual(self.solver.path,  [self.cell1, self.cell2, self.cell3, self.cell4,
             self.cell8, self.cell9])

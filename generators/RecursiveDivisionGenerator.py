@@ -20,10 +20,10 @@ class RecursiveDivisionGenerator(AbstractGenerator.AbstractGenerator):
             mesh.getCell(i, size-1).createRight()
             mesh.getCell(0, i).createTop()
             mesh.getCell(size-1, i).createBottom()
-        self.divideAndGenerate(mesh,0, size-1, 0, size-1)
+        self.__divideAndGenerate__(mesh, 0, size - 1, 0, size - 1)
         return mesh
 
-    def divideAndGenerate(self, mesh, leftBorder, rightBorder, topBorder, bottomBorder):
+    def __divideAndGenerate__(self, mesh, leftBorder, rightBorder, topBorder, bottomBorder):
         if ((leftBorder != rightBorder) & (topBorder != bottomBorder)):
             row = random.randint(leftBorder+1, rightBorder)
             column = random.randint(topBorder+1, bottomBorder)
@@ -55,7 +55,7 @@ class RecursiveDivisionGenerator(AbstractGenerator.AbstractGenerator):
             else:
                 self.log.error('Invalid random number')
                 raise Exception('Invalid random number')
-            self.divideAndGenerate(mesh,leftBorder, row-1, topBorder, column-1)
-            self.divideAndGenerate(mesh,row, rightBorder, topBorder, column-1)
-            self.divideAndGenerate(mesh,leftBorder, row-1, column, bottomBorder)
-            self.divideAndGenerate(mesh,row, rightBorder, column, bottomBorder)
+            self.__divideAndGenerate__(mesh, leftBorder, row - 1, topBorder, column - 1)
+            self.__divideAndGenerate__(mesh, row, rightBorder, topBorder, column - 1)
+            self.__divideAndGenerate__(mesh, leftBorder, row - 1, column, bottomBorder)
+            self.__divideAndGenerate__(mesh, row, rightBorder, column, bottomBorder)

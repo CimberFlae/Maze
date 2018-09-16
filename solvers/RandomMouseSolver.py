@@ -21,11 +21,11 @@ class RandomMouseSolver(AbstractSolver.AbstractSolver):
         cell = maze.getEntrance()
         self.path.append(cell)
         while (self.path[-1] != maze.getExit()):
-            self.decideNext()
-        self.cleanPath()
+            self.__decideNext__()
+        self.__cleanPath__()
         return self.path
 
-    def tryBottom(self):
+    def __tryBottom__(self):
         cell = self.path[-1]
         if (cell != self.maze.getExit()):
             bottom = cell.getBottom()
@@ -33,7 +33,7 @@ class RandomMouseSolver(AbstractSolver.AbstractSolver):
                 cell = self.maze.getBottomNeighbour(cell)
                 self.path.append(cell)
 
-    def tryLeft(self):
+    def __tryLeft__(self):
         cell = self.path[-1]
         if (cell != self.maze.getExit()):
             left = cell.getLeft()
@@ -41,7 +41,7 @@ class RandomMouseSolver(AbstractSolver.AbstractSolver):
                 cell = self.maze.getLeftNeighbour(cell)
                 self.path.append(cell)
 
-    def tryTop(self):
+    def __tryTop__(self):
         cell = self.path[-1]
         if (cell != self.maze.getExit()):
             top = cell.getTop()
@@ -49,7 +49,7 @@ class RandomMouseSolver(AbstractSolver.AbstractSolver):
                 cell = self.maze.getTopNeighbour(cell)
                 self.path.append(cell)
 
-    def tryRight(self):
+    def __tryRight__(self):
         cell = self.path[-1]
         if (cell != self.maze.getExit()):
             right = cell.getRight()

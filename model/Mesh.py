@@ -23,11 +23,11 @@ class Mesh:
                 k += 1
                 matrixrow.append(cell)
             self.matrix.append(matrixrow)
-        self.synchronizeWalls()
+        self.__synchronizeWalls__()
         self.entrance = None
         self.exit = None
 
-    def synchronizeWalls(self):
+    def __synchronizeWalls__(self):
         for i in range (0, self.size-1): # synchronize all horizontal walls
             for j in range (0, self.size):
                 self.matrix[i][j].setBottom(self.matrix[i+1][j].getTop())

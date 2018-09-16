@@ -17,189 +17,189 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
         self.walls = {}
         self.junctions = []
         self.path.append(maze.getEntrance())
-        self.tryBottom() # arbitrary choice to start with
+        self.__tryBottom__() # arbitrary choice to start with
         # arbitrary order of directions
-        self.tryBottom()
-        if (self.notFinished()):
-            self.tryLeft()
-        if (self.notFinished()):
-            self.tryRight()
-        if (self.notFinished()):
-            self.tryTop()
-        self.cleanPath()
+        self.__tryBottom__()
+        if (self.__notFinished__()):
+            self.__tryLeft__()
+        if (self.__notFinished__()):
+            self.__tryRight__()
+        if (self.__notFinished__()):
+            self.__tryTop__()
+        self.__cleanPath__()
         return self.path
 
-    def tryBottom(self):
+    def __tryBottom__(self):
         current = self.path[-1]
         if (current.getBottom().isRemoved() and self.maze.getBottomNeighbour(current) != None):
-            self.mark(current, current.getBottom())
+            self.__mark__(current, current.getBottom())
             current = self.maze.getBottomNeighbour(current)
             self.path.append(current)
-            self.decideNext()
+            self.__decideNext__()
 
-    def tryLeft(self):
+    def __tryLeft__(self):
         current = self.path[-1]
         if (current.getLeft().isRemoved() and self.maze.getLeftNeighbour(current) != None):
-            self.mark(current, current.getLeft())
+            self.__mark__(current, current.getLeft())
             current = self.maze.getLeftNeighbour(current)
             self.path.append(current)
-            self.decideNext()
+            self.__decideNext__()
 
-    def tryTop(self):
+    def __tryTop__(self):
         current = self.path[-1]
         if (current.getTop().isRemoved() and self.maze.getTopNeighbour(current) != None):
-            self.mark(current, current.getTop())
+            self.__mark__(current, current.getTop())
             current = self.maze.getTopNeighbour(current)
             self.path.append(current)
-            self.decideNext()
+            self.__decideNext__()
 
-    def tryRight(self):
+    def __tryRight__(self):
         current = self.path[-1]
         if (current.getRight().isRemoved() and self.maze.getRightNeighbour(current) != None):
-            self.mark(current, current.getRight())
+            self.__mark__(current, current.getRight())
             current = self.maze.getRightNeighbour(current)
             self.path.append(current)
-            self.decideNext()
+            self.__decideNext__()
 
     # @Override
-    def handleJunction(self):
+    def __handleJunction__(self):
         current = self.path[-1]
         if (not current in self.junctions): # new junction
             self.junctions.append(current)
-            if (self.cameFromTop()):
-                self.mark(current, current.getTop())
-                while (self.notFinished()):
+            if (self.__cameFromTop__()):
+                self.__mark__(current, current.getTop())
+                while (self.__notFinished__()):
                     # arbitrary order
-                    self.tryBottom()
-                    if (self.notFinished()):
-                        self.tryLeft()
-                    if (self.notFinished()):
-                        self.tryRight()
-            elif (self.cameFromBottom()):
-                self.mark(self.path[-1], self.path[-1].getBottom())
-                while (self.notFinished()):
+                    self.__tryBottom__()
+                    if (self.__notFinished__()):
+                        self.__tryLeft__()
+                    if (self.__notFinished__()):
+                        self.__tryRight__()
+            elif (self.__cameFromBottom__()):
+                self.__mark__(self.path[-1], self.path[-1].getBottom())
+                while (self.__notFinished__()):
                     # arbitrary order
-                    self.tryLeft()
-                    if (self.notFinished()):
-                        self.tryRight()
-                    if (self.notFinished()):
-                        self.tryTop()
-            elif (self.cameFromLeft()):
-                self.mark(self.path[-1], self.path[-1].getLeft())
-                while (self.notFinished()):
+                    self.__tryLeft__()
+                    if (self.__notFinished__()):
+                        self.__tryRight__()
+                    if (self.__notFinished__()):
+                        self.__tryTop__()
+            elif (self.__cameFromLeft__()):
+                self.__mark__(self.path[-1], self.path[-1].getLeft())
+                while (self.__notFinished__()):
                     # arbitrary order
-                    self.tryBottom()
-                    if (self.notFinished()):
-                        self.tryRight()
-                    if (self.notFinished()):
-                        self.tryTop()
-            elif (self.cameFromRight()):
-                self.mark(self.path[-1], self.path[-1].getRight())
-                while (self.notFinished()):
+                    self.__tryBottom__()
+                    if (self.__notFinished__()):
+                        self.__tryRight__()
+                    if (self.__notFinished__()):
+                        self.__tryTop__()
+            elif (self.__cameFromRight__()):
+                self.__mark__(self.path[-1], self.path[-1].getRight())
+                while (self.__notFinished__()):
                     # arbitrary order
-                    self.tryBottom()
-                    if (self.notFinished()):
-                        self.tryLeft()
-                    if (self.notFinished()):
-                        self.tryTop()
+                    self.__tryBottom__()
+                    if (self.__notFinished__()):
+                        self.__tryLeft__()
+                    if (self.__notFinished__()):
+                        self.__tryTop__()
             else:
                 self.log.error('Came from nowhere')
                 raise Exception('Came from nowhere')
         else: # have been here before
-            key = self.getKey(current)
-            if (self.cameFromTop()):
+            key = self.__getKey__(current)
+            if (self.__cameFromTop__()):
                 if (self.walls[key].count(current.getTop()) > 0): # this way has been taken
-                    self.mark(current, current.getTop())
-                    while (self.notFinished() and self.hasNVisitedPath(0)):
-                        self.chooseNVisitedPath(0)
-                    while (self.notFinished() and self.hasNVisitedPath(1)):
-                        self.chooseNVisitedPath(1)
-            elif (self.cameFromBottom()):
+                    self.__mark__(current, current.getTop())
+                    while (self.__notFinished__() and self.__hasNVisitedPath__(0)):
+                        self.__chooseNVisitedPath__(0)
+                    while (self.__notFinished__() and self.__hasNVisitedPath__(1)):
+                        self.__chooseNVisitedPath__(1)
+            elif (self.__cameFromBottom__()):
                 if (self.walls[key].count(current.getBottom()) > 0):
-                    self.mark(current, current.getBottom())
-                    while (self.notFinished() and self.hasNVisitedPath(0)):
-                        self.chooseNVisitedPath(0)
-                    while (self.notFinished() and self.hasNVisitedPath(1)):
-                        self.chooseNVisitedPath(1)
-            elif (self.cameFromLeft()):
+                    self.__mark__(current, current.getBottom())
+                    while (self.__notFinished__() and self.__hasNVisitedPath__(0)):
+                        self.__chooseNVisitedPath__(0)
+                    while (self.__notFinished__() and self.__hasNVisitedPath__(1)):
+                        self.__chooseNVisitedPath__(1)
+            elif (self.__cameFromLeft__()):
                 if (self.walls[key].count(current.getLeft()) > 0):
-                    self.mark(current, current.getLeft())
-                    while (self.notFinished() and self.hasNVisitedPath(0)):
-                        self.chooseNVisitedPath(0)
-                    while (self.notFinished() and self.hasNVisitedPath(1)):
-                        self.chooseNVisitedPath(1)
-            elif (self.cameFromRight()):
+                    self.__mark__(current, current.getLeft())
+                    while (self.__notFinished__() and self.__hasNVisitedPath__(0)):
+                        self.__chooseNVisitedPath__(0)
+                    while (self.__notFinished__() and self.__hasNVisitedPath__(1)):
+                        self.__chooseNVisitedPath__(1)
+            elif (self.__cameFromRight__()):
                 if (self.walls[key].count(current.getRight()) > 0):
-                    self.mark(current, current.getRight())
-                    while (self.notFinished() and self.hasNVisitedPath(0)):
-                        self.chooseNVisitedPath(0)
-                    while (self.notFinished() and self.hasNVisitedPath(1)):
-                        self.chooseNVisitedPath(1)
+                    self.__mark__(current, current.getRight())
+                    while (self.__notFinished__() and self.__hasNVisitedPath__(0)):
+                        self.__chooseNVisitedPath__(0)
+                    while (self.__notFinished__() and self.__hasNVisitedPath__(1)):
+                        self.__chooseNVisitedPath__(1)
             else:
                 self.log.error('Came from nowhere')
                 raise Exception('Came from nowhere')
 
-    def notFinished(self):
+    def __notFinished__(self):
         current = self.path[-1]
         return current != self.maze.getExit()
 
-    def hasNVisitedPath(self, n):
+    def __hasNVisitedPath__(self, n):
         current = self.path[-1]
-        key = self.getKey(current)
+        key = self.__getKey__(current)
         return self.walls[key].count(current.getLeft()) == n or self.walls[key].count(current.getRight()) == n or self.walls[key].count(current.getTop()) == n or self.walls[key].count(current.getBottom()) == n
 
-    def chooseNVisitedPath(self, n):
+    def __chooseNVisitedPath__(self, n):
         current = self.path[-1]
-        key = self.getKey(current)
-        if (self.cameFromBottom()):
+        key = self.__getKey__(current)
+        if (self.__cameFromBottom__()):
             if (self.walls[key].count(current.getLeft()) == n):
-                self.mark(current, current.getLeft())
-                self.tryLeft()
+                self.__mark__(current, current.getLeft())
+                self.__tryLeft__()
             elif (self.walls[key].count(current.getRight()) == n):
-                self.mark(current, current.getRight())
-                self.tryRight()
+                self.__mark__(current, current.getRight())
+                self.__tryRight__()
             elif (self.walls[key].count(current.getTop()) == n):
-                self.mark(current, current.getTop())
-                self.tryTop()
+                self.__mark__(current, current.getTop())
+                self.__tryTop__()
             else:
                 self.log.error('Every path from here already visited ' + n + ' times')
                 raise Exception('Every path from here already visited ' + n + ' times')
-        elif (self.cameFromLeft()):
+        elif (self.__cameFromLeft__()):
             if (self.walls[key].count(current.getBottom()) == n):
-                self.mark(current, current.getBottom())
-                self.tryBottom()
+                self.__mark__(current, current.getBottom())
+                self.__tryBottom__()
             elif (self.walls[key].count(current.getRight()) == n):
-                self.mark(current, current.getRight())
-                self.tryRight()
+                self.__mark__(current, current.getRight())
+                self.__tryRight__()
             elif (self.walls[key].count(current.getTop()) == n):
-                self.mark(current, current.getTop())
-                self.tryTop()
+                self.__mark__(current, current.getTop())
+                self.__tryTop__()
             else:
                 self.log.error('Every path from here already visited ' + n + ' times')
                 raise Exception('Every path from here already visited ' + n + ' times')
-        elif (self.cameFromRight()):
+        elif (self.__cameFromRight__()):
             if (self.walls[key].count(current.getBottom()) == n):
-                self.mark(current, current.getBottom())
-                self.tryBottom()
+                self.__mark__(current, current.getBottom())
+                self.__tryBottom__()
             elif (self.walls[key].count(current.getLeft()) == n):
-                self.mark(current, current.getLeft())
-                self.tryLeft()
+                self.__mark__(current, current.getLeft())
+                self.__tryLeft__()
             elif (self.walls[key].count(current.getTop()) == n):
-                self.mark(current, current.getTop())
-                self.tryTop()
+                self.__mark__(current, current.getTop())
+                self.__tryTop__()
             else:
                 self.log.error('Every path from here already visited ' + n + ' times')
                 raise Exception('Every path from here already visited ' + n + ' times')
-        elif (self.cameFromTop()):
+        elif (self.__cameFromTop__()):
             if (self.walls[key].count(current.getBottom()) == n):
-                self.mark(current, current.getBottom())
-                self.tryBottom()
+                self.__mark__(current, current.getBottom())
+                self.__tryBottom__()
             elif (self.walls[key].count(current.getLeft()) == n):
-                self.mark(current, current.getLeft())
-                self.tryLeft()
+                self.__mark__(current, current.getLeft())
+                self.__tryLeft__()
             elif (self.walls[key].count(current.getRight()) == n):
-                self.mark(current, current.getRight())
-                self.tryRight()
+                self.__mark__(current, current.getRight())
+                self.__tryRight__()
             else:
                 self.log.error('Every path from here already visited ' + n + ' times')
                 raise Exception('Every path from here already visited ' + n + ' times')
@@ -207,11 +207,11 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
             self.log.error('Came from nowhere')
             raise Exception('Came from nowhere')
 
-    def getKey(self, cell):
+    def __getKey__(self, cell):
         return str(cell.getX()) + str(cell.getY())
 
-    def mark(self, cell, wall):
-        key = self.getKey(cell)
+    def __mark__(self, cell, wall):
+        key = self.__getKey__(cell)
         if (not key in self.walls):
             self.walls[key] = []
         self.walls[key].append(wall)

@@ -19,51 +19,51 @@ class LeftWallFollowerSolver(AbstractSolver.AbstractSolver):
         x = cell.getX()
         y = cell.getY()
         if ((x == 0) & (y != 0)):
-            self.tryRight(cell)
+            self.__tryRight__(cell)
         elif ((x != 0) & (y == 0)):
-            self.tryTop(cell)
+            self.__tryTop__(cell)
         elif ((x == y == 0) & cell.getTop().isRemoved()):
-            self.tryRight(cell)
+            self.__tryRight__(cell)
         elif ((x == y == 0) & cell.getLeft().isRemoved()):
-            self.tryTop(cell)
+            self.__tryTop__(cell)
         else:
             self.log.error('Invalid starting cell')
             raise Exception('Invalid starting cell')
-        self.cleanPath()
+        self.__cleanPath__()
         return self.path
 
-    def tryBottom(self, cell):
+    def __tryBottom__(self, cell):
         if (cell != self.maze.getExit()):
             if (cell.getBottom().isRemoved()):
                 cell = self.maze.getBottomNeighbour(cell)
                 self.path.append(cell)
-                self.tryRight(cell)
+                self.__tryRight__(cell)
             else:
-                self.tryLeft(cell)
+                self.__tryLeft__(cell)
 
-    def tryLeft(self, cell):
+    def __tryLeft__(self, cell):
         if (cell != self.maze.getExit()):
             if (cell.getLeft().isRemoved()):
                 cell = self.maze.getLeftNeighbour(cell)
                 self.path.append(cell)
-                self.tryBottom(cell)
+                self.__tryBottom__(cell)
             else:
-                self.tryTop(cell)
+                self.__tryTop__(cell)
 
-    def tryTop(self, cell):
+    def __tryTop__(self, cell):
         if (cell != self.maze.getExit()):
             if (cell.getTop().isRemoved()):
                 cell = self.maze.getTopNeighbour(cell)
                 self.path.append(cell)
-                self.tryLeft(cell)
+                self.__tryLeft__(cell)
             else:
-                self.tryRight(cell)
+                self.__tryRight__(cell)
 
-    def tryRight(self, cell):
+    def __tryRight__(self, cell):
         if (cell != self.maze.getExit()):
             if (cell.getRight().isRemoved()):
                 cell = self.maze.getRightNeighbour(cell)
                 self.path.append(cell)
-                self.tryTop(cell)
+                self.__tryTop__(cell)
             else:
-                self.tryBottom(cell)
+                self.__tryBottom__(cell)
