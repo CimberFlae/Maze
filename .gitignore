@@ -105,3 +105,6 @@ ENV/
 
 # Eric6 Files
 .eric6project
+
+# Out-Files
+**/*.out
