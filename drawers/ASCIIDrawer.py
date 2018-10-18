@@ -68,5 +68,5 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
             if (exit.getRight().isRemoved() and maze.getRightNeighbour(exit) == None):
                 out.write("-> ")
             else:
-                out.write(" v")
+                out.write("v ")
             out.write(")\n")
