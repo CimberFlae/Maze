@@ -19,26 +19,26 @@ class AbstractBaseDrawerTest(ABC):
 
     def test_smallMaze(self):
         generator = PrimGenerator.PrimGenerator()
-        maze = generator.generateRandomMaze(3, 23)
-        self.drawer.drawMaze(maze, 'test_smallMaze.txt')
+        maze = generator.generate_random_maze(3, 23)
+        self.drawer.draw_maze(maze, 'test_smallMaze.txt')
         tc.assertTrue(filecmp.cmp('test_smallMaze.txt', 'test_smallMaze_expected.txt'))
 
     def test_mediumMaze(self):
         generator = BinaryTreeGenerator.BinaryTreeGenerator()
-        maze = generator.generateRandomMaze(5, 23)
-        self.drawer.drawMaze(maze, 'test_mediumMaze.txt')
+        maze = generator.generate_random_maze(5, 23)
+        self.drawer.draw_maze(maze, 'test_mediumMaze.txt')
         tc.assertTrue(filecmp.cmp('test_mediumMaze.txt', 'test_mediumMaze_expected.txt'))
 
     def test_bigMaze(self):
         generator = KruskalGenerator.KruskalGenerator()
-        maze = generator.generateRandomMaze(10, 23)
-        self.drawer.drawMaze(maze, 'test_bigMaze.txt')
+        maze = generator.generate_random_maze(10, 23)
+        self.drawer.draw_maze(maze, 'test_bigMaze.txt')
         tc.assertTrue(filecmp.cmp('test_bigMaze.txt', 'test_bigMaze_expected.txt'))
 
     def test_path(self):
         generator = DepthFirstSearchGenerator.DepthFirstSearchGenerator()
-        maze = generator.generateRandomMaze(10, 23)
+        maze = generator.generate_random_maze(10, 23)
         solver = TremauxSolver.TremauxSolver()
         path = solver.solveMaze(maze)
-        self.drawer.drawPath(maze, path, 'test_path.txt')
+        self.drawer.draw_path(maze, path, 'test_path.txt')
         tc.assertTrue(filecmp.cmp('test_path.txt', 'test_path_expected.txt'))

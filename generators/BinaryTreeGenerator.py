@@ -2,13 +2,14 @@ import generators.AbstractGenerator as AbstractGenerator
 import model.Mesh as Mesh
 import random
 
+
 class BinaryTreeGenerator(AbstractGenerator.AbstractGenerator):
 
     def __init__(self):
         AbstractGenerator.AbstractGenerator.__init__(self)
 
-    def __generateMaze__(self, size, seed = 0):
-        AbstractGenerator.AbstractGenerator.__generateMaze__(self, size)
+    def __generate_maze__(self, size, seed=0):
+        AbstractGenerator.AbstractGenerator.__generate_maze__(self, size)
         if seed != 0:
             random.seed(seed)
         """implement Binary Tree Algorithm"""
@@ -18,7 +19,7 @@ class BinaryTreeGenerator(AbstractGenerator.AbstractGenerator):
             mesh.getCell(i, 0).removeTop()
         for i in range(1, size):
             for j in range(1, size):
-                if (random.random() > 0.5):
+                if random.random() > 0.5:
                     mesh.getCell(i, j).removeLeft()
                 else:
                     mesh.getCell(i, j).removeTop()

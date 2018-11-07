@@ -146,9 +146,9 @@ class AbstractBaseSolverTest(ABC):
     def test_path(self):
         self.log.debug("test_path")
         generator = KruskalGenerator.KruskalGenerator()
-        maze = generator.generateRandomMaze(10, 23)
+        maze = generator.generate_random_maze(10, 23)
         drawer = ASCIIDrawer.ASCIIDrawer()
-        drawer.drawMaze(maze)
+        drawer.draw_maze(maze)
         path = self.solver.solveMaze(maze)
         # Check if first cell is entry
         tc.assertEqual(path[0], maze.getEntrance())

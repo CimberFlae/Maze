@@ -13,13 +13,13 @@ class RecursiveDivisionGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGener
         self.size = 5
         seed = 5
         generator = RecursiveDivisionGenerator.RecursiveDivisionGenerator()
-        self.maze = generator.generateRandomMaze(self.size, seed = seed)
+        self.maze = generator.generate_random_maze(self.size, seed = seed)
 
     def test_invalidSize(self):
         self.log.debug("test_invalidSize")
         generator = RecursiveDivisionGenerator.RecursiveDivisionGenerator()
         with self.assertRaises(Exception):
-            self.maze = generator.generateRandomMaze(1)
+            self.maze = generator.generate_random_maze(1)
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(RecursiveDivisionGeneratorTest)

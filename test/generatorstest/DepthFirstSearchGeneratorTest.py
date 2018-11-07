@@ -13,13 +13,13 @@ class DepthFirstSearchGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGenera
         self.size = 5
         seed = 2
         generator = DepthFirstSearchGenerator.DepthFirstSearchGenerator()
-        self.maze = generator.generateRandomMaze(self.size, seed = seed)
+        self.maze = generator.generate_random_maze(self.size, seed = seed)
 
     def test_invalidSize(self):
         self.log.debug("test_invalidSize")
         generator = DepthFirstSearchGenerator.DepthFirstSearchGenerator()
         with self.assertRaises(Exception):
-            self.maze = generator.generateRandomMaze(1)
+            self.maze = generator.generate_random_maze(1)
 
 # This is needed for the individual execution of this test class
 if __name__ == "__main__":

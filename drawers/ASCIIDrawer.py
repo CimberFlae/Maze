@@ -1,6 +1,6 @@
 import drawers.AbstractDrawer as AbstractDrawer
-import sys
 import logging
+
 
 class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
 
@@ -8,9 +8,9 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
         AbstractDrawer.AbstractDrawer.__init__(self)
         self.log = logging.getLogger(__name__)
 
-    def drawMaze(self, maze, filepath=None):
+    def draw_maze(self, maze, file_path=None):
         """implement a drawing algorithm"""
-        with self.openWriter(filepath) as out:
+        with self.open_writer(file_path) as out:
             size = maze.getSize()
             out.write("\n ")
             for i in range (0, size):
@@ -35,15 +35,15 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
                         out.write(" ")
                 out.write("\n")
 
-    def drawPath(self, maze, path, filepath=None):
+    def draw_path(self, maze, path, file_path=None):
         """print path with ASCII signs"""
-        with self.openWriter(filepath) as out:
+        with self.open_writer(file_path) as out:
             for i in range (0, len(path)):
                 out.write("(" + path[i].getX().__str__() + "," + path[i].getY().__str__() + ") ")
             out.write("\n( ")
             # Draw entrance
             entrance = maze.getEntrance()
-            if (entrance.getLeft().isRemoved() and maze.getLeftNeighbour(entrance) == None):
+            if entrance.getLeft().isRemoved() and maze.getLeftNeighbour(entrance) is None:
                 out.write("-> ")
             else:
                 out.write("v ")
@@ -52,20 +52,20 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
                 x2 = path[i+1].getX()
                 y1 = path[i].getY()
                 y2 = path[i+1].getY()
-                if (x1 < x2):
+                if x1 < x2:
                     out.write("v ")
-                elif (x1 > x2):
+                elif x1 > x2:
                     out.write("^ ")
-                elif (y1 < y2):
+                elif y1 < y2:
                     out.write("-> ")
-                elif (y1 > y2):
+                elif y1 > y2:
                     out.write("<- ")
                 else:
                     self.log.error('Invalid cell transition')
                     raise Exception('Invalid cell transition')
             # Draw exit
-            exit = maze.getExit()
-            if (exit.getRight().isRemoved() and maze.getRightNeighbour(exit) == None):
+            maze_exit = maze.getExit()
+            if maze_exit.getRight().isRemoved() and maze.getRightNeighbour(maze_exit) is None:
                 out.write("-> ")
             else:
                 out.write("v ")

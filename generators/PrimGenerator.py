@@ -9,8 +9,8 @@ class PrimGenerator(AbstractGenerator.AbstractGenerator):
         AbstractGenerator.AbstractGenerator.__init__(self)
         self.log = logging.getLogger(__name__)
 
-    def __generateMaze__(self, size, seed = 0):
-        AbstractGenerator.AbstractGenerator.__generateMaze__(self, size)
+    def __generate_maze__(self, size, seed = 0):
+        AbstractGenerator.AbstractGenerator.__generate_maze__(self, size)
         if seed != 0:
             random.seed(seed)
         """implement Prim's Algorithm"""
