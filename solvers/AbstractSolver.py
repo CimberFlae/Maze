@@ -28,29 +28,29 @@ class AbstractSolver:
             del self.path[(i+1):(j+1)]
 
     def __isJunction__(self, cell):
-        return cell.wallCount() < 2
+        return cell.wall_count() < 2
 
     def __isPath__(self, cell):
-        return cell.wallCount() == 2 and cell != self.maze.getEntrance()
+        return cell.wall_count() == 2 and cell != self.maze.getEntrance()
 
     def __isDeadEnd__(self, cell):
-        return cell.wallCount() == 3 or cell.wallCount() == 2 and cell == self.maze.getEntrance()
+        return cell.wall_count() == 3 or cell.wall_count() == 2 and cell == self.maze.getEntrance()
 
     def __cameFromTop__(self):
         previous = self.__getPrevious__()
-        return previous != None and self.maze.getTopNeighbour(self.path[-1]) == previous
+        return previous != None and self.maze.get_top_neighbour(self.path[-1]) == previous
 
     def __cameFromRight__(self):
         previous = self.__getPrevious__()
-        return previous != None and self.maze.getRightNeighbour(self.path[-1]) == previous
+        return previous != None and self.maze.get_right_neighbour(self.path[-1]) == previous
 
     def __cameFromBottom__(self):
         previous = self.__getPrevious__()
-        return previous != None and self.maze.getBottomNeighbour(self.path[-1]) == previous
+        return previous != None and self.maze.get_bottom_neighbour(self.path[-1]) == previous
 
     def __cameFromLeft__(self):
         previous = self.__getPrevious__()
-        return previous != None and self.maze.getLeftNeighbour(self.path[-1]) == previous
+        return previous != None and self.maze.get_left_neighbour(self.path[-1]) == previous
 
     def __getPrevious__(self):
         return self.path[-2] if len(self.path) > 1 else None
@@ -58,41 +58,41 @@ class AbstractSolver:
     def __findNext__(self): # if there is only one way to go
         current = self.path[-1]
         if (self.__cameFromBottom__()):
-            if (current.getLeft().isRemoved()):
+            if (current.get_left().isRemoved()):
                 self.__tryLeft__()
-            elif (current.getRight().isRemoved()):
+            elif (current.get_right().isRemoved()):
                 self.__tryRight__()
-            elif (current.getTop().isRemoved()):
+            elif (current.get_top().isRemoved()):
                 self.__tryTop__()
             else:
                 self.log.error('No way out')
                 raise Exception('No way out')
         elif (self.__cameFromLeft__()):
-            if (current.getBottom().isRemoved()):
+            if (current.get_bottom().isRemoved()):
                 self.__tryBottom__()
-            elif (current.getRight().isRemoved()):
+            elif (current.get_right().isRemoved()):
                 self.__tryRight__()
-            elif (current.getTop().isRemoved()):
+            elif (current.get_top().isRemoved()):
                 self.__tryTop__()
             else:
                 self.log.error('No way out')
                 raise Exception('No way out')
         elif (self.__cameFromRight__()):
-            if (current.getBottom().isRemoved()):
+            if (current.get_bottom().isRemoved()):
                 self.__tryBottom__()
-            elif (current.getLeft().isRemoved()):
+            elif (current.get_left().isRemoved()):
                 self.__tryLeft__()
-            elif (current.getTop().isRemoved()):
+            elif (current.get_top().isRemoved()):
                 self.__tryTop__()
             else:
                 self.log.error('No way out')
                 raise Exception('No way out')
         elif (self.__cameFromTop__()):
-            if (current.getBottom().isRemoved()):
+            if (current.get_bottom().isRemoved()):
                 self.__tryBottom__()
-            elif (current.getLeft().isRemoved()):
+            elif (current.get_left().isRemoved()):
                 self.__tryLeft__()
-            elif (current.getRight().isRemoved()):
+            elif (current.get_right().isRemoved()):
                 self.__tryRight__()
             else:
                 self.log.error('No way out')

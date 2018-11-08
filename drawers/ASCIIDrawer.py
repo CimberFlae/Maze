@@ -11,25 +11,25 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
     def draw_maze(self, maze, file_path=None):
         """implement a drawing algorithm"""
         with self.open_writer(file_path) as out:
-            size = maze.getSize()
+            size = maze.get_size()
             out.write("\n ")
             for i in range (0, size):
-                if not maze.getCell(0, i).getTop().isRemoved():
+                if not maze.get_cell(0, i).get_top().isRemoved():
                     out.write("_ ")
                 else:
                     out.write("  ")
             out.write("\n")
             for j in range (0, size):
-                if not maze.getCell(j, 0).getLeft().isRemoved():
+                if not maze.get_cell(j, 0).get_left().isRemoved():
                     out.write("|")
                 else:
                     out.write(" ")
                 for i in range (0,size):
-                    if not maze.getCell(j, i).getBottom().isRemoved():
+                    if not maze.get_cell(j, i).get_bottom().isRemoved():
                         out.write("_")
                     else:
                         out.write(" ")
-                    if not maze.getCell(j, i).getRight().isRemoved():
+                    if not maze.get_cell(j, i).get_right().isRemoved():
                         out.write("|")
                     else:
                         out.write(" ")
@@ -39,19 +39,19 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
         """print path with ASCII signs"""
         with self.open_writer(file_path) as out:
             for i in range (0, len(path)):
-                out.write("(" + path[i].getX().__str__() + "," + path[i].getY().__str__() + ") ")
+                out.write("(" + path[i].get_x().__str__() + "," + path[i].get_y().__str__() + ") ")
             out.write("\n( ")
             # Draw entrance
             entrance = maze.getEntrance()
-            if entrance.getLeft().isRemoved() and maze.getLeftNeighbour(entrance) is None:
+            if entrance.get_left().isRemoved() and maze.get_left_neighbour(entrance) is None:
                 out.write("-> ")
             else:
                 out.write("v ")
             for i in range (0, len(path)-1):
-                x1 = path[i].getX()
-                x2 = path[i+1].getX()
-                y1 = path[i].getY()
-                y2 = path[i+1].getY()
+                x1 = path[i].get_x()
+                x2 = path[i+1].get_x()
+                y1 = path[i].get_y()
+                y2 = path[i+1].get_y()
                 if x1 < x2:
                     out.write("v ")
                 elif x1 > x2:
@@ -65,7 +65,7 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
                     raise Exception('Invalid cell transition')
             # Draw exit
             maze_exit = maze.getExit()
-            if maze_exit.getRight().isRemoved() and maze.getRightNeighbour(maze_exit) is None:
+            if maze_exit.get_right().isRemoved() and maze.get_right_neighbour(maze_exit) is None:
                 out.write("-> ")
             else:
                 out.write("v ")

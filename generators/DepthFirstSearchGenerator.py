@@ -13,37 +13,37 @@ class DepthFirstSearchGenerator(AbstractGenerator.AbstractGenerator):
         AbstractGenerator.AbstractGenerator.__generate_maze__(self, size)
         """implement Depth-first Search Algorithm"""
         mesh = Mesh.Mesh(size)
-        cell = mesh.chooseCell()
+        cell = mesh.choose_cell()
         stack = []
-        while mesh.hasMultipleSets():
-            if mesh.hasNeighbourInDifferentSet(cell):
+        while mesh.has_multiple_sets():
+            if mesh.has_neighbour_in_different_set(cell):
                 wall = mesh.chooseWall(cell)
-                if wall == cell.getLeft():
-                    neighbour = mesh.getLeftNeighbour(cell)
-                    if neighbour.getSet() != cell.getSet():
-                        cell.removeLeft()
-                        mesh.moveCell(neighbour.getSet(), cell.getSet())
+                if wall == cell.get_left():
+                    neighbour = mesh.get_left_neighbour(cell)
+                    if neighbour.get_set() != cell.get_set():
+                        cell.remove_left()
+                        mesh.move_cell(neighbour.get_set(), cell.get_set())
                         stack.append(cell)
                         cell = neighbour
-                elif wall == cell.getRight():
-                    neighbour = mesh.getRightNeighbour(cell)
-                    if neighbour.getSet() != cell.getSet():
-                        cell.removeRight()
-                        mesh.moveCell(neighbour.getSet(), cell.getSet())
+                elif wall == cell.get_right():
+                    neighbour = mesh.get_right_neighbour(cell)
+                    if neighbour.get_set() != cell.get_set():
+                        cell.remove_right()
+                        mesh.move_cell(neighbour.get_set(), cell.get_set())
                         stack.append(cell)
                         cell = neighbour
-                elif wall == cell.getTop():
-                    neighbour = mesh.getTopNeighbour(cell)
-                    if neighbour.getSet() != cell.getSet():
-                        cell.removeTop()
-                        mesh.moveCell(neighbour.getSet(), cell.getSet())
+                elif wall == cell.get_top():
+                    neighbour = mesh.get_top_neighbour(cell)
+                    if neighbour.get_set() != cell.get_set():
+                        cell.remove_top()
+                        mesh.move_cell(neighbour.get_set(), cell.get_set())
                         stack.append(cell)
                         cell = neighbour
-                elif wall == cell.getBottom():
-                    neighbour = mesh.getBottomNeighbour(cell)
-                    if neighbour.getSet() != cell.getSet():
-                        cell.removeBottom()
-                        mesh.moveCell(neighbour.getSet(), cell.getSet())
+                elif wall == cell.get_bottom():
+                    neighbour = mesh.get_bottom_neighbour(cell)
+                    if neighbour.get_set() != cell.get_set():
+                        cell.remove_bottom()
+                        mesh.move_cell(neighbour.get_set(), cell.get_set())
                         stack.append(cell)
                         cell = neighbour
                 else:

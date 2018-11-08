@@ -30,6 +30,6 @@ class AbstractGenerator:
     
     def generate_custom_maze(self, size, x1, y1, x2, y2, seed=0):
         maze = self.__generate_maze__(size, seed=seed)
-        maze.setCustomOpening(x1, y1, True)
-        maze.setCustomOpening(x2, y2, True)
+        maze.set_custom_opening(x1, y1, True)
+        maze.set_custom_opening(x2, y2, True)
         return maze

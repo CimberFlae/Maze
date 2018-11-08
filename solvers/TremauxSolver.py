@@ -31,33 +31,33 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
 
     def __tryBottom__(self):
         current = self.path[-1]
-        if (current.getBottom().isRemoved() and self.maze.getBottomNeighbour(current) != None):
-            self.__mark__(current, current.getBottom())
-            current = self.maze.getBottomNeighbour(current)
+        if (current.get_bottom().isRemoved() and self.maze.get_bottom_neighbour(current) != None):
+            self.__mark__(current, current.get_bottom())
+            current = self.maze.get_bottom_neighbour(current)
             self.path.append(current)
             self.__decideNext__()
 
     def __tryLeft__(self):
         current = self.path[-1]
-        if (current.getLeft().isRemoved() and self.maze.getLeftNeighbour(current) != None):
-            self.__mark__(current, current.getLeft())
-            current = self.maze.getLeftNeighbour(current)
+        if (current.get_left().isRemoved() and self.maze.get_left_neighbour(current) != None):
+            self.__mark__(current, current.get_left())
+            current = self.maze.get_left_neighbour(current)
             self.path.append(current)
             self.__decideNext__()
 
     def __tryTop__(self):
         current = self.path[-1]
-        if (current.getTop().isRemoved() and self.maze.getTopNeighbour(current) != None):
-            self.__mark__(current, current.getTop())
-            current = self.maze.getTopNeighbour(current)
+        if (current.get_top().isRemoved() and self.maze.get_top_neighbour(current) != None):
+            self.__mark__(current, current.get_top())
+            current = self.maze.get_top_neighbour(current)
             self.path.append(current)
             self.__decideNext__()
 
     def __tryRight__(self):
         current = self.path[-1]
-        if (current.getRight().isRemoved() and self.maze.getRightNeighbour(current) != None):
-            self.__mark__(current, current.getRight())
-            current = self.maze.getRightNeighbour(current)
+        if (current.get_right().isRemoved() and self.maze.get_right_neighbour(current) != None):
+            self.__mark__(current, current.get_right())
+            current = self.maze.get_right_neighbour(current)
             self.path.append(current)
             self.__decideNext__()
 
@@ -67,7 +67,7 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
         if (not current in self.junctions): # new junction
             self.junctions.append(current)
             if (self.__cameFromTop__()):
-                self.__mark__(current, current.getTop())
+                self.__mark__(current, current.get_top())
                 while (self.__notFinished__()):
                     # arbitrary order
                     self.__tryBottom__()
@@ -76,7 +76,7 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
                     if (self.__notFinished__()):
                         self.__tryRight__()
             elif (self.__cameFromBottom__()):
-                self.__mark__(self.path[-1], self.path[-1].getBottom())
+                self.__mark__(self.path[-1], self.path[-1].get_bottom())
                 while (self.__notFinished__()):
                     # arbitrary order
                     self.__tryLeft__()
@@ -85,7 +85,7 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
                     if (self.__notFinished__()):
                         self.__tryTop__()
             elif (self.__cameFromLeft__()):
-                self.__mark__(self.path[-1], self.path[-1].getLeft())
+                self.__mark__(self.path[-1], self.path[-1].get_left())
                 while (self.__notFinished__()):
                     # arbitrary order
                     self.__tryBottom__()
@@ -94,7 +94,7 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
                     if (self.__notFinished__()):
                         self.__tryTop__()
             elif (self.__cameFromRight__()):
-                self.__mark__(self.path[-1], self.path[-1].getRight())
+                self.__mark__(self.path[-1], self.path[-1].get_right())
                 while (self.__notFinished__()):
                     # arbitrary order
                     self.__tryBottom__()
@@ -108,29 +108,29 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
         else: # have been here before
             key = self.__getKey__(current)
             if (self.__cameFromTop__()):
-                if (self.walls[key].count(current.getTop()) > 0): # this way has been taken
-                    self.__mark__(current, current.getTop())
+                if (self.walls[key].count(current.get_top()) > 0): # this way has been taken
+                    self.__mark__(current, current.get_top())
                     while (self.__notFinished__() and self.__hasNVisitedPath__(0)):
                         self.__chooseNVisitedPath__(0)
                     while (self.__notFinished__() and self.__hasNVisitedPath__(1)):
                         self.__chooseNVisitedPath__(1)
             elif (self.__cameFromBottom__()):
-                if (self.walls[key].count(current.getBottom()) > 0):
-                    self.__mark__(current, current.getBottom())
+                if (self.walls[key].count(current.get_bottom()) > 0):
+                    self.__mark__(current, current.get_bottom())
                     while (self.__notFinished__() and self.__hasNVisitedPath__(0)):
                         self.__chooseNVisitedPath__(0)
                     while (self.__notFinished__() and self.__hasNVisitedPath__(1)):
                         self.__chooseNVisitedPath__(1)
             elif (self.__cameFromLeft__()):
-                if (self.walls[key].count(current.getLeft()) > 0):
-                    self.__mark__(current, current.getLeft())
+                if (self.walls[key].count(current.get_left()) > 0):
+                    self.__mark__(current, current.get_left())
                     while (self.__notFinished__() and self.__hasNVisitedPath__(0)):
                         self.__chooseNVisitedPath__(0)
                     while (self.__notFinished__() and self.__hasNVisitedPath__(1)):
                         self.__chooseNVisitedPath__(1)
             elif (self.__cameFromRight__()):
-                if (self.walls[key].count(current.getRight()) > 0):
-                    self.__mark__(current, current.getRight())
+                if (self.walls[key].count(current.get_right()) > 0):
+                    self.__mark__(current, current.get_right())
                     while (self.__notFinished__() and self.__hasNVisitedPath__(0)):
                         self.__chooseNVisitedPath__(0)
                     while (self.__notFinished__() and self.__hasNVisitedPath__(1)):
@@ -146,59 +146,59 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
     def __hasNVisitedPath__(self, n):
         current = self.path[-1]
         key = self.__getKey__(current)
-        return self.walls[key].count(current.getLeft()) == n or self.walls[key].count(current.getRight()) == n or self.walls[key].count(current.getTop()) == n or self.walls[key].count(current.getBottom()) == n
+        return self.walls[key].count(current.get_left()) == n or self.walls[key].count(current.get_right()) == n or self.walls[key].count(current.get_top()) == n or self.walls[key].count(current.get_bottom()) == n
 
     def __chooseNVisitedPath__(self, n):
         current = self.path[-1]
         key = self.__getKey__(current)
         if (self.__cameFromBottom__()):
-            if (self.walls[key].count(current.getLeft()) == n):
-                self.__mark__(current, current.getLeft())
+            if (self.walls[key].count(current.get_left()) == n):
+                self.__mark__(current, current.get_left())
                 self.__tryLeft__()
-            elif (self.walls[key].count(current.getRight()) == n):
-                self.__mark__(current, current.getRight())
+            elif (self.walls[key].count(current.get_right()) == n):
+                self.__mark__(current, current.get_right())
                 self.__tryRight__()
-            elif (self.walls[key].count(current.getTop()) == n):
-                self.__mark__(current, current.getTop())
+            elif (self.walls[key].count(current.get_top()) == n):
+                self.__mark__(current, current.get_top())
                 self.__tryTop__()
             else:
                 self.log.error('Every path from here already visited ' + n + ' times')
                 raise Exception('Every path from here already visited ' + n + ' times')
         elif (self.__cameFromLeft__()):
-            if (self.walls[key].count(current.getBottom()) == n):
-                self.__mark__(current, current.getBottom())
+            if (self.walls[key].count(current.get_bottom()) == n):
+                self.__mark__(current, current.get_bottom())
                 self.__tryBottom__()
-            elif (self.walls[key].count(current.getRight()) == n):
-                self.__mark__(current, current.getRight())
+            elif (self.walls[key].count(current.get_right()) == n):
+                self.__mark__(current, current.get_right())
                 self.__tryRight__()
-            elif (self.walls[key].count(current.getTop()) == n):
-                self.__mark__(current, current.getTop())
+            elif (self.walls[key].count(current.get_top()) == n):
+                self.__mark__(current, current.get_top())
                 self.__tryTop__()
             else:
                 self.log.error('Every path from here already visited ' + n + ' times')
                 raise Exception('Every path from here already visited ' + n + ' times')
         elif (self.__cameFromRight__()):
-            if (self.walls[key].count(current.getBottom()) == n):
-                self.__mark__(current, current.getBottom())
+            if (self.walls[key].count(current.get_bottom()) == n):
+                self.__mark__(current, current.get_bottom())
                 self.__tryBottom__()
-            elif (self.walls[key].count(current.getLeft()) == n):
-                self.__mark__(current, current.getLeft())
+            elif (self.walls[key].count(current.get_left()) == n):
+                self.__mark__(current, current.get_left())
                 self.__tryLeft__()
-            elif (self.walls[key].count(current.getTop()) == n):
-                self.__mark__(current, current.getTop())
+            elif (self.walls[key].count(current.get_top()) == n):
+                self.__mark__(current, current.get_top())
                 self.__tryTop__()
             else:
                 self.log.error('Every path from here already visited ' + n + ' times')
                 raise Exception('Every path from here already visited ' + n + ' times')
         elif (self.__cameFromTop__()):
-            if (self.walls[key].count(current.getBottom()) == n):
-                self.__mark__(current, current.getBottom())
+            if (self.walls[key].count(current.get_bottom()) == n):
+                self.__mark__(current, current.get_bottom())
                 self.__tryBottom__()
-            elif (self.walls[key].count(current.getLeft()) == n):
-                self.__mark__(current, current.getLeft())
+            elif (self.walls[key].count(current.get_left()) == n):
+                self.__mark__(current, current.get_left())
                 self.__tryLeft__()
-            elif (self.walls[key].count(current.getRight()) == n):
-                self.__mark__(current, current.getRight())
+            elif (self.walls[key].count(current.get_right()) == n):
+                self.__mark__(current, current.get_right())
                 self.__tryRight__()
             else:
                 self.log.error('Every path from here already visited ' + n + ' times')
@@ -208,7 +208,7 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
             raise Exception('Came from nowhere')
 
     def __getKey__(self, cell):
-        return str(cell.getX()) + str(cell.getY())
+        return str(cell.get_x()) + str(cell.get_y())
 
     def __mark__(self, cell, wall):
         key = self.__getKey__(cell)

@@ -157,20 +157,20 @@ class AbstractBaseSolverTest(ABC):
         # Check if every cell transition is allowed (not through a wall)
         for i in range(0, len(path)-1):
             cell1 = path[i]
-            x1 = cell1.getX()
-            y1 = cell1.getY()
+            x1 = cell1.get_x()
+            y1 = cell1.get_y()
             cell2 = path[i+1]
-            x2 = cell2.getX()
-            y2 = cell2.getY()
+            x2 = cell2.get_x()
+            y2 = cell2.get_y()
             if x1 < x2:
-                tc.assertTrue(cell1.getBottom().isRemoved())
-                tc.assertTrue(cell2.getTop().isRemoved())
+                tc.assertTrue(cell1.get_bottom().isRemoved())
+                tc.assertTrue(cell2.get_top().isRemoved())
             if x1 > x2:
-                tc.assertTrue(cell1.getTop().isRemoved())
-                tc.assertTrue(cell2.getBottom().isRemoved())
+                tc.assertTrue(cell1.get_top().isRemoved())
+                tc.assertTrue(cell2.get_bottom().isRemoved())
             if y1 < y2:
-                tc.assertTrue(cell1.getRight().isRemoved())
-                tc.assertTrue(cell2.getLeft().isRemoved())
+                tc.assertTrue(cell1.get_right().isRemoved())
+                tc.assertTrue(cell2.get_left().isRemoved())
             if y1 > y2:
-                tc.assertTrue(cell1.getLeft().isRemoved())
-                tc.assertTrue(cell2.getRight().isRemoved())
+                tc.assertTrue(cell1.get_left().isRemoved())
+                tc.assertTrue(cell2.get_right().isRemoved())

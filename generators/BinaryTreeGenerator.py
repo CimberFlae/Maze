@@ -15,12 +15,12 @@ class BinaryTreeGenerator(AbstractGenerator.AbstractGenerator):
         """implement Binary Tree Algorithm"""
         mesh = Mesh.Mesh(size)
         for i in range(1, size):
-            mesh.getCell(0, i).removeLeft()
-            mesh.getCell(i, 0).removeTop()
+            mesh.get_cell(0, i).remove_left()
+            mesh.get_cell(i, 0).remove_top()
         for i in range(1, size):
             for j in range(1, size):
                 if random.random() > 0.5:
-                    mesh.getCell(i, j).removeLeft()
+                    mesh.get_cell(i, j).remove_left()
                 else:
-                    mesh.getCell(i, j).removeTop()
+                    mesh.get_cell(i, j).remove_top()
         return mesh

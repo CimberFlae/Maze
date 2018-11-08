@@ -16,18 +16,18 @@ class AbstractBaseGeneratorTest(ABC):
         self.log.debug("test_validEntry")
         entry = self.maze.getEntrance()
         tc.assertIsNotNone(entry, 'Entry is None.')
-        tc.assertTrue(entry.getX() == 0 or entry.getY() == 0, 'Entry is neither on the left nor on top side of the Maze')
+        tc.assertTrue(entry.get_x() == 0 or entry.get_y() == 0, 'Entry is neither on the left nor on top side of the Maze')
         
     # check wether the maze has only one entry point
     def test_oneEntry(self):
         self.log.debug("test_oneEntry")
         entries = 0
         for i in range(self.size):
-            cell = self.maze.getCell(i, 0)
-            if cell.getLeft().isRemoved():
+            cell = self.maze.get_cell(i, 0)
+            if cell.get_left().isRemoved():
                entries += 1
-            cell = self.maze.getCell(0, i)
-            if cell.getTop().isRemoved():
+            cell = self.maze.get_cell(0, i)
+            if cell.get_top().isRemoved():
                 entries += 1
         tc.assertEqual(entries, 1, 'There are more than one entry')
     
@@ -36,17 +36,17 @@ class AbstractBaseGeneratorTest(ABC):
         self.log.debug("test_validExit")
         exit = self.maze.getExit()
         tc.assertIsNotNone(exit, 'Exit is None.')
-        tc.assertTrue(exit.getX() == self.size-1 or exit.getY() == self.size-1, 'Exit is neither on the right nor on the bottom side of the Maze')
+        tc.assertTrue(exit.get_x() == self.size - 1 or exit.get_y() == self.size - 1, 'Exit is neither on the right nor on the bottom side of the Maze')
     
     # check wether the maze has only one exit point
     def test_oneExit(self):
         self.log.debug("test_oneExit")
         exits = 0
         for i in range(self.size):
-            cell = self.maze.getCell(i, self.size-1)
-            if cell.getRight().isRemoved():
+            cell = self.maze.get_cell(i, self.size - 1)
+            if cell.get_right().isRemoved():
                exits += 1
-            cell = self.maze.getCell(self.size-1, i)
-            if cell.getBottom().isRemoved():
+            cell = self.maze.get_cell(self.size - 1, i)
+            if cell.get_bottom().isRemoved():
                 exits += 1
         tc.assertEqual(exits, 1, 'There are more than one exit')
