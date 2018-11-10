@@ -15,7 +15,7 @@ class KruskalGenerator(AbstractGenerator.AbstractGenerator):
         mesh = Mesh.Mesh(size)
         while mesh.has_multiple_sets():
             cell = mesh.choose_cell()
-            wall = mesh.chooseWall(cell)
+            wall = mesh.choose_wall(cell)
             if wall == cell.get_left():
                 neighbour = mesh.get_left_neighbour(cell)
                 if neighbour.get_set() != cell.get_set():

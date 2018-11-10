@@ -21,7 +21,7 @@ class PrimGenerator(AbstractGenerator.AbstractGenerator):
         while len(queue) > 0:
             n = random.randint(0, len(queue)-1)
             cell = queue[n]
-            wall = mesh.chooseWall(cell)
+            wall = mesh.choose_wall(cell)
             if wall == cell.get_left():
                 neighbour = mesh.get_left_neighbour(cell)
                 if cell.get_set() != neighbour.get_set():

@@ -11,12 +11,12 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
         self.path = []
         self.maze = maze;
         """implement Tremaux's algorithm"""
-        if (maze.getEntrance() == None or maze.getExit() == None):
+        if (maze.get_entrance() == None or maze.get_exit() == None):
             self.log.error('Entrance or Exit is missing')
             raise Exception('Entrance or Exit is missing')
         self.walls = {}
         self.junctions = []
-        self.path.append(maze.getEntrance())
+        self.path.append(maze.get_entrance())
         self.__tryBottom__() # arbitrary choice to start with
         # arbitrary order of directions
         self.__tryBottom__()
@@ -141,7 +141,7 @@ class TremauxSolver(AbstractSolver.AbstractSolver):
 
     def __notFinished__(self):
         current = self.path[-1]
-        return current != self.maze.getExit()
+        return current != self.maze.get_exit()
 
     def __hasNVisitedPath__(self, n):
         current = self.path[-1]

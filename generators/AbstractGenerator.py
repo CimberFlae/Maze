@@ -19,13 +19,13 @@ class AbstractGenerator:
             random.seed(seed)
         maze = self.__generate_maze__(size, seed=seed)
         if random.getrandbits(1) == 0:
-            maze.setRandomTopEntrance()
+            maze.set_random_top_entrance()
         else:
-            maze.setRandomLeftEntrance()
+            maze.set_random_left_entrance()
         if random.getrandbits(1) == 0:
-            maze.setRandomBottomExit()
+            maze.set_random_bottom_exit()
         else:
-            maze.setRandomRightExit()
+            maze.set_random_right_exit()
         return maze
     
     def generate_custom_maze(self, size, x1, y1, x2, y2, seed=0):

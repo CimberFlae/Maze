@@ -42,7 +42,7 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
                 out.write("(" + path[i].get_x().__str__() + "," + path[i].get_y().__str__() + ") ")
             out.write("\n( ")
             # Draw entrance
-            entrance = maze.getEntrance()
+            entrance = maze.get_entrance()
             if entrance.get_left().isRemoved() and maze.get_left_neighbour(entrance) is None:
                 out.write("-> ")
             else:
@@ -64,7 +64,7 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
                     self.log.error('Invalid cell transition')
                     raise Exception('Invalid cell transition')
             # Draw exit
-            maze_exit = maze.getExit()
+            maze_exit = maze.get_exit()
             if maze_exit.get_right().isRemoved() and maze.get_right_neighbour(maze_exit) is None:
                 out.write("-> ")
             else:

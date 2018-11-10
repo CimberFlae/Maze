@@ -11,10 +11,10 @@ class RightWallFollowerSolver(AbstractSolver.AbstractSolver):
         """implement right wall following"""
         """this means: always try going in directions in the following order: right, forward, left, backward"""
         self.maze = maze
-        if (maze.getEntrance() == None or maze.getExit() == None):
+        if (maze.get_entrance() == None or maze.get_exit() == None):
             self.log.error('Entrance or Exit is missing')
             raise Exception('Entrance or Exit is missing')
-        cell = maze.getEntrance()
+        cell = maze.get_entrance()
         self.path.append(cell)
         x = cell.get_x()
         y = cell.get_y()
@@ -33,7 +33,7 @@ class RightWallFollowerSolver(AbstractSolver.AbstractSolver):
         return self.path
 
     def __tryBottom__(self, cell):
-        if (cell != self.maze.getExit()):
+        if (cell != self.maze.get_exit()):
             if (cell.get_bottom().isRemoved()):
                 cell = self.maze.get_bottom_neighbour(cell)
                 self.path.append(cell)
@@ -42,7 +42,7 @@ class RightWallFollowerSolver(AbstractSolver.AbstractSolver):
                 self.__tryRight__(cell)
 
     def __tryLeft__(self, cell):
-        if (cell != self.maze.getExit()):
+        if (cell != self.maze.get_exit()):
             if (cell.get_left().isRemoved()):
                 cell = self.maze.get_left_neighbour(cell)
                 self.path.append(cell)
@@ -51,7 +51,7 @@ class RightWallFollowerSolver(AbstractSolver.AbstractSolver):
                 self.__tryBottom__(cell)
 
     def __tryTop__(self, cell):
-        if (cell != self.maze.getExit()):
+        if (cell != self.maze.get_exit()):
             if (cell.get_top().isRemoved()):
                 cell = self.maze.get_top_neighbour(cell)
                 self.path.append(cell)
@@ -60,7 +60,7 @@ class RightWallFollowerSolver(AbstractSolver.AbstractSolver):
                 self.__tryLeft__(cell)
 
     def __tryRight__(self, cell):
-        if (cell != self.maze.getExit()):
+        if (cell != self.maze.get_exit()):
             if (cell.get_right().isRemoved()):
                 cell = self.maze.get_right_neighbour(cell)
                 self.path.append(cell)

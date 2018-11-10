@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0eda087a-a7a3-4ada-9bf2-0d3c74d277a7" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/rafaelhaeuselmann.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/drawers/ASCIIDrawer.py" beforeDir="false" afterPath="$PROJECT_DIR$/drawers/ASCIIDrawer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generators/AbstractGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/AbstractGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generators/BinaryTreeGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/BinaryTreeGenerator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generators/DepthFirstSearchGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/DepthFirstSearchGenerator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generators/KruskalGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/KruskalGenerator.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/generators/PrimGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/PrimGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/generators/RecursiveDivisionGenerator.py" beforeDir="false" afterPath="$PROJECT_DIR$/generators/RecursiveDivisionGenerator.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/Cell.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/Cell.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/Mesh.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/Mesh.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solvers/AbstractSolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/AbstractSolver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solvers/LeftWallFollowerSolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/LeftWallFollowerSolver.py" afterDir="false" />
@@ -19,8 +15,6 @@
       <change beforePath="$PROJECT_DIR$/solvers/RightWallFollowerSolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/RightWallFollowerSolver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/solvers/TremauxSolver.py" beforeDir="false" afterPath="$PROJECT_DIR$/solvers/TremauxSolver.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/generatorstest/AbstractBaseGeneratorTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/generatorstest/AbstractBaseGeneratorTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/generatorstest/BinaryTreeGeneratorTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/generatorstest/BinaryTreeGeneratorTest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/modeltest/CellTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/modeltest/CellTest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/modeltest/MeshTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/modeltest/MeshTest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test/solverstest/AbstractBaseSolverTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/test/solverstest/AbstractBaseSolverTest.py" afterDir="false" />
     </list>
@@ -34,13 +28,14 @@
     <session id="572364154">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="12" />
+          <entry key="project.closed" value="13" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.3" value="4" />
           <entry key="project.open.time.4" value="6" />
+          <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.7" value="1" />
           <entry key="project.open.time.8" value="1" />
-          <entry key="project.opened" value="13" />
+          <entry key="project.opened" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -59,14 +54,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="302" />
-          <entry key="py" value="5168" />
+          <entry key="dummy" value="339" />
+          <entry key="py" value="5198" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="302" />
-          <entry key="Python" value="5168" />
+          <entry key="PLAIN_TEXT" value="339" />
+          <entry key="Python" value="5198" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.vcs.git.usages" />
@@ -126,7 +121,7 @@
         <entry file="file://$PROJECT_DIR$/generators/PrimGenerator.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="720">
-              <caret line="51" column="60" lean-forward="true" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
+              <caret line="51" column="60" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -134,8 +129,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/generators/RecursiveDivisionGenerator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="436">
-              <caret line="51" column="23" lean-forward="true" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
+            <state relative-caret-position="720">
+              <caret line="51" column="23" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -143,8 +138,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/model/Cell.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="105" column="24" lean-forward="true" selection-start-line="105" selection-start-column="24" selection-end-line="105" selection-end-column="24" />
+            <state relative-caret-position="1545">
+              <caret line="105" column="24" selection-start-line="105" selection-start-column="24" selection-end-line="105" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -152,8 +147,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/model/Mesh.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="473">
-              <caret line="158" column="13" selection-start-line="158" selection-start-column="13" selection-end-line="158" selection-end-column="13" />
+            <state relative-caret-position="166">
+              <caret line="185" column="30" selection-start-line="185" selection-start-column="30" selection-end-line="185" selection-end-column="30" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -254,6 +249,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -297,7 +293,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -577,16 +572,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/drawers/AbstractDrawer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/generators/KruskalGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -597,28 +582,38 @@
     <entry file="file://$PROJECT_DIR$/generators/PrimGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
-          <caret line="51" column="60" lean-forward="true" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
+          <caret line="51" column="60" selection-start-line="51" selection-start-column="60" selection-end-line="51" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/generators/RecursiveDivisionGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="436">
-          <caret line="51" column="23" lean-forward="true" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
+        <state relative-caret-position="720">
+          <caret line="51" column="23" selection-start-line="51" selection-start-column="23" selection-end-line="51" selection-end-column="23" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/Cell.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="105" column="24" lean-forward="true" selection-start-line="105" selection-start-column="24" selection-end-line="105" selection-end-column="24" />
+        <state relative-caret-position="1545">
+          <caret line="105" column="24" selection-start-line="105" selection-start-column="24" selection-end-line="105" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/drawers/AbstractDrawer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="20" column="28" selection-start-line="20" selection-start-column="28" selection-end-line="20" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/model/Mesh.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="158" column="13" selection-start-line="158" selection-start-column="13" selection-end-line="158" selection-end-column="13" />
+        <state relative-caret-position="166">
+          <caret line="185" column="30" selection-start-line="185" selection-start-column="30" selection-end-line="185" selection-end-column="30" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>

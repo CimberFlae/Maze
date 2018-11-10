@@ -126,7 +126,7 @@ class MeshTest(unittest.TestCase):
 
     def test_setRandomTopEntrance(self):
         self.log.debug("test_setRandomTopEntrance")
-        self.mesh.setRandomTopEntrance()
+        self.mesh.set_random_top_entrance()
         found = False
         for i in range(0, 10):
             if self.mesh.matrix[0][i].get_top().isRemoved():
@@ -136,7 +136,7 @@ class MeshTest(unittest.TestCase):
 
     def test_setRandomLeftEntrance(self):
         self.log.debug("test_setRandomLeftEntrance")
-        self.mesh.setRandomLeftEntrance()
+        self.mesh.set_random_left_entrance()
         found = False
         for i in range(0, 10):
             if self.mesh.matrix[i][0].get_left().isRemoved():
@@ -146,7 +146,7 @@ class MeshTest(unittest.TestCase):
 
     def test_setRandomBottomExit(self):
         self.log.debug("test_setRandomBottomExit")
-        self.mesh.setRandomBottomExit()
+        self.mesh.set_random_bottom_exit()
         found = False
         for i in range(0, 10):
             if self.mesh.matrix[9][i].get_bottom().isRemoved():
@@ -156,7 +156,7 @@ class MeshTest(unittest.TestCase):
 
     def test_setRandomRightExit(self):
         self.log.debug("test_setRandomRightExit")
-        self.mesh.setRandomRightExit()
+        self.mesh.set_random_right_exit()
         found = False
         for i in range(0, 10):
             if self.mesh.matrix[i][9].get_right().isRemoved():
@@ -167,38 +167,38 @@ class MeshTest(unittest.TestCase):
     def test_clearEntrance(self):
         self.log.debug("test_clearEntrance")
         self.mesh.set_custom_opening(0, 0)
-        self.mesh.clearEntrance()
+        self.mesh.clear_entrance()
         self.assertFalse(self.mesh.matrix[0][0].get_top().isRemoved(), 'Entrance was not cleared')
         self.assertFalse(self.mesh.matrix[0][0].get_left().isRemoved(), 'Entrance was not cleared')
 
     def test_clearExit(self):
         self.log.debug("test_clearExit")
         self.mesh.set_custom_opening(9, 9)
-        self.mesh.clearExit()
+        self.mesh.clear_exit()
         self.assertFalse(self.mesh.matrix[9][9].get_bottom().isRemoved(), 'Exit was not cleared')
         self.assertFalse(self.mesh.matrix[9][9].get_right().isRemoved(), 'Exit was not cleared')
 
     def test_getEntrance(self):
         self.log.debug("test_getEntrance")
         self.mesh.set_custom_opening(0, 0)
-        self.assertEqual(self.mesh.getEntrance(), self.mesh.matrix[0][0], 'getEntrance returned wrong value')
+        self.assertEqual(self.mesh.get_entrance(), self.mesh.matrix[0][0], 'get_entrance returned wrong value')
 
     def test_getExit(self):
         self.log.debug("test_getExit")
         self.mesh.set_custom_opening(9, 9)
-        self.assertEqual(self.mesh.getExit(), self.mesh.matrix[9][9], 'getExit returned wrong value')
+        self.assertEqual(self.mesh.get_exit(), self.mesh.matrix[9][9], 'get_exit returned wrong value')
 
     def test_chooseWall(self):
         self.log.debug("test_chooseWall")
         cell = self.mesh.matrix[0][5]
         cell.remove_left()
-        wall = self.mesh.chooseWall(cell)
+        wall = self.mesh.choose_wall(cell)
         self.assertIsNotNone(wall, 'No wall was chosen')
         self.assertNotEqual(wall, cell.get_left(), 'A removed wall was chosen')
         self.assertNotEqual(wall, cell.get_top, 'A border wall was chosen')
         cell.remove_right()
         cell.remove_bottom()
-        wall = self.mesh.chooseWall(cell)
+        wall = self.mesh.choose_wall(cell)
         self.assertIsNone(wall, 'A (removed or border) wall was chosen')
 
 # This is needed for the individual execution of this test class

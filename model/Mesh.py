@@ -153,7 +153,7 @@ class Mesh:
             else:
                 cell.remove_bottom()
                 self.exit = cell
-        elif 0 < x < self.size - 1 and y == 0:
+        elif y == 0 < x < self.size - 1:
             cell.remove_left()
             self.entrance = cell
         elif 0 < x < self.size - 1 and y == self.size - 1:
@@ -163,51 +163,51 @@ class Mesh:
             self.log.error('Invalid coordinates')
             raise Exception('Invalid coordinates')
 
-    def setRandomTopEntrance(self):
-        self.clearEntrance()
+    def set_random_top_entrance(self):
+        self.clear_entrance()
         n = random.randint(0, self.size-1)
         self.set_custom_opening(0, n, True)
 
-    def setRandomLeftEntrance(self):
-        self.clearEntrance()
+    def set_random_left_entrance(self):
+        self.clear_entrance()
         n = random.randint(0, self.size-1)
         self.set_custom_opening(n, 0, False)
 
-    def setRandomBottomExit(self):
-        self.clearExit()
+    def set_random_bottom_exit(self):
+        self.clear_exit()
         n = random.randint(0, self.size-1)
         self.set_custom_opening(self.size - 1, n, True)
 
-    def setRandomRightExit(self):
-        self.clearExit()
+    def set_random_right_exit(self):
+        self.clear_exit()
         n = random.randint(0, self.size-1)
         self.set_custom_opening(n, self.size - 1, False)
 
-    def clearEntrance(self): # clear entrance to get sure a maze only has one entrance
-        if (self.entrance != None):
-            if (self.entrance.get_x() == 0):
+    def clear_entrance(self):  # clear entrance to get sure a maze only has one entrance
+        if self.entrance is not None:
+            if self.entrance.get_x() == 0:
                 self.entrance.create_top()
-            if (self.entrance.get_y() == 0):
+            if self.entrance.get_y() == 0:
                 self.entrance.create_left()
             self.entrance = None
 
-    def clearExit(self): # clear exit to get sure a maze only has one exit
-        if (self.exit != None):
-            if (self.exit.get_x() == self.size-1):
+    def clear_exit(self):  # clear exit to get sure a maze only has one exit
+        if self.exit is not None:
+            if self.exit.get_x() == self.size-1:
                 self.exit.create_bottom()
-            if (self.exit.get_y() == self.size-1):
+            if self.exit.get_y() == self.size-1:
                 self.exit.create_right()
             self.exit = None
 
-    def getEntrance(self):
+    def get_entrance(self):
         return self.entrance
 
-    def getExit(self):
+    def get_exit(self):
         return self.exit
 
-    def chooseWall(self, cell): # returns None if there is no non-border wall that is not removed
+    def choose_wall(self, cell):  # returns None if there is no non-border wall that is not removed
         if len([wall for wall in cell.get_wall_list() if not (self.is_border(cell, wall) or wall.isRemoved())]) > 0:
-            while(True):
+            while True:
                 wall = cell.choose_wall()
                 if not self.is_border(cell, wall):
                     return wall

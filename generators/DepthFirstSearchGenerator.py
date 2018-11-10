@@ -17,7 +17,7 @@ class DepthFirstSearchGenerator(AbstractGenerator.AbstractGenerator):
         stack = []
         while mesh.has_multiple_sets():
             if mesh.has_neighbour_in_different_set(cell):
-                wall = mesh.chooseWall(cell)
+                wall = mesh.choose_wall(cell)
                 if wall == cell.get_left():
                     neighbour = mesh.get_left_neighbour(cell)
                     if neighbour.get_set() != cell.get_set():

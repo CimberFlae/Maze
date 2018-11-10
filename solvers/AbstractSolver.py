@@ -31,10 +31,10 @@ class AbstractSolver:
         return cell.wall_count() < 2
 
     def __isPath__(self, cell):
-        return cell.wall_count() == 2 and cell != self.maze.getEntrance()
+        return cell.wall_count() == 2 and cell != self.maze.get_entrance()
 
     def __isDeadEnd__(self, cell):
-        return cell.wall_count() == 3 or cell.wall_count() == 2 and cell == self.maze.getEntrance()
+        return cell.wall_count() == 3 or cell.wall_count() == 2 and cell == self.maze.get_entrance()
 
     def __cameFromTop__(self):
         previous = self.__getPrevious__()
@@ -97,7 +97,7 @@ class AbstractSolver:
             else:
                 self.log.error('No way out')
                 raise Exception('No way out')
-        elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
+        elif (self.path[-1] == self.maze.get_entrance()): # We're at the entrance
             self.__handleJunction__()
         else:
             self.log.error('Came from nowhere')
@@ -129,12 +129,12 @@ class AbstractSolver:
             directions = [self.__tryBottom__, self.__tryRight__, self.__tryTop__]
         elif (self.__cameFromRight__()):
             directions = [self.__tryBottom__, self.__tryLeft__, self.__tryTop__]
-        elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
+        elif (self.path[-1] == self.maze.get_entrance()): # We're at the entrance
             directions = [self.__tryBottom__, self.__tryLeft__, self.__tryRight__, self.__tryTop__]
         else:
             self.log.error('Came from nowhere')
             raise Exception('Came from nowhere')
-        while (current == self.path[-1] and current != self.maze.getExit()):
+        while (current == self.path[-1] and current != self.maze.get_exit()):
             self.__chooseDirection__(directions)
 
     def __handlePath__(self):
@@ -149,7 +149,7 @@ class AbstractSolver:
             self.__tryLeft__()
         elif (self.__cameFromRight__()):
             self.__tryRight__()
-        elif (self.path[-1] == self.maze.getEntrance()): # We're at the entrance
+        elif (self.path[-1] == self.maze.get_entrance()): # We're at the entrance
             self.__handleJunction__()
         else:
             self.log.error('Came from nowhere')
