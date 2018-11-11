@@ -1,18 +1,18 @@
-import generators.AbstractGenerator as AbstractGenerator
-import model.Mesh as Mesh
+from generators.AbstractGenerator import AbstractGenerator
+from model.Mesh import Mesh
 import logging
 
 
-class KruskalGenerator(AbstractGenerator.AbstractGenerator):
+class KruskalGenerator(AbstractGenerator):
 
     def __init__(self):
-        AbstractGenerator.AbstractGenerator.__init__(self)
+        AbstractGenerator.__init__(self)
         self.log = logging.getLogger(__name__)
 
     def __generate_maze__(self, size, seed=0):
-        AbstractGenerator.AbstractGenerator.__generate_maze__(self, size)
+        AbstractGenerator.__generate_maze__(self, size)
         """ Kruskal's Algorithm"""
-        mesh = Mesh.Mesh(size)
+        mesh = Mesh(size)
         while mesh.has_multiple_sets():
             cell = mesh.choose_cell()
             wall = mesh.choose_wall(cell)

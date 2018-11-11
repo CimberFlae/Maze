@@ -110,7 +110,7 @@ ENV/
 **/*.out
 
 # Files generated from unit tests
-**/test_smallMaze.txt
-**/test_mediumMaze.txt
-**/test_bigMaze.txt
+**/test_small_maze.txt
+**/test_medium_maze.txt
+**/test_big_maze.txt
 **/test_path.txt

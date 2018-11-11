@@ -1,18 +1,18 @@
-import generators.AbstractGenerator as AbstractGenerator
-import model.Mesh as Mesh
+from generators.AbstractGenerator import AbstractGenerator
+from model.Mesh import Mesh
 import logging
 
 
-class DepthFirstSearchGenerator(AbstractGenerator.AbstractGenerator):
+class DepthFirstSearchGenerator(AbstractGenerator):
 
     def __init__(self):
-        AbstractGenerator.AbstractGenerator.__init__(self)
+        AbstractGenerator.__init__(self)
         self.log = logging.getLogger(__name__)
 
     def __generate_maze__(self, size, seed=0):
-        AbstractGenerator.AbstractGenerator.__generate_maze__(self, size)
+        AbstractGenerator.__generate_maze__(self, size)
         """implement Depth-first Search Algorithm"""
-        mesh = Mesh.Mesh(size)
+        mesh = Mesh(size)
         cell = mesh.choose_cell()
         stack = []
         while mesh.has_multiple_sets():

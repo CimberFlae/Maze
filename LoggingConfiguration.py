@@ -1,8 +1,10 @@
 import logging
 import logging.config
 
+
 class LoggingConfiguration(logging.Filter):
     pass
+
 
 LOGGING = {
     'version': 1,

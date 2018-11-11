@@ -1,27 +1,28 @@
 import unittest
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
-import model.Cell as Cell
-import model.Wall as Wall
+from model.Cell import Cell
+from model.Wall import Wall
 import logging
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+
 
 class CellTest(unittest.TestCase):
     
     def setUp(self):
         self.log = logging.getLogger(__name__)
-        self.cell = Cell.Cell(1, 2, 3)
+        self.cell = Cell(1, 2, 3)
     
     def test_CellInit(self):
         self.log.debug("test_CellInit")
-        wallList = self.cell.wallList
-        self.assertEqual(len(wallList), 4, 'Did not find 4 walls.')
+        wall_list = self.cell.wallList
+        self.assertEqual(len(wall_list), 4, 'Did not find 4 walls.')
         for i in range(4):
-            self.assertFalse(wallList[i].isRemoved())
-        self.assertEqual(self.cell.leftWall, wallList[0], 'Left wall was not in first place in list.')
-        self.assertEqual(self.cell.rightWall, wallList[1], 'Right wall was not in second place in list.')
-        self.assertEqual(self.cell.topWall, wallList[2], 'Top wall was not in third place in list.')
-        self.assertEqual(self.cell.bottomWall, wallList[3], 'Bottom wall was not in fourth place in list.')
+            self.assertFalse(wall_list[i].is_removed())
+        self.assertEqual(self.cell.leftWall, wall_list[0], 'Left wall was not in first place in list.')
+        self.assertEqual(self.cell.rightWall, wall_list[1], 'Right wall was not in second place in list.')
+        self.assertEqual(self.cell.topWall, wall_list[2], 'Top wall was not in third place in list.')
+        self.assertEqual(self.cell.bottomWall, wall_list[3], 'Bottom wall was not in fourth place in list.')
         self.assertEqual(self.cell.x, 1, 'X-coordinate is wrong.')
         self.assertEqual(self.cell.y, 2, 'y-coordinate is wrong.')
         self.assertEqual(self.cell.set, 3, 'Set is wrong.')
@@ -49,7 +50,7 @@ class CellTest(unittest.TestCase):
     
     def test_setLeft(self):
         self.log.debug("test_setLeft")
-        wall = Wall.Wall()
+        wall = Wall()
         self.cell.set_left(wall)
         self.assertEqual(self.cell.leftWall, wall, 'Left wall is set incorrectly.')
     
@@ -59,7 +60,7 @@ class CellTest(unittest.TestCase):
     
     def test_setRight(self):
         self.log.debug("test_setRight")
-        wall = Wall.Wall()
+        wall = Wall()
         self.cell.set_right(wall)
         self.assertEqual(self.cell.rightWall, wall, 'Right wall is set incorrectly.')
     
@@ -69,7 +70,7 @@ class CellTest(unittest.TestCase):
     
     def test_setTop(self):
         self.log.debug("test_setTop")
-        wall = Wall.Wall()
+        wall = Wall()
         self.cell.set_top(wall)
         self.assertEqual(self.cell.topWall, wall, 'Top wall is set incorrectly.')
     
@@ -79,49 +80,49 @@ class CellTest(unittest.TestCase):
     
     def test_setBottom(self):
         self.log.debug("test_setBottom")
-        wall = Wall.Wall()
+        wall = Wall()
         self.cell.set_bottom(wall)
         self.assertEqual(self.cell.bottomWall, wall, 'Bottom wall is set incorrectly.')
     
     def test_removeLeft(self):
         self.log.debug("test_removeLeft")
         self.cell.remove_left()
-        self.assertTrue(self.cell.leftWall.isRemoved(), 'Left wall is not removed.')
+        self.assertTrue(self.cell.leftWall.is_removed(), 'Left wall is not removed.')
     
     def test_createLeft(self):
         self.log.debug("test_createLeft")
         self.cell.create_left()
-        self.assertFalse(self.cell.leftWall.isRemoved(), 'Left wall is removed.')
+        self.assertFalse(self.cell.leftWall.is_removed(), 'Left wall is removed.')
     
     def test_removeRight(self):
         self.log.debug("test_removeRight")
         self.cell.remove_right()
-        self.assertTrue(self.cell.rightWall.isRemoved(), 'Right wall is not removed.')
+        self.assertTrue(self.cell.rightWall.is_removed(), 'Right wall is not removed.')
     
     def test_createRight(self):
         self.log.debug("test_createRight")
         self.cell.create_right()
-        self.assertFalse(self.cell.rightWall.isRemoved(), 'Right wall is removed.')
+        self.assertFalse(self.cell.rightWall.is_removed(), 'Right wall is removed.')
     
     def test_removeTop(self):
         self.log.debug("test_removeTop")
         self.cell.remove_top()
-        self.assertTrue(self.cell.topWall.isRemoved(), 'Top wall is not removed.')
+        self.assertTrue(self.cell.topWall.is_removed(), 'Top wall is not removed.')
     
     def test_createTop(self):
         self.log.debug("test_createTop")
         self.cell.create_top()
-        self.assertFalse(self.cell.topWall.isRemoved(), 'Top wall is removed.')
+        self.assertFalse(self.cell.topWall.is_removed(), 'Top wall is removed.')
     
     def test_removeBottom(self):
         self.log.debug("test_removeBottom")
         self.cell.remove_bottom()
-        self.assertTrue(self.cell.bottomWall.isRemoved(), 'Bottom wall is not removed.')
+        self.assertTrue(self.cell.bottomWall.is_removed(), 'Bottom wall is not removed.')
     
     def test_createBottom(self):
         self.log.debug("test_createBottom")
         self.cell.create_bottom()
-        self.assertFalse(self.cell.bottomWall.isRemoved(), 'Bottom wall is removed.')
+        self.assertFalse(self.cell.bottomWall.is_removed(), 'Bottom wall is removed.')
     
     def test_hasWall(self):
         self.log.debug("test_hasWall")
@@ -147,7 +148,7 @@ class CellTest(unittest.TestCase):
     def test_chooseWallSuccess(self):
         self.log.debug("test_chooseWallSuccess")
         wall = self.cell.choose_wall()
-        self.assertFalse(wall.isRemoved(), 'Removed wall has been chosen.')
+        self.assertFalse(wall.is_removed(), 'Removed wall has been chosen.')
         
     def test_chooseWallFail(self):
         self.log.debug("test_chooseWallFail")
@@ -157,6 +158,7 @@ class CellTest(unittest.TestCase):
         self.cell.remove_bottom()
         wall = self.cell.choose_wall()
         self.assertIsNone(wall, 'A wall could be chosen.')
+
 
 # This is needed for the individual execution of this test class
 if __name__ == "__main__":

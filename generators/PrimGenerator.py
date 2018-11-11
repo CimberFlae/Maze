@@ -1,21 +1,21 @@
-import generators.AbstractGenerator as AbstractGenerator
-import model.Mesh as Mesh
+from generators.AbstractGenerator import AbstractGenerator
+from model.Mesh import Mesh
 import random
 import logging
 
 
-class PrimGenerator(AbstractGenerator.AbstractGenerator):
+class PrimGenerator(AbstractGenerator):
 
     def __init__(self):
-        AbstractGenerator.AbstractGenerator.__init__(self)
+        AbstractGenerator.__init__(self)
         self.log = logging.getLogger(__name__)
 
     def __generate_maze__(self, size, seed=0):
-        AbstractGenerator.AbstractGenerator.__generate_maze__(self, size)
+        AbstractGenerator.__generate_maze__(self, size)
         if seed != 0:
             random.seed(seed)
         """implement Prim's Algorithm"""
-        mesh = Mesh.Mesh(size)
+        mesh = Mesh(size)
         cell = mesh.choose_cell()
         queue = [cell]
         while len(queue) > 0:

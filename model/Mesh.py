@@ -1,4 +1,4 @@
-import model.Cell as Cell
+from model.Cell import Cell
 import random
 import logging
 import LoggingConfiguration
@@ -18,7 +18,7 @@ class Mesh:
             matrix_row = []
             for j in range (0, size):
                 set_row = []
-                cell = Cell.Cell(i, j, k, walls_removed)
+                cell = Cell(i, j, k, walls_removed)
                 set_row.append(cell)
                 self.sets.append(set_row)
                 k += 1
@@ -206,7 +206,7 @@ class Mesh:
         return self.exit
 
     def choose_wall(self, cell):  # returns None if there is no non-border wall that is not removed
-        if len([wall for wall in cell.get_wall_list() if not (self.is_border(cell, wall) or wall.isRemoved())]) > 0:
+        if len([wall for wall in cell.get_wall_list() if not (self.is_border(cell, wall) or wall.is_removed())]) > 0:
             while True:
                 wall = cell.choose_wall()
                 if not self.is_border(cell, wall):

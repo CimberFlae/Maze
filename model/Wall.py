@@ -8,5 +8,5 @@ class Wall:
     def create(self):
         self.removed = False
 
-    def isRemoved(self):
+    def is_removed(self):
         return self.removed

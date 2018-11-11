@@ -1,4 +1,4 @@
-import model.Wall as Wall
+from model.Wall import Wall
 import random
 import logging
 
@@ -6,10 +6,10 @@ import logging
 class Cell:
     def __init__(self, x, y, set_id, walls_removed=False):
         self.log = logging.getLogger(__name__)
-        self.leftWall = Wall.Wall(walls_removed)
-        self.rightWall = Wall.Wall(walls_removed)
-        self.topWall = Wall.Wall(walls_removed)
-        self.bottomWall = Wall.Wall(walls_removed)
+        self.leftWall = Wall(walls_removed)
+        self.rightWall = Wall(walls_removed)
+        self.topWall = Wall(walls_removed)
+        self.bottomWall = Wall(walls_removed)
         self.wallList = [self.leftWall, self.rightWall, self.topWall, self.bottomWall]
         self.x = x
         self.y = y
@@ -91,17 +91,17 @@ class Cell:
         self.bottomWall.create()
 
     def has_wall(self):
-        return (not self.leftWall.isRemoved()) | (not self.rightWall.isRemoved()) | \
-                (not self.topWall.isRemoved()) | (not self.bottomWall.isRemoved())
+        return (not self.leftWall.is_removed()) | (not self.rightWall.is_removed()) | \
+               (not self.topWall.is_removed()) | (not self.bottomWall.is_removed())
 
     def wall_count(self):
-        return (not self.leftWall.isRemoved()) + (not self.rightWall.isRemoved()) + \
-                (not self.topWall.isRemoved()) + (not self.bottomWall.isRemoved())
+        return (not self.leftWall.is_removed()) + (not self.rightWall.is_removed()) + \
+               (not self.topWall.is_removed()) + (not self.bottomWall.is_removed())
 
     # returns a random wall that is nor removed nor a border.
     # returns None if there is no such wall
     def choose_wall(self):
-        available = [wall for wall in self.wallList if not wall.isRemoved()]
+        available = [wall for wall in self.wallList if not wall.is_removed()]
         nof_walls = len(available)
         if nof_walls > 0:
             n = random.randint(0,nof_walls-1)

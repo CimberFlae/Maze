@@ -1,25 +1,27 @@
 import unittest
 import sys
 import os
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
-import generators.RecursiveDivisionGenerator as RecursiveDivisionGenerator
-import generatorstest.AbstractBaseGeneratorTest as AbstractBaseGeneratorTest
+from generators.RecursiveDivisionGenerator import RecursiveDivisionGenerator
+from test.generatorstest.AbstractBaseGeneratorTest import AbstractBaseGeneratorTest
 import logging
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
-class RecursiveDivisionGeneratorTest(AbstractBaseGeneratorTest.AbstractBaseGeneratorTest,  unittest.TestCase):
+
+class RecursiveDivisionGeneratorTest(AbstractBaseGeneratorTest, unittest.TestCase):
     
     def setUp(self):
         self.log = logging.getLogger(__name__)
         self.size = 5
         seed = 5
-        generator = RecursiveDivisionGenerator.RecursiveDivisionGenerator()
-        self.maze = generator.generate_random_maze(self.size, seed = seed)
+        generator = RecursiveDivisionGenerator()
+        self.maze = generator.generate_random_maze(self.size, seed=seed)
 
-    def test_invalidSize(self):
-        self.log.debug("test_invalidSize")
-        generator = RecursiveDivisionGenerator.RecursiveDivisionGenerator()
+    def test_invalid_size(self):
+        self.log.debug("test_invalid_size")
+        generator = RecursiveDivisionGenerator()
         with self.assertRaises(Exception):
             self.maze = generator.generate_random_maze(1)
+
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(RecursiveDivisionGeneratorTest)

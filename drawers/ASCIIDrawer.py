@@ -1,11 +1,11 @@
-import drawers.AbstractDrawer as AbstractDrawer
+from drawers.AbstractDrawer import AbstractDrawer
 import logging
 
 
-class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
+class ASCIIDrawer(AbstractDrawer):
 
     def __init__(self):
-        AbstractDrawer.AbstractDrawer.__init__(self)
+        AbstractDrawer.__init__(self)
         self.log = logging.getLogger(__name__)
 
     def draw_maze(self, maze, file_path=None):
@@ -14,22 +14,22 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
             size = maze.get_size()
             out.write("\n ")
             for i in range (0, size):
-                if not maze.get_cell(0, i).get_top().isRemoved():
+                if not maze.get_cell(0, i).get_top().is_removed():
                     out.write("_ ")
                 else:
                     out.write("  ")
             out.write("\n")
             for j in range (0, size):
-                if not maze.get_cell(j, 0).get_left().isRemoved():
+                if not maze.get_cell(j, 0).get_left().is_removed():
                     out.write("|")
                 else:
                     out.write(" ")
                 for i in range (0,size):
-                    if not maze.get_cell(j, i).get_bottom().isRemoved():
+                    if not maze.get_cell(j, i).get_bottom().is_removed():
                         out.write("_")
                     else:
                         out.write(" ")
-                    if not maze.get_cell(j, i).get_right().isRemoved():
+                    if not maze.get_cell(j, i).get_right().is_removed():
                         out.write("|")
                     else:
                         out.write(" ")
@@ -43,7 +43,7 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
             out.write("\n( ")
             # Draw entrance
             entrance = maze.get_entrance()
-            if entrance.get_left().isRemoved() and maze.get_left_neighbour(entrance) is None:
+            if entrance.get_left().is_removed() and maze.get_left_neighbour(entrance) is None:
                 out.write("-> ")
             else:
                 out.write("v ")
@@ -65,7 +65,7 @@ class ASCIIDrawer(AbstractDrawer.AbstractDrawer):
                     raise Exception('Invalid cell transition')
             # Draw exit
             maze_exit = maze.get_exit()
-            if maze_exit.get_right().isRemoved() and maze.get_right_neighbour(maze_exit) is None:
+            if maze_exit.get_right().is_removed() and maze.get_right_neighbour(maze_exit) is None:
                 out.write("-> ")
             else:
                 out.write("v ")
