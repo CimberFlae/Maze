@@ -1,24 +1,25 @@
 import os
 import sys
+from generators.KruskalGenerator import KruskalGenerator
+from generators.DepthFirstSearchGenerator import DepthFirstSearchGenerator
+from generators.PrimGenerator import PrimGenerator
+from generators.RecursiveDivisionGenerator import RecursiveDivisionGenerator
+from generators.BinaryTreeGenerator import BinaryTreeGenerator
+from drawers.ASCIIDrawer import ASCIIDrawer
+from solvers.RightWallFollowerSolver import RightWallFollowerSolver
+from solvers.LeftWallFollowerSolver import LeftWallFollowerSolver
+from solvers.RandomMouseSolver import RandomMouseSolver
+from solvers.TremauxSolver import TremauxSolver
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
-import generators.KruskalGenerator as KruskalGenerator
-import generators.DepthFirstSearchGenerator as DepthFirstSearchGenerator
-import generators.PrimGenerator as PrimGenerator
-import generators.RecursiveDivisionGenerator as RecursiveDivisionGenerator
-import generators.BinaryTreeGenerator as BinaryTreeGenerator
-import drawers.ASCIIDrawer as ASCIIDrawer
-import solvers.RightWallFollowerSolver as RightWallFollowerSolver
-import solvers.LeftWallFollowerSolver as LeftWallFollowerSolver
-import solvers.RandomMouseSolver as RandomMouseSolver
-import solvers.TremauxSolver as TremauxSolver
+
 
 class Demo:
 
     size = 10
-    drawer = ASCIIDrawer.ASCIIDrawer()
+    drawer = ASCIIDrawer()
     print("Showcasing the KruskalGenerator and RightWallFollowerSolver")
-    generator = KruskalGenerator.KruskalGenerator()
-    solver = RightWallFollowerSolver.RightWallFollowerSolver()
+    generator = KruskalGenerator()
+    solver = RightWallFollowerSolver()
     maze = generator.generate_random_maze(size)
     path = solver.solve_maze(maze)
     drawer.draw_maze(maze)
@@ -26,8 +27,8 @@ class Demo:
     print("Showcase finished")
 
     print("Showcasing the DepthFirstSearchGenerator and LeftWallFollowerSolver")
-    generator = DepthFirstSearchGenerator.DepthFirstSearchGenerator()
-    solver = LeftWallFollowerSolver.LeftWallFollowerSolver()
+    generator = DepthFirstSearchGenerator()
+    solver = LeftWallFollowerSolver()
     maze = generator.generate_random_maze(size)
     path = solver.solve_maze(maze)
     drawer.draw_maze(maze)
@@ -35,8 +36,8 @@ class Demo:
     print("Showcase finished")
 
     print("Showcasing the PrimGenerator and RandomMouseSolver")
-    generator = PrimGenerator.PrimGenerator()
-    solver = RandomMouseSolver.RandomMouseSolver()
+    generator = PrimGenerator()
+    solver = RandomMouseSolver()
     maze = generator.generate_random_maze(size)
     path = solver.solve_maze(maze)
     drawer.draw_maze(maze)
@@ -44,16 +45,16 @@ class Demo:
     print("Showcase finished")
 
     print("Showcasing the RecursiveDivisionGenerator and TremauxSolver")
-    generator = RecursiveDivisionGenerator.RecursiveDivisionGenerator()
-    solver = TremauxSolver.TremauxSolver()
+    generator = RecursiveDivisionGenerator()
+    solver = TremauxSolver()
     maze = generator.generate_random_maze(size)
     path = solver.solve_maze(maze)
     drawer.draw_maze(maze)
     drawer.draw_path(maze, path)
-    print("Showcasine finished")
+    print("Showcasing finished")
 
     print("Showcasing the BinaryTreeGenerator")
-    generator = BinaryTreeGenerator.BinaryTreeGenerator()
+    generator = BinaryTreeGenerator()
     maze = generator.generate_random_maze(size)
     drawer.draw_maze(maze)
     print("All Showcases finished")

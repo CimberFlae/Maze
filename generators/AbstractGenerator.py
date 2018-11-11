@@ -8,7 +8,7 @@ class AbstractGenerator:
         self.log = logging.getLogger(__name__)
         self.log.debug("generating a " + self.__class__.__name__)
 
-    def __generate_maze__(self, size, seed = 0):
+    def __generate_maze__(self, size, seed=0):
         """Generate a Maze using a specific algorithm"""
         if size < 2:
             self.log.error('Invalid maze size!')

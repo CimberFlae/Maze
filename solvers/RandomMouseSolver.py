@@ -9,7 +9,7 @@ class RandomMouseSolver(AbstractSolver):
         AbstractSolver.__init__(self)
         self.log = logging.getLogger(__name__)
 
-    def solve_maze(self, maze, seed = 0):
+    def solve_maze(self, maze, seed=0):
         if seed != 0:
             random.seed(seed)
         self.maze = maze

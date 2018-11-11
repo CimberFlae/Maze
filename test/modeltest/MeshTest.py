@@ -20,17 +20,17 @@ class MeshTest(unittest.TestCase):
         self.assertEqual(len(mesh.sets), 100, 'Wrong number of Sets found.')
         self.assertEqual(sum(len(cellSet) for cellSet in mesh.sets),
                          len(set().union(*(set(cellSet) for cellSet in mesh.sets))), 'Not all Sets are distinct.')
-        for i in range (0, mesh.size-1):
-            for j in range (0, mesh.size):
+        for i in range(0, mesh.size-1):
+            for j in range(0, mesh.size):
                 self.assertEqual(mesh.matrix[i][j].get_bottom(), mesh.matrix[i + 1][j].get_top(),
                                  'Adjacent cells [' + str(i) + ',' + str(j) + '] and [' + str(i+1) + ',' + str(j) +
                                  '] do not share a horizontal wall.')
-        for i in range (0, mesh.size):
-            for j in range (0, mesh.size-1):
+        for i in range(0, mesh.size):
+            for j in range(0, mesh.size-1):
                 self.assertEqual(mesh.matrix[i][j].get_right(), mesh.matrix[i][j + 1].get_left(),
                                  'Adjacent cells [' + str(i) + ',' + str(j) + '] and [' + str(i) + ',' + str(j+1) +
                                  '] do not share a vertical wall.')
-        for i in range (0, mesh.size):
+        for i in range(0, mesh.size):
             self.assertFalse(mesh.matrix[0][i].get_top().is_removed(), 'Mesh has an entry.')
             self.assertFalse(mesh.matrix[mesh.size - 1][i].get_bottom().is_removed(), 'Mesh has an entry.')
             self.assertFalse(mesh.matrix[i][0].get_left().is_removed(), 'Mesh has an entry.')

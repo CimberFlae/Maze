@@ -65,7 +65,7 @@ class TremauxSolver(AbstractSolver):
     # @Override
     def __handle_junction__(self):
         current = self.path[-1]
-        if not current in self.junctions:  # new junction
+        if current not in self.junctions:  # new junction
             self.junctions.append(current)
             if self.__cameFromTop__():
                 self.__mark__(current, current.get_top())
@@ -147,7 +147,8 @@ class TremauxSolver(AbstractSolver):
     def __has_n_visited_path__(self, n):
         current = self.path[-1]
         key = self.__get_key__(current)
-        return self.walls[key].count(current.get_left()) == n or self.walls[key].count(current.get_right()) == n or self.walls[key].count(current.get_top()) == n or self.walls[key].count(current.get_bottom()) == n
+        return self.walls[key].count(current.get_left()) == n or self.walls[key].count(current.get_right()) == n or \
+               self.walls[key].count(current.get_top()) == n or self.walls[key].count(current.get_bottom()) == n
 
     def __choose_n_visited_path__(self, n):
         current = self.path[-1]

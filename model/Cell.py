@@ -18,7 +18,7 @@ class Cell:
     # only for debugging
     def check_invariant(self):
         if (self.wallList[0] == self.leftWall) & (self.wallList[1] == self.rightWall) & \
-        (self.wallList[2] == self.topWall) & (self.wallList[3] == self.bottomWall):
+                (self.wallList[2] == self.topWall) & (self.wallList[3] == self.bottomWall):
             self.log.debug("Everything correct")
         else:
             self.log.debug("BUG")
@@ -104,7 +104,7 @@ class Cell:
         available = [wall for wall in self.wallList if not wall.is_removed()]
         nof_walls = len(available)
         if nof_walls > 0:
-            n = random.randint(0,nof_walls-1)
+            n = random.randint(0, nof_walls-1)
             wall = available[n]
             return wall
         return None

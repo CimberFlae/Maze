@@ -14,9 +14,9 @@ class Mesh:
         self.matrix = []
         self.sets = []
         k = 0
-        for i in range (0, size):
+        for i in range(0, size):
             matrix_row = []
-            for j in range (0, size):
+            for j in range(0, size):
                 set_row = []
                 cell = Cell(i, j, k, walls_removed)
                 set_row.append(cell)
@@ -65,13 +65,13 @@ class Mesh:
     def move_cell(self, from_set, to_set):
         if from_set == to_set:
             return
-        for i in range (0, len(self.sets[from_set])):
+        for i in range(0, len(self.sets[from_set])):
             self.sets[to_set].append(self.sets[from_set][i])
             self.sets[from_set][i].set_set(to_set)
         self.sets[from_set][:] = []
 
     def has_multiple_sets(self):  # returns True if Maze has more than one set
-        for i in range (len(self.sets)):
+        for i in range(len(self.sets)):
             if len(self.sets[i]) == self.size*self.size:
                 return False
         return True

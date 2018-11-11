@@ -13,18 +13,18 @@ class ASCIIDrawer(AbstractDrawer):
         with self.open_writer(file_path) as out:
             size = maze.get_size()
             out.write("\n ")
-            for i in range (0, size):
+            for i in range(0, size):
                 if not maze.get_cell(0, i).get_top().is_removed():
                     out.write("_ ")
                 else:
                     out.write("  ")
             out.write("\n")
-            for j in range (0, size):
+            for j in range(0, size):
                 if not maze.get_cell(j, 0).get_left().is_removed():
                     out.write("|")
                 else:
                     out.write(" ")
-                for i in range (0,size):
+                for i in range(0, size):
                     if not maze.get_cell(j, i).get_bottom().is_removed():
                         out.write("_")
                     else:
@@ -38,7 +38,7 @@ class ASCIIDrawer(AbstractDrawer):
     def draw_path(self, maze, path, file_path=None):
         """print path with ASCII signs"""
         with self.open_writer(file_path) as out:
-            for i in range (0, len(path)):
+            for i in range(0, len(path)):
                 out.write("(" + path[i].get_x().__str__() + "," + path[i].get_y().__str__() + ") ")
             out.write("\n( ")
             # Draw entrance
@@ -47,7 +47,7 @@ class ASCIIDrawer(AbstractDrawer):
                 out.write("-> ")
             else:
                 out.write("v ")
-            for i in range (0, len(path)-1):
+            for i in range(0, len(path)-1):
                 x1 = path[i].get_x()
                 x2 = path[i+1].get_x()
                 y1 = path[i].get_y()
