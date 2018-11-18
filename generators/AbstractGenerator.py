@@ -17,6 +17,7 @@ class AbstractGenerator:
     def generate_random_maze(self, size, seed=0):
         if seed != 0:
             random.seed(seed)
+            self.log.debug("generating maze with random seed {%s}", str(seed))
         maze = self.__generate_maze__(size, seed=seed)
         if random.getrandbits(1) == 0:
             maze.set_random_top_entrance()
