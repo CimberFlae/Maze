@@ -6,6 +6,7 @@ from generators.PrimGenerator import PrimGenerator
 from generators.RecursiveDivisionGenerator import RecursiveDivisionGenerator
 from generators.BinaryTreeGenerator import BinaryTreeGenerator
 from drawers.ASCIIDrawer import ASCIIDrawer
+from drawers.TkInterDrawer import TkInterDrawer
 from solvers.RightWallFollowerSolver import RightWallFollowerSolver
 from solvers.LeftWallFollowerSolver import LeftWallFollowerSolver
 from solvers.RandomMouseSolver import RandomMouseSolver
@@ -53,8 +54,10 @@ class Demo:
     drawer.draw_path(maze, path)
     print("Showcasing finished")
 
-    print("Showcasing the BinaryTreeGenerator")
+    print("Showcasing the BinaryTreeGenerator and TkInter Drawer")
+    drawer = TkInterDrawer()
     generator = BinaryTreeGenerator()
     maze = generator.generate_random_maze(size)
-    drawer.draw_maze(maze)
+    path = solver.solve_maze(maze)
+    drawer.draw_maze(maze, path)
     print("All Showcases finished")
