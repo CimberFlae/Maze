@@ -35,12 +35,10 @@ class TkInterDrawer(AbstractDrawer):
                 "draw upper horizontal line"
                 canvas.create_line((i+1) * self.resolution, self.resolution, (i + 2) * self.resolution, self.resolution)
         for j in range(0, matrix.get_size()):
-            print("")
             if not matrix.get_cell(j, 0).get_left().is_removed():
                 "draw left vertical line"
                 canvas.create_line(self.resolution, (j + 1) * self.resolution, self.resolution,
                                    (j + 2) * self.resolution)
-
             for i in range(0, matrix.get_size()):
                 cell = matrix.get_cell(j, i)
                 if not cell.get_bottom().is_removed():
@@ -51,7 +49,6 @@ class TkInterDrawer(AbstractDrawer):
                     "draw right vertical line"
                     canvas.create_line((i+2) * self.resolution, (j + 1) * self.resolution, (i + 2) * self.resolution,
                                        (j + 2) * self.resolution)
-        print("")
 
     def __draw_path__(self, path, canvas):  # draws the path
         entrance = path[0]
