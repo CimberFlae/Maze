@@ -24,7 +24,7 @@ class TkInterDrawer(AbstractDrawer):
         canvas = Canvas(root)
         root.geometry('280x280+100+100')
         self.__draw(matrix, canvas)
-        self.__draw_path__(path, canvas)
+        self.__draw_path__(matrix, path, canvas)
         canvas.pack(side=LEFT, fill='both')
         root.mainloop()
 
@@ -33,7 +33,7 @@ class TkInterDrawer(AbstractDrawer):
         for i in range(0, matrix.get_size()):
             if not matrix.get_cell(0, i).get_top().is_removed():
                 "draw upper horizontal line"
-                canvas.create_line((i+1) * self.resolution, self.resolution, (i + 2) * self.resolution, self.resolution)
+                canvas.create_line((i + 1) * self.resolution, self.resolution, (i + 2) * self.resolution, self.resolution)
         for j in range(0, matrix.get_size()):
             if not matrix.get_cell(j, 0).get_left().is_removed():
                 "draw left vertical line"
@@ -43,22 +43,22 @@ class TkInterDrawer(AbstractDrawer):
                 cell = matrix.get_cell(j, i)
                 if not cell.get_bottom().is_removed():
                     "draw lower horizontal line"
-                    canvas.create_line((i+1) * self.resolution, (j + 2) * self.resolution, (i + 2) * self.resolution,
+                    canvas.create_line((i + 1) * self.resolution, (j + 2) * self.resolution, (i + 2) * self.resolution,
                                        (j + 2) * self.resolution)
                 if not cell.get_right().is_removed():
                     "draw right vertical line"
-                    canvas.create_line((i+2) * self.resolution, (j + 1) * self.resolution, (i + 2) * self.resolution,
+                    canvas.create_line((i + 2) * self.resolution, (j + 1) * self.resolution, (i + 2) * self.resolution,
                                        (j + 2) * self.resolution)
 
-    def __draw_path__(self, path, canvas):  # draws the path
+    def __draw_path__(self, matrix, path, canvas):  # draws the path
         entrance = path[0]
         i = entrance.get_y()
         j = entrance.get_x()
-        if entrance.get_left().is_removed():
-            canvas.create_line((i + 1.5) * self.resolution, j * self.resolution, (i + 1.5) * self.resolution,
-                               (j + 1.5) * self.resolution, fill="red")
-        elif entrance.get_top().is_removed():
+        if matrix.get_left_neighbour(entrance) is None:
             canvas.create_line(i * self.resolution, (j + 1.5) * self.resolution, (i + 1.5) * self.resolution,
+                               (j + 1.5) * self.resolution, fill="red")
+        elif matrix.get_top_neighbour(entrance) is None:
+            canvas.create_line((i + 1.5) * self.resolution, j * self.resolution, (i + 1.5) * self.resolution,
                                (j + 1.5) * self.resolution, fill="red")
         else:
             self.log.error('No entrance?')
@@ -89,10 +89,10 @@ class TkInterDrawer(AbstractDrawer):
             else:
                 self.log.error('Invalid cell transition')
                 raise Exception('Invalid cell transition')
-        if path[-1].get_right().is_removed():
+        if matrix.get_right_neighbour(path[-1]) is None:
             canvas.create_line(i * self.resolution, j * self.resolution, (i + 1.5) * self.resolution,
                                j * self.resolution, fill="red")
-        elif path[-1].get_bottom().is_removed():
+        elif matrix.get_bottom_neighbour(path[-1]) is None:
             canvas.create_line(i * self.resolution, j * self.resolution, i * self.resolution,
                                (j + 1.5) * self.resolution, fill="red")
         else:
