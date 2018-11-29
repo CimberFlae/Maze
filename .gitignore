@@ -103,8 +103,9 @@ ENV/
 # OSX File System
 .DS_Store
 
-# Eric6 Files
+# Editor
 .eric6project
+.idea/*
 
 # Out-Files
 **/*.out

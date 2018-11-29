@@ -11,10 +11,13 @@ from solvers.RightWallFollowerSolver import RightWallFollowerSolver
 from solvers.LeftWallFollowerSolver import LeftWallFollowerSolver
 from solvers.RandomMouseSolver import RandomMouseSolver
 from solvers.TremauxSolver import TremauxSolver
+import LoggingConfiguration
+import logging.config
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 
 
 class Demo:
+    logging.config.dictConfig(LoggingConfiguration.LOGGING)
 
     size = 10
     drawer = ASCIIDrawer()
