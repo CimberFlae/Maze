@@ -2,6 +2,7 @@ import os
 import unittest
 import LoggingConfiguration
 import logging.config
+print(os.environ['PYTHONPATH'])
 
 logging.config.dictConfig(LoggingConfiguration.LOGGING)
 
