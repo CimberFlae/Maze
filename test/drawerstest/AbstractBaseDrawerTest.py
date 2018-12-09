@@ -21,25 +21,33 @@ class AbstractBaseDrawerTest(ABC):
     def test_small_maze(self):
         generator = PrimGenerator.PrimGenerator()
         maze = generator.generate_random_maze(3, 23)
-        self.drawer.draw_maze(maze, 'test_small_maze.txt')
-        tc.assertTrue(filecmp.cmp('test_small_maze.txt', 'test_small_maze_expected.txt'))
+        file_name_actual = os.path.join(os.path.dirname(__file__), 'test_small_maze.txt')
+        file_name_expected = os.path.join(os.path.dirname(__file__), 'test_small_maze_expected.txt')
+        self.drawer.draw_maze(maze, file_name_actual)
+        tc.assertTrue(filecmp.cmp(file_name_actual, file_name_expected))
 
     def test_medium_maze(self):
         generator = BinaryTreeGenerator.BinaryTreeGenerator()
         maze = generator.generate_random_maze(5, 23)
-        self.drawer.draw_maze(maze, 'test_medium_maze.txt')
-        tc.assertTrue(filecmp.cmp('test_medium_maze.txt', 'test_medium_maze_expected.txt'))
+        file_name_actual = os.path.join(os.path.dirname(__file__), 'test_medium_maze.txt')
+        file_name_expected = os.path.join(os.path.dirname(__file__), 'test_medium_maze_expected.txt')
+        self.drawer.draw_maze(maze, file_name_actual)
+        tc.assertTrue(filecmp.cmp(file_name_actual, file_name_expected))
 
     def test_big_maze(self):
         generator = KruskalGenerator.KruskalGenerator()
         maze = generator.generate_random_maze(10, 23)
-        self.drawer.draw_maze(maze, 'test_big_maze.txt')
-        tc.assertTrue(filecmp.cmp('test_big_maze.txt', 'test_big_maze_expected.txt'))
+        file_name_actual = os.path.join(os.path.dirname(__file__), 'test_big_maze.txt')
+        file_name_expected = os.path.join(os.path.dirname(__file__), 'test_big_maze_expected.txt')
+        self.drawer.draw_maze(maze, file_name_actual)
+        tc.assertTrue(filecmp.cmp(file_name_actual, file_name_expected))
 
     def test_path(self):
         generator = DepthFirstSearchGenerator.DepthFirstSearchGenerator()
         maze = generator.generate_random_maze(10, 23)
         solver = TremauxSolver.TremauxSolver()
         path = solver.solve_maze(maze)
-        self.drawer.draw_path(maze, path, 'test_path.txt')
-        tc.assertTrue(filecmp.cmp('test_path.txt', 'test_path_expected.txt'))
+        file_name_actual = os.path.join(os.path.dirname(__file__), 'test_path.txt')
+        file_name_expected = os.path.join(os.path.dirname(__file__), 'test_path_expected.txt')
+        self.drawer.draw_path(maze, path, file_name_actual)
+        tc.assertTrue(filecmp.cmp(file_name_actual, file_name_expected))
