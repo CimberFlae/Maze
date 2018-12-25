@@ -100,11 +100,11 @@ class Cell:
 
     # returns a random wall that is nor removed nor a border.
     # returns None if there is no such wall
-    def choose_wall(self):
+    def choose_wall(self, custom_random=random):
         available = [wall for wall in self.wallList if not wall.is_removed()]
         nof_walls = len(available)
         if nof_walls > 0:
-            n = random.randint(0, nof_walls-1)
+            n = custom_random.randint(0, nof_walls-1)
             wall = available[n]
             return wall
         return None

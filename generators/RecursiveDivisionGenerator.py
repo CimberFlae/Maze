@@ -1,6 +1,5 @@
 from generators.AbstractGenerator import AbstractGenerator
 from model.Mesh import Mesh
-import random
 import logging
 
 
@@ -10,10 +9,8 @@ class RecursiveDivisionGenerator(AbstractGenerator):
         AbstractGenerator.__init__(self)
         self.log = logging.getLogger(__name__)
 
-    def __generate_maze__(self, size, seed=0):
+    def __generate_maze__(self, size):
         AbstractGenerator.__generate_maze__(self, size)
-        if seed != 0:
-            random.seed(seed)
         """implement Recursive Division Algorithm"""
         mesh = Mesh(size, True)
         for i in range(0, size):  # create boundary walls
@@ -26,17 +23,17 @@ class RecursiveDivisionGenerator(AbstractGenerator):
 
     def __divideAndGenerate__(self, mesh, left_border, right_border, top_border, bottom_border):
         if (left_border != right_border) & (top_border != bottom_border):
-            row = random.randint(left_border + 1, right_border)
-            column = random.randint(top_border + 1, bottom_border)
+            row = self.random.randint(left_border + 1, right_border)
+            column = self.random.randint(top_border + 1, bottom_border)
             for i in range(left_border, right_border + 1):
                 mesh.get_cell(column, i).create_top()
             for i in range(top_border, bottom_border + 1):
                 mesh.get_cell(i, row).create_left()
-            k = random.randint(0, 3)
-            left_hole = random.randint(left_border, row - 1)
-            right_hole = random.randint(row, right_border)
-            top_hole = random.randint(top_border, column - 1)
-            bottom_hole = random.randint(column, bottom_border)
+            k = self.random.randint(0, 3)
+            left_hole = self.random.randint(left_border, row - 1)
+            right_hole = self.random.randint(row, right_border)
+            top_hole = self.random.randint(top_border, column - 1)
+            bottom_hole = self.random.randint(column, bottom_border)
             if k == 0:
                 mesh.get_cell(column, left_hole).remove_top()
                 mesh.get_cell(column, right_hole).remove_top()

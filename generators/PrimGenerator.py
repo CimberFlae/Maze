@@ -1,6 +1,5 @@
 from generators.AbstractGenerator import AbstractGenerator
 from model.Mesh import Mesh
-import random
 import logging
 
 
@@ -10,18 +9,16 @@ class PrimGenerator(AbstractGenerator):
         AbstractGenerator.__init__(self)
         self.log = logging.getLogger(__name__)
 
-    def __generate_maze__(self, size, seed=0):
+    def __generate_maze__(self, size):
         AbstractGenerator.__generate_maze__(self, size)
-        if seed != 0:
-            random.seed(seed)
         """implement Prim's Algorithm"""
         mesh = Mesh(size)
-        cell = mesh.choose_cell()
+        cell = mesh.choose_cell(self.random)
         queue = [cell]
         while len(queue) > 0:
-            n = random.randint(0, len(queue)-1)
+            n = self.random.randint(0, len(queue)-1)
             cell = queue[n]
-            wall = mesh.choose_wall(cell)
+            wall = mesh.choose_wall(cell, self.random)
             if wall == cell.get_left():
                 neighbour = mesh.get_left_neighbour(cell)
                 if cell.get_set() != neighbour.get_set():

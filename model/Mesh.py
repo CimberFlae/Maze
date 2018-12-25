@@ -73,15 +73,16 @@ class Mesh:
                 return False
         return True
 
-    def choose_cell(self):  # returns cell with an existing not-border wall, returns None if there is none
+    # returns cell with an existing not-border wall, returns None if there is none
+    def choose_cell(self, custom_random=random):
         has_result = False
         for i in range(self.size):
             for j in range(self.size):
                 if self.has_neighbour_in_different_set(self.matrix[i][j]):
                     has_result = True
         while has_result:
-            x = random.randint(0, self.size-1)
-            y = random.randint(0, self.size-1)
+            x = custom_random.randint(0, self.size-1)
+            y = custom_random.randint(0, self.size-1)
             cell = self.matrix[x][y]
             if self.has_neighbour_in_different_set(cell):
                 return cell
@@ -202,10 +203,11 @@ class Mesh:
     def get_exit(self):
         return self.exit
 
-    def choose_wall(self, cell):  # returns None if there is no non-border wall that is not removed
+    # returns None if there is no non-border wall that is not removed
+    def choose_wall(self, cell, custom_random=random):
         if len([wall for wall in cell.get_wall_list() if not (self.is_border(cell, wall) or wall.is_removed())]) > 0:
             while True:
-                wall = cell.choose_wall()
+                wall = cell.choose_wall(custom_random)
                 if not self.is_border(cell, wall):
                     return wall
         return None

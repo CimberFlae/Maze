@@ -9,13 +9,13 @@ class KruskalGenerator(AbstractGenerator):
         AbstractGenerator.__init__(self)
         self.log = logging.getLogger(__name__)
 
-    def __generate_maze__(self, size, seed=0):
+    def __generate_maze__(self, size):
         AbstractGenerator.__generate_maze__(self, size)
         """ Kruskal's Algorithm"""
         mesh = Mesh(size)
         while mesh.has_multiple_sets():
-            cell = mesh.choose_cell()
-            wall = mesh.choose_wall(cell)
+            cell = mesh.choose_cell(self.random)
+            wall = mesh.choose_wall(cell, self.random)
             if wall == cell.get_left():
                 neighbour = mesh.get_left_neighbour(cell)
                 if neighbour.get_set() != cell.get_set():
