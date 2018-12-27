@@ -4,8 +4,8 @@ import logging
 
 class RightWallFollowerSolver(AbstractSolver):
 
-    def __init__(self):
-        AbstractSolver.__init__(self)
+    def __init__(self, seed=0):
+        AbstractSolver.__init__(self, seed)
         self.log = logging.getLogger(__name__)
 
     def solve_maze(self, maze):

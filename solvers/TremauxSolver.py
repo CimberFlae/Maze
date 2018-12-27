@@ -1,11 +1,12 @@
 from solvers.AbstractSolver import AbstractSolver
 import logging
+import traceback
 
 
 class TremauxSolver(AbstractSolver):
 
-    def __init__(self):
-        AbstractSolver.__init__(self)
+    def __init__(self, seed=0):
+        AbstractSolver.__init__(self, seed)
         self.log = logging.getLogger(__name__)
 
     def solve_maze(self, maze):
@@ -18,9 +19,9 @@ class TremauxSolver(AbstractSolver):
         self.walls = {}
         self.junctions = []
         self.path.append(maze.get_entrance())
+        self.log.debug("Entrance: " + str(maze.get_entrance()))
         self.__try_bottom__() # arbitrary choice to start with
         # arbitrary order of directions
-        self.__try_bottom__()
         if self.__not_finished__():
             self.__try_left__()
         if self.__not_finished__():
@@ -32,11 +33,13 @@ class TremauxSolver(AbstractSolver):
 
     def __try_bottom__(self):
         current = self.path[-1]
+        self.log.debug("try bottom in " + str(current))
         if current.get_bottom().is_removed() and self.maze.get_bottom_neighbour(current) is not None:
             self.__mark__(current, current.get_bottom())
             current = self.maze.get_bottom_neighbour(current)
             self.path.append(current)
             self.__decide_next__()
+            self.log.debug('finished deciding next in after trying bottom')
 
     def __try_left__(self):
         current = self.path[-1]
@@ -45,6 +48,7 @@ class TremauxSolver(AbstractSolver):
             current = self.maze.get_left_neighbour(current)
             self.path.append(current)
             self.__decide_next__()
+            self.log.debug('finished deciding next in after trying left')
 
     def __try_top__(self):
         current = self.path[-1]
@@ -53,6 +57,7 @@ class TremauxSolver(AbstractSolver):
             current = self.maze.get_top_neighbour(current)
             self.path.append(current)
             self.__decide_next__()
+            self.log.debug('finished deciding next in after trying top')
 
     def __try_right__(self):
         current = self.path[-1]
@@ -61,13 +66,16 @@ class TremauxSolver(AbstractSolver):
             current = self.maze.get_right_neighbour(current)
             self.path.append(current)
             self.__decide_next__()
+            self.log.debug('finished deciding next in after trying right')
 
     # @Override
     def __handle_junction__(self):
+        self.log.debug('handling junction...')
         current = self.path[-1]
         if current not in self.junctions:  # new junction
             self.junctions.append(current)
             if self.__cameFromTop__():
+                self.log.debug('came from top...')
                 self.__mark__(current, current.get_top())
                 while self.__not_finished__():
                     # arbitrary order
@@ -77,6 +85,7 @@ class TremauxSolver(AbstractSolver):
                     if self.__not_finished__():
                         self.__try_right__()
             elif self.__cameFromBottom__():
+                self.log.debug('came from bottom...')
                 self.__mark__(self.path[-1], self.path[-1].get_bottom())
                 while self.__not_finished__():
                     # arbitrary order
@@ -86,6 +95,7 @@ class TremauxSolver(AbstractSolver):
                     if self.__not_finished__():
                         self.__try_top__()
             elif self.__cameFromLeft__():
+                self.log.debug('came from left...')
                 self.__mark__(self.path[-1], self.path[-1].get_left())
                 while self.__not_finished__():
                     # arbitrary order
@@ -95,6 +105,7 @@ class TremauxSolver(AbstractSolver):
                     if self.__not_finished__():
                         self.__try_top__()
             elif self.__cameFromRight__():
+                self.log.debug('came from right...')
                 self.__mark__(self.path[-1], self.path[-1].get_right())
                 while self.__not_finished__():
                     # arbitrary order
@@ -148,7 +159,7 @@ class TremauxSolver(AbstractSolver):
         current = self.path[-1]
         key = self.__get_key__(current)
         return self.walls[key].count(current.get_left()) == n or self.walls[key].count(current.get_right()) == n or \
-               self.walls[key].count(current.get_top()) == n or self.walls[key].count(current.get_bottom()) == n
+            self.walls[key].count(current.get_top()) == n or self.walls[key].count(current.get_bottom()) == n
 
     def __choose_n_visited_path__(self, n):
         current = self.path[-1]

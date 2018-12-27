@@ -4,10 +4,13 @@ import logging
 
 class AbstractSolver:
 
-    def __init__(self):
+    def __init__(self, seed=0):
         self.log = logging.getLogger(__name__)
         self.path = []
-        self.log.debug("generating a solver")
+        self.log.debug("generating a " + self.__class__.__name__)
+        self.random = random
+        if seed != 0:
+            self.random.seed(seed)
 
     def solve_maze(self, maze):
         """implement a solving algorithm"""
@@ -29,6 +32,7 @@ class AbstractSolver:
             del self.path[(i+1):(j+1)]
 
     def __is_junction__(self, cell):
+        self.log.debug("current cell: " + str(cell) + " is junction: " + str(cell.wall_count() < 2))
         return cell.wall_count() < 2
 
     def __isPath__(self, cell):
@@ -105,13 +109,15 @@ class AbstractSolver:
             raise Exception('Came from nowhere')
 
     def __choose_direction__(self, directions):
-        n = random.randint(0, len(directions)-1)
+        n = self.random.randint(0, len(directions)-1)
         directions[n]()
 
     def __decide_next__(self):
         current = self.path[-1]
+        self.log.debug("deciding next in: " + str(current))
         if self.__is_junction__(current):
             self.__handle_junction__()
+            self.log.debug('finished handling junction')
         elif self.__isPath__(current):
             self.__handle_path__()
         elif self.__isDeadEnd__(current):  # do nothing and go back
@@ -121,16 +127,22 @@ class AbstractSolver:
             raise Exception('Invalid wall count')
 
     def __handle_junction__(self):
+        self.log.debug('handling junction...')
         current = self.path[-1]
         if self.__cameFromTop__():
+            self.log.debug('came from top...')
             directions = [self.__try_bottom__, self.__try_left__, self.__try_right__]
         elif self.__cameFromBottom__():
+            self.log.debug('came from bottom...')
             directions = [self.__try_left__, self.__try_right__, self.__try_top__]
         elif self.__cameFromLeft__():
+            self.log.debug('came from left...')
             directions = [self.__try_bottom__, self.__try_right__, self.__try_top__]
         elif self.__cameFromRight__():
+            self.log.debug('came from right...')
             directions = [self.__try_bottom__, self.__try_left__, self.__try_top__]
         elif self.path[-1] == self.maze.get_entrance():  # We're at the entrance
+            self.log.debug('we are at the entrance...')
             directions = [self.__try_bottom__, self.__try_left__, self.__try_right__, self.__try_top__]
         else:
             self.log.error('Came from nowhere')

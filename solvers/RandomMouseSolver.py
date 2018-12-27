@@ -5,13 +5,11 @@ import logging
 
 class RandomMouseSolver(AbstractSolver):
 
-    def __init__(self):
-        AbstractSolver.__init__(self)
+    def __init__(self, seed=0):
+        AbstractSolver.__init__(self, seed)
         self.log = logging.getLogger(__name__)
 
-    def solve_maze(self, maze, seed=0):
-        if seed != 0:
-            random.seed(seed)
+    def solve_maze(self, maze):
         self.maze = maze
         """implement random mouse algorithm"""
         """this means: always follow a given path to a junction and from there try a direction at random"""

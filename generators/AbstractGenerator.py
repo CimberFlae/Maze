@@ -20,11 +20,13 @@ class AbstractGenerator:
             self.random.seed(seed)
             self.log.debug("generating maze with random seed {%s}", str(seed))
         maze = self.__generate_maze__(size)
-        if random.getrandbits(1) == 0:
+        if self.random.getrandbits(1) == 0:
+            self.log.debug('generating top entrance')
             maze.set_random_top_entrance()
         else:
+            self.log.debug('generating left entrance')
             maze.set_random_left_entrance()
-        if random.getrandbits(1) == 0:
+        if self.random.getrandbits(1) == 0:
             maze.set_random_bottom_exit()
         else:
             maze.set_random_right_exit()

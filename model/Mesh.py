@@ -110,6 +110,7 @@ class Mesh:
         return not (set_top and set_bottom and set_right and set_left)
     
     def set_custom_opening(self, x, y, vertical=True):
+        self.log.debug('generating custom opening for x=' + str(x) + ', y=' + str(y) + ', vertical=' + str(vertical))
         if x >= self.size or y >= self.size:
             self.log.error('Opening cell has to part of the maze - check your indexes')
             raise IndexError('Opening cell has to part of the maze - check your indexes')
@@ -160,6 +161,9 @@ class Mesh:
         else:
             self.log.error('Invalid coordinates')
             raise Exception('Invalid coordinates')
+        self.log.debug('Walls: top:' + str(not cell.get_top().is_removed()) + ', bottom:' +
+                       str(not cell.get_bottom().is_removed()) + ', left:' + str(not cell.get_left().is_removed()) +
+                       ', right:' + str(not cell.get_right().is_removed()))
 
     def set_random_top_entrance(self):
         self.clear_entrance()
