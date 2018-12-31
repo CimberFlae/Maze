@@ -2,6 +2,7 @@ import os
 import sys
 from generators.KruskalGenerator import KruskalGenerator
 from generators.DepthFirstSearchGenerator import DepthFirstSearchGenerator
+from generators.withloops.DepthFirstSearchWithLoopsGenerator import DepthFirstSearchWithLoopsGenerator
 from generators.PrimGenerator import PrimGenerator
 from generators.RecursiveDivisionGenerator import RecursiveDivisionGenerator
 from generators.BinaryTreeGenerator import BinaryTreeGenerator
@@ -26,7 +27,7 @@ class Demo:
     print("Showcasing the KruskalGenerator and RightWallFollowerSolver")
     generator = KruskalGenerator()
     solver = RightWallFollowerSolver(seed)
-    maze = generator.generate_random_maze(size, 0)
+    maze = generator.generate_random_maze(size, seed)
     drawer.draw_maze(maze)
     path = solver.solve_maze(maze)
     drawer.draw_path(maze, path)
@@ -35,7 +36,7 @@ class Demo:
     print("Showcasing the DepthFirstSearchGenerator and LeftWallFollowerSolver")
     generator = DepthFirstSearchGenerator()
     solver = LeftWallFollowerSolver(seed)
-    maze = generator.generate_random_maze(size, 0)
+    maze = generator.generate_random_maze(size, seed)
     drawer.draw_maze(maze)
     path = solver.solve_maze(maze)
     drawer.draw_path(maze, path)
@@ -44,7 +45,7 @@ class Demo:
     print("Showcasing the PrimGenerator and RandomMouseSolver")
     generator = PrimGenerator()
     solver = RandomMouseSolver(seed)
-    maze = generator.generate_random_maze(size, 0)
+    maze = generator.generate_random_maze(size, seed)
     drawer.draw_maze(maze)
     path = solver.solve_maze(maze)
     drawer.draw_path(maze, path)
@@ -53,16 +54,23 @@ class Demo:
     print("Showcasing the RecursiveDivisionGenerator and TremauxSolver")
     generator = RecursiveDivisionGenerator()
     solver = TremauxSolver(seed)
-    maze = generator.generate_random_maze(size, '1')
+    maze = generator.generate_random_maze(size, seed)
     drawer.draw_maze(maze)
     path = solver.solve_maze(maze)
     drawer.draw_path(maze, path)
     print("Showcasing finished")
 
+    print("Showcasing the DepthFirstSearchWithLoopsGenerator")
+    generator = DepthFirstSearchWithLoopsGenerator()
+    maze = generator.generate_random_maze(size, seed)
+    drawer.draw_maze(maze)
+    print("Showcasing finished")
+
     print("Showcasing the BinaryTreeGenerator and TkInter Drawer")
     drawer = TkInterDrawer()
     generator = BinaryTreeGenerator()
-    maze = generator.generate_random_maze(size, 0)
+    maze = generator.generate_random_maze(size, seed)
     path = solver.solve_maze(maze)
-    # drawer.draw_maze(maze, path)
-    # print("All Showcases finished")
+    drawer.draw_maze(maze, path)
+    print("All Showcases finished")
+
