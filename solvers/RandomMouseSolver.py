@@ -10,10 +10,11 @@ class RandomMouseSolver(AbstractSolver):
         self.log = logging.getLogger(__name__)
 
     def solve_maze(self, maze):
-        self.maze = maze
         """implement random mouse algorithm"""
         """this means: always follow a given path to a junction and from there try a direction at random"""
         """caution: this algorithms may take longer than anticipated (since it is random)"""
+        self.maze = maze
+        self.path = []
         if maze.get_entrance() is None or maze.get_exit() is None:
             self.log.error('Entrance or Exit is missing')
             raise Exception('Entrance or Exit is missing')

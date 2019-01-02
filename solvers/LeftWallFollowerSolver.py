@@ -11,6 +11,7 @@ class LeftWallFollowerSolver(AbstractSolver):
     def solve_maze(self, maze):
         """implement left wall following"""
         """this means: always try going in directions in the following order: left, forward, right, backward"""
+        self.path = []
         self.maze = maze
         if maze.get_entrance() is None or maze.get_exit() is None:
             self.log.error('Entrance or Exit is missing')

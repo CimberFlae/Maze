@@ -54,10 +54,10 @@ class TkInterDrawer(AbstractDrawer):
         entrance = path[0]
         i = entrance.get_y()
         j = entrance.get_x()
-        if matrix.get_left_neighbour(entrance) is None:
+        if matrix.get_left_neighbour(entrance) is None and entrance.get_left().is_removed():
             canvas.create_line(i * self.resolution, (j + 1.5) * self.resolution, (i + 1.5) * self.resolution,
                                (j + 1.5) * self.resolution, fill="red")
-        elif matrix.get_top_neighbour(entrance) is None:
+        elif matrix.get_top_neighbour(entrance) is None and entrance.get_top().is_removed():
             canvas.create_line((i + 1.5) * self.resolution, j * self.resolution, (i + 1.5) * self.resolution,
                                (j + 1.5) * self.resolution, fill="red")
         else:
