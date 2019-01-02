@@ -60,10 +60,13 @@ class Demo:
     drawer.draw_path(maze, path)
     print("Showcasing finished")
 
-    print("Showcasing the DepthFirstSearchWithLoopsGenerator")
+    print("Showcasing the DepthFirstSearchWithLoopsGenerator and RightWallFollowerSolver")
     generator = DepthFirstSearchWithLoopsGenerator()
+    solver = RightWallFollowerSolver(seed)
     maze = generator.generate_random_maze(size, seed)
     drawer.draw_maze(maze)
+    path = solver.solve_maze(maze)
+    drawer.draw_path(maze, path)
     print("Showcasing finished")
 
     print("Showcasing the BinaryTreeGenerator and TkInter Drawer")
