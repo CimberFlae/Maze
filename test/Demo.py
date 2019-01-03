@@ -5,6 +5,7 @@ from generators.DepthFirstSearchGenerator import DepthFirstSearchGenerator
 from generators.withloops.DepthFirstSearchWithLoopsGenerator import DepthFirstSearchWithLoopsGenerator
 from generators.PrimGenerator import PrimGenerator
 from generators.RecursiveDivisionGenerator import RecursiveDivisionGenerator
+from generators.withloops.BinaryTreeWithLoopsGenerator import BinaryTreeWithLoopsGenerator
 from generators.BinaryTreeGenerator import BinaryTreeGenerator
 from drawers.ASCIIDrawer import ASCIIDrawer
 from drawers.TkInterDrawer import TkInterDrawer
@@ -63,6 +64,15 @@ class Demo:
     print("Showcasing the DepthFirstSearchWithLoopsGenerator and RightWallFollowerSolver")
     generator = DepthFirstSearchWithLoopsGenerator()
     solver = RightWallFollowerSolver(seed)
+    maze = generator.generate_random_maze(size, seed)
+    drawer.draw_maze(maze)
+    path = solver.solve_maze(maze)
+    drawer.draw_path(maze, path)
+    print("Showcasing finished")
+
+    print("Showcasing the BinaryTreeWithLoopsGenerator and LeftWallFollowerSolver")
+    generator = BinaryTreeWithLoopsGenerator()
+    solver = LeftWallFollowerSolver(seed)
     maze = generator.generate_random_maze(size, seed)
     drawer.draw_maze(maze)
     path = solver.solve_maze(maze)

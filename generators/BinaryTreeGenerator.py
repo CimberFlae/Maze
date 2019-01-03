@@ -18,8 +18,14 @@ class BinaryTreeGenerator(AbstractGenerator):
             mesh.get_cell(i, 0).remove_top()
         for i in range(1, size):
             for j in range(1, size):
+                cell = mesh.get_cell(i, j)
                 if self.random.random() > 0.5:
-                    mesh.get_cell(i, j).remove_left()
+                    cell.remove_left()
                 else:
-                    mesh.get_cell(i, j).remove_top()
+                    cell.remove_top()
+                self.__createLoops__(cell, size)
         return mesh
+
+    # To be overridden by subclass
+    def __createLoops__(self, cell, size):
+        pass
