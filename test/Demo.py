@@ -1,6 +1,7 @@
 import os
 import sys
 from generators.KruskalGenerator import KruskalGenerator
+from generators.withloops.KruskalWithLoopsGenerator import KruskalWithLoopsGenerator
 from generators.DepthFirstSearchGenerator import DepthFirstSearchGenerator
 from generators.withloops.DepthFirstSearchWithLoopsGenerator import DepthFirstSearchWithLoopsGenerator
 from generators.PrimGenerator import PrimGenerator
@@ -73,6 +74,15 @@ class Demo:
     print("Showcasing the BinaryTreeWithLoopsGenerator and LeftWallFollowerSolver")
     generator = BinaryTreeWithLoopsGenerator()
     solver = LeftWallFollowerSolver(seed)
+    maze = generator.generate_random_maze(size, seed)
+    drawer.draw_maze(maze)
+    path = solver.solve_maze(maze)
+    drawer.draw_path(maze, path)
+    print("Showcasing finished")
+
+    print("Showcasing the KruskalWithLoopsGenerator and RandomMouseSolver")
+    generator = KruskalWithLoopsGenerator()
+    solver = RandomMouseSolver(seed)
     maze = generator.generate_random_maze(size, seed)
     drawer.draw_maze(maze)
     path = solver.solve_maze(maze)

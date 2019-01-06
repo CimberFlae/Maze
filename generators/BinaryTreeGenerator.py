@@ -23,9 +23,9 @@ class BinaryTreeGenerator(AbstractGenerator):
                     cell.remove_left()
                 else:
                     cell.remove_top()
-                self.__createLoops__(cell, size)
+                self.__create_loops__(cell, size)
         return mesh
 
     # To be overridden by subclass
-    def __createLoops__(self, cell, size):
+    def __create_loops__(self, cell, size):
         pass
