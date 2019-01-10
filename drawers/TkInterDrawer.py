@@ -89,10 +89,10 @@ class TkInterDrawer(AbstractDrawer):
             else:
                 self.log.error('Invalid cell transition')
                 raise Exception('Invalid cell transition')
-        if matrix.get_right_neighbour(path[-1]) is None:
+        if matrix.get_right_neighbour(path[-1]) is None and entrance.get_right().is_removed():
             canvas.create_line(i * self.resolution, j * self.resolution, (i + 1.5) * self.resolution,
                                j * self.resolution, fill="red")
-        elif matrix.get_bottom_neighbour(path[-1]) is None:
+        elif matrix.get_bottom_neighbour(path[-1]) is None and entrance.get_bottom().is_removed():
             canvas.create_line(i * self.resolution, j * self.resolution, i * self.resolution,
                                (j + 1.5) * self.resolution, fill="red")
         else:
