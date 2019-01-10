@@ -5,6 +5,7 @@ from generators.withloops.KruskalWithLoopsGenerator import KruskalWithLoopsGener
 from generators.DepthFirstSearchGenerator import DepthFirstSearchGenerator
 from generators.withloops.DepthFirstSearchWithLoopsGenerator import DepthFirstSearchWithLoopsGenerator
 from generators.PrimGenerator import PrimGenerator
+from generators.withloops.PrimWithLoopsGenerator import PrimWithLoopsGenerator
 from generators.RecursiveDivisionGenerator import RecursiveDivisionGenerator
 from generators.withloops.BinaryTreeWithLoopsGenerator import BinaryTreeWithLoopsGenerator
 from generators.BinaryTreeGenerator import BinaryTreeGenerator
@@ -83,6 +84,15 @@ class Demo:
     print("Showcasing the KruskalWithLoopsGenerator and RandomMouseSolver")
     generator = KruskalWithLoopsGenerator()
     solver = RandomMouseSolver(seed)
+    maze = generator.generate_random_maze(size, seed)
+    drawer.draw_maze(maze)
+    path = solver.solve_maze(maze)
+    drawer.draw_path(maze, path)
+    print("Showcasing finished")
+
+    print("Showcasing the PrimWithLoopsGenerator and TremauxSolver")
+    generator = PrimWithLoopsGenerator()
+    solver = TremauxSolver(seed)
     maze = generator.generate_random_maze(size, seed)
     drawer.draw_maze(maze)
     path = solver.solve_maze(maze)

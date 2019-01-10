@@ -1,15 +1,17 @@
-from generators.KruskalGenerator import KruskalGenerator
+from generators.PrimGenerator import PrimGenerator
 import logging
 
 
-class KruskalWithLoopsGenerator(KruskalGenerator):
+class PrimWithLoopsGenerator(PrimGenerator):
 
     def __init__(self):
-        KruskalGenerator.__init__(self)
+        PrimGenerator.__init__(self)
         self.log = logging.getLogger(__name__)
 
     # @Override
-    def __create_loops__(self, wall, size):
-        # Don't want too many loops, so we set the probability for a cell to remove both walls to 1/(2*size)
-        if self.random.random() <= 1/(2*size):
+    def __create_loops__(self, cell, neighbour, wall):
+        if cell.wall_count() == 3 and neighbour.wall_count() == 3:
+            self.log.debug('removing wall to ' + str(neighbour) + ' to create a loop')
             wall.remove()
+            if len([wall for wall in neighbour.get_wall_list() if not (self.mesh.is_border(neighbour, wall) or wall.is_removed())]) == 0:
+                self.queue.remove(neighbour)

@@ -12,40 +12,36 @@ class PrimGenerator(AbstractGenerator):
     def __generate_maze__(self, size):
         AbstractGenerator.__generate_maze__(self, size)
         """implement Prim's Algorithm"""
-        mesh = Mesh(size)
-        cell = mesh.choose_cell(self.random)
-        queue = [cell]
-        while len(queue) > 0:
-            n = self.random.randint(0, len(queue)-1)
-            cell = queue[n]
-            wall = mesh.choose_wall(cell, self.random)
+        self.mesh = Mesh(size)
+        cell = self.mesh.choose_cell(self.random)
+        self.queue = [cell]
+        while len(self.queue) > 0:
+            n = self.random.randint(0, len(self.queue)-1)
+            cell = self.queue[n]
+            self.log.debug('looking at ' + str(cell))
+            wall = self.mesh.choose_wall(cell, self.random)
             if wall == cell.get_left():
-                neighbour = mesh.get_left_neighbour(cell)
-                if cell.get_set() != neighbour.get_set():
-                    cell.remove_left()
-                    mesh.move_cell(neighbour.get_set(), cell.get_set())
-                    queue.append(neighbour)
+                neighbour = self.mesh.get_left_neighbour(cell)
             elif wall == cell.get_right():
-                neighbour = mesh.get_right_neighbour(cell)
-                if cell.get_set() != neighbour.get_set():
-                    cell.remove_right()
-                    mesh.move_cell(neighbour.get_set(), cell.get_set())
-                    queue.append(neighbour)
+                neighbour = self.mesh.get_right_neighbour(cell)
             elif wall == cell.get_top():
-                neighbour = mesh.get_top_neighbour(cell)
-                if cell.get_set() != neighbour.get_set():
-                    cell.remove_top()
-                    mesh.move_cell(neighbour.get_set(), cell.get_set())
-                    queue.append(neighbour)
+                neighbour = self.mesh.get_top_neighbour(cell)
             elif wall == cell.get_bottom():
-                neighbour = mesh.get_bottom_neighbour(cell)
-                if cell.get_set() != neighbour.get_set():
-                    cell.remove_bottom()
-                    mesh.move_cell(neighbour.get_set(), cell.get_set())
-                    queue.append(neighbour)
+                neighbour = self.mesh.get_bottom_neighbour(cell)
             else:
-                self.log.error('Invalid wall')
-                raise Exception('Invalid wall')
-            if not mesh.has_neighbour_in_different_set(cell):
-                queue.remove(cell)
-        return mesh
+                self.log.error('Invalid wall: ' + str(wall))
+                raise Exception('Invalid wall: ' + str(wall))
+            if cell.get_set() != neighbour.get_set():
+                self.log.debug('removing wall to ' + str(neighbour))
+                wall.remove()
+                self.mesh.move_cell(neighbour.get_set(), cell.get_set())
+                self.queue.append(neighbour)
+            else:
+                self.__create_loops__(cell, neighbour, wall)
+            if not self.mesh.has_neighbour_in_different_set(cell):
+                self.log.debug('removing cell from queue')
+                self.queue.remove(cell)
+        return self.mesh
+
+    def __create_loops__(self, cell, neighbour, wall):
+        pass
