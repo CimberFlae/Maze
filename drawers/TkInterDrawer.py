@@ -52,6 +52,7 @@ class TkInterDrawer(AbstractDrawer):
 
     def __draw_path__(self, matrix, path, canvas):  # draws the path
         entrance = path[0]
+        exit = path[-1]
         i = entrance.get_y()
         j = entrance.get_x()
         if matrix.get_left_neighbour(entrance) is None and entrance.get_left().is_removed():
@@ -89,12 +90,12 @@ class TkInterDrawer(AbstractDrawer):
             else:
                 self.log.error('Invalid cell transition')
                 raise Exception('Invalid cell transition')
-        if matrix.get_right_neighbour(path[-1]) is None and entrance.get_right().is_removed():
+        if matrix.get_right_neighbour(exit) is None and exit.get_right().is_removed():
             canvas.create_line(i * self.resolution, j * self.resolution, (i + 1.5) * self.resolution,
                                j * self.resolution, fill="red")
-        elif matrix.get_bottom_neighbour(path[-1]) is None and entrance.get_bottom().is_removed():
+        elif matrix.get_bottom_neighbour(exit) is None and exit.get_bottom().is_removed():
             canvas.create_line(i * self.resolution, j * self.resolution, i * self.resolution,
                                (j + 1.5) * self.resolution, fill="red")
         else:
-            self.log.error('No entrance?')
-            raise Exception('No entrance?')
+            self.log.error('No exit?')
+            raise Exception('No exit?')
