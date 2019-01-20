@@ -19,17 +19,17 @@ class AbstractSolver:
     def __clean_path__(self):
         i = 2
         while i < len(self.path):
-            if self.path[i-2] == self.path[i]:
+            if self.path[i - 2] == self.path[i]:
                 self.__cleanup__(i - 2, i)
                 i = 2
             else:
                 i += 1
 
     def __cleanup__(self, i, j):
-        if i > 0 and j < len(self.path)-1 and self.path[i-1] == self.path[j+1]:
+        if i > 0 and j < len(self.path) - 1 and self.path[i - 1] == self.path[j + 1]:
             self.__cleanup__(i - 1, j + 1)
         else:
-            del self.path[(i+1):(j+1)]
+            del self.path[(i + 1):(j + 1)]
 
     def __is_junction__(self, cell):
         self.log.debug("current cell: " + str(cell) + " is junction: " + str(cell.wall_count() < 2))
@@ -43,7 +43,10 @@ class AbstractSolver:
 
     def __cameFromTop__(self):
         previous = self.__getPrevious__()
-        return previous is not None and self.maze.get_top_neighbour(self.path[-1]) == previous
+        current = self.path[-1]
+        return previous is not None and self.maze.get_top_neighbour(current) == previous \
+               or previous is None and self.maze.get_top_neighbour(current) is None \
+               and current.get_top().is_removed()
 
     def __cameFromRight__(self):
         previous = self.__getPrevious__()
@@ -55,7 +58,10 @@ class AbstractSolver:
 
     def __cameFromLeft__(self):
         previous = self.__getPrevious__()
-        return previous is not None and self.maze.get_left_neighbour(self.path[-1]) == previous
+        current = self.path[-1]
+        return previous is not None and self.maze.get_left_neighbour(current) == previous \
+               or previous is None and self.maze.get_left_neighbour(current) is None \
+               and current.get_left().is_removed()
 
     def __getPrevious__(self):
         return self.path[-2] if len(self.path) > 1 else None
@@ -109,7 +115,7 @@ class AbstractSolver:
             raise Exception('Came from nowhere')
 
     def __choose_direction__(self, directions):
-        n = self.random.randint(0, len(directions)-1)
+        n = self.random.randint(0, len(directions) - 1)
         directions[n]()
 
     def __decide_next__(self):

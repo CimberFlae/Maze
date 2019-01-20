@@ -20,14 +20,7 @@ class TremauxSolver(AbstractSolver):
         self.junctions = []
         self.path.append(maze.get_entrance())
         self.log.debug("Entrance: " + str(maze.get_entrance()))
-        self.__try_bottom__() # arbitrary choice to start with
-        # arbitrary order of directions
-        if self.__not_finished__():
-            self.__try_left__()
-        if self.__not_finished__():
-            self.__try_right__()
-        if self.__not_finished__():
-            self.__try_top__()
+        self.__decide_next__()
         self.__clean_path__()
         return self.path
 
