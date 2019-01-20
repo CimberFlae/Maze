@@ -7,6 +7,7 @@ from generators.withloops.DepthFirstSearchWithLoopsGenerator import DepthFirstSe
 from generators.PrimGenerator import PrimGenerator
 from generators.withloops.PrimWithLoopsGenerator import PrimWithLoopsGenerator
 from generators.RecursiveDivisionGenerator import RecursiveDivisionGenerator
+from generators.withloops.RecursiveDivisionWithLoopsGenerator  import RecursiveDivisionWithLoopsGenerator
 from generators.withloops.BinaryTreeWithLoopsGenerator import BinaryTreeWithLoopsGenerator
 from generators.BinaryTreeGenerator import BinaryTreeGenerator
 from drawers.ASCIIDrawer import ASCIIDrawer
@@ -93,6 +94,15 @@ class Demo:
     print("Showcasing the PrimWithLoopsGenerator and TremauxSolver")
     generator = PrimWithLoopsGenerator()
     solver = TremauxSolver(seed)
+    maze = generator.generate_random_maze(size, seed)
+    drawer.draw_maze(maze)
+    path = solver.solve_maze(maze)
+    drawer.draw_path(maze, path)
+    print("Showcasing finished")
+
+    print("Showcasing the RecursiveDivisionWithLoopsGenerator and RightWallFollowerSolver")
+    generator = RecursiveDivisionWithLoopsGenerator()
+    solver = RightWallFollowerSolver(seed)
     maze = generator.generate_random_maze(size, seed)
     drawer.draw_maze(maze)
     path = solver.solve_maze(maze)

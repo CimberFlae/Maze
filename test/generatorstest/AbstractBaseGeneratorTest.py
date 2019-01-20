@@ -2,6 +2,7 @@ import unittest
 import sys
 import os
 from abc import ABC, abstractmethod
+from drawers.ASCIIDrawer import ASCIIDrawer
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 tc = unittest.TestCase('__init__')
 
@@ -31,7 +32,9 @@ class AbstractBaseGeneratorTest(ABC):
             cell = self.maze.get_cell(0, i)
             if cell.get_top().is_removed():
                 entries += 1
-        tc.assertEqual(entries, 1, 'There are more than one entry')
+        drawer = ASCIIDrawer()
+        drawer.draw_maze(self.maze)
+        tc.assertEqual(entries, 1, 'There is more than one entry')
     
     # check whether the maze has a valid exit point
     def test_valid_exit(self):
@@ -52,4 +55,4 @@ class AbstractBaseGeneratorTest(ABC):
             cell = self.maze.get_cell(self.size - 1, i)
             if cell.get_bottom().is_removed():
                 exits += 1
-        tc.assertEqual(exits, 1, 'There are more than one exit')
+        tc.assertEqual(exits, 1, 'There is more than one exit')
