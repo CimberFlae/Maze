@@ -10,6 +10,6 @@ class RecursiveDivisionWithLoopsGenerator(RecursiveDivisionGenerator):
 
     # @Override
     def __create_loops__(self, function_list):
-        #if self.random.random() <= 1/(2*self.mesh.get_size()):
-        #self.log.debug(str(function_list[0]))
-        function_list[0]()
+        if self.random.random() <= 1/self.mesh.get_size():
+            self.log.debug('creating loop')
+            function_list[0]()

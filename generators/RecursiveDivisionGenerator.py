@@ -41,7 +41,7 @@ class RecursiveDivisionGenerator(AbstractGenerator):
                 choice = self.random.randint(0, len(make_hole_list)-1)
                 make_hole_list[choice]()
                 make_hole_list.remove(make_hole_list[choice])
-
+            self.__create_loops__(make_hole_list)
             self.__divideAndGenerate__(left_border, column - 1, top_border, row - 1)
             self.__divideAndGenerate__(column, right_border, top_border, row - 1)
             self.__divideAndGenerate__(left_border, column - 1, row, bottom_border)
