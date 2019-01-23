@@ -69,41 +69,41 @@ class AbstractSolver:
     def __findNext__(self):  # if there is only one way to go
         current = self.path[-1]
         if self.__cameFromBottom__():
-            if current.get_left().is_removed():
+            if current.get_left().is_removed() and self.maze.get_left_neighbour(current) is not None:
                 self.__try_left__()
-            elif current.get_right().is_removed():
+            elif current.get_right().is_removed() and self.maze.get_right_neighbour(current) is not None:
                 self.__try_right__()
-            elif current.get_top().is_removed():
+            elif current.get_top().is_removed() and self.maze.get_top_neighbour(current) is not None:
                 self.__try_top__()
             else:
                 self.log.error('No way out')
                 raise Exception('No way out')
         elif self.__cameFromLeft__():
-            if current.get_bottom().is_removed():
+            if current.get_bottom().is_removed() and self.maze.get_bottom_neighbour(current) is not None:
                 self.__try_bottom__()
-            elif current.get_right().is_removed():
+            elif current.get_right().is_removed() and self.maze.get_right_neighbour(current) is not None:
                 self.__try_right__()
-            elif current.get_top().is_removed():
+            elif current.get_top().is_removed() and self.maze.get_top_neighbour(current) is not None:
                 self.__try_top__()
             else:
                 self.log.error('No way out')
                 raise Exception('No way out')
         elif self.__cameFromRight__():
-            if current.get_bottom().is_removed():
+            if current.get_bottom().is_removed() and self.maze.get_bottom_neighbour(current) is not None:
                 self.__try_bottom__()
-            elif current.get_left().is_removed():
+            elif current.get_left().is_removed() and self.maze.get_left_neighbour(current) is not None:
                 self.__try_left__()
-            elif current.get_top().is_removed():
+            elif current.get_top().is_removed() and self.maze.get_top_neighbour(current) is not None:
                 self.__try_top__()
             else:
                 self.log.error('No way out')
                 raise Exception('No way out')
         elif self.__cameFromTop__():
-            if current.get_bottom().is_removed():
+            if current.get_bottom().is_removed() and self.maze.get_bottom_neighbour(current) is not None:
                 self.__try_bottom__()
-            elif current.get_left().is_removed():
+            elif current.get_left().is_removed() and self.maze.get_left_neighbour(current) is not None:
                 self.__try_left__()
-            elif current.get_right().is_removed():
+            elif current.get_right().is_removed() and self.maze.get_right_neighbour(current) is not None:
                 self.__try_right__()
             else:
                 self.log.error('No way out')
@@ -120,6 +120,8 @@ class AbstractSolver:
 
     def __decide_next__(self):
         current = self.path[-1]
+        if current == self.maze.get_exit():
+            return
         self.log.debug("deciding next in: " + str(current))
         if self.__is_junction__(current):
             self.__handle_junction__()
@@ -160,16 +162,18 @@ class AbstractSolver:
         self.__findNext__()
 
     def __handle_dead_end__(self):
-        if self.__cameFromTop__():
+        current = self.path[-1]
+        [pathway] = list(filter(lambda wall: wall.is_removed() and self.maze.get_neighbour(current, wall) is not None,
+                         current.get_walls()))
+        self.log.debug(self.maze.get_neighbour(current, pathway))
+        if pathway == current.get_top():
             self.__try_top__()
-        elif self.__cameFromBottom__():
+        elif pathway == current.get_bottom():
             self.__try_bottom__()
-        elif self.__cameFromLeft__():
+        elif pathway == current.get_left():
             self.__try_left__()
-        elif self.__cameFromRight__():
+        elif pathway == current.get_right():
             self.__try_right__()
-        elif self.path[-1] == self.maze.get_entrance():  # We're at the entrance
-            self.__handle_junction__()
         else:
             self.log.error('Came from nowhere')
             raise Exception('Came from nowhere')

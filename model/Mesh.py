@@ -59,6 +59,24 @@ class Mesh:
             return None
         return self.matrix[cell.get_x() + 1][cell.get_y()]
 
+    def get_neighbour(self, cell, wall):
+        self.log.debug('get_neighbour')
+        if wall == cell.get_top():
+            self.log.debug('got top')
+            return self.get_top_neighbour(cell)
+        elif wall == cell.get_bottom():
+            self.log.debug('got bottom')
+            return self.get_bottom_neighbour(cell)
+        elif wall == cell.get_right():
+            self.log.debug('got right')
+            return self.get_right_neighbour(cell)
+        elif wall == cell.get_left():
+            self.log.debug('got left')
+            return self.get_left_neighbour(cell)
+        else:
+            self.log.warning('given wall does not belong to given cell')
+            return None
+
     def move_cell(self, from_set, to_set):
         if from_set == to_set:
             return
@@ -209,7 +227,7 @@ class Mesh:
 
     # returns None if there is no non-border wall that is not removed
     def choose_wall(self, cell, custom_random=random):
-        if len([wall for wall in cell.get_wall_list() if not (self.is_border(cell, wall) or wall.is_removed())]) > 0:
+        if len([wall for wall in cell.get_walls() if not (self.is_border(cell, wall) or wall.is_removed())]) > 0:
             while True:
                 wall = cell.choose_wall(custom_random)
                 if not self.is_border(cell, wall):

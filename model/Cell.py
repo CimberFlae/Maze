@@ -63,7 +63,7 @@ class Cell:
         self.bottomWall = wall
         self.wallList[3] = wall
     
-    def get_wall_list(self):
+    def get_walls(self):
         return self.wallList
 
     def remove_left(self):
