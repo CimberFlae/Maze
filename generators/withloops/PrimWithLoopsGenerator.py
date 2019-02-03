@@ -13,5 +13,6 @@ class PrimWithLoopsGenerator(PrimGenerator):
         if cell.wall_count() == 3 and neighbour.wall_count() == 3:
             self.log.debug('removing wall to ' + str(neighbour) + ' to create a loop')
             wall.remove()
-            if len([wall for wall in neighbour.get_walls() if not (self.mesh.is_border(neighbour, wall) or wall.is_removed())]) == 0:
+            if len([wall for wall in neighbour.get_walls()
+                    if not (self.mesh.is_border(neighbour, wall) or wall.is_removed())]) == 0:
                 self.queue.remove(neighbour)

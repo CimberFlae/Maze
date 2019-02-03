@@ -11,6 +11,7 @@ class AbstractGenerator:
 
     def __generate_maze__(self, size):
         """Generate a Maze using a specific algorithm"""
+        self.size = size
         if size < 2:
             self.log.error('Invalid maze size!')
             raise Exception('Invalid maze size!')
