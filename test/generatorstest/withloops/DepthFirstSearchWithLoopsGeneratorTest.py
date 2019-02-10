@@ -12,9 +12,9 @@ class DepthFirstSearchWithLoopsGeneratorTest(DepthFirstSearchGeneratorTest, unit
     def setUp(self):
         self.log = logging.getLogger(__name__)
         self.size = 5
-        seed = 2
-        generator = DepthFirstSearchWithLoopsGenerator()
-        self.maze = generator.generate_random_maze(self.size, seed=seed)
+        self.seed = 7
+        self.generator = DepthFirstSearchWithLoopsGenerator()
+        self.maze = self.generator.generate_random_maze(self.size, seed=self.seed)
 
     def test_invalid_size(self):
         self.log.debug("test_invalid_size")

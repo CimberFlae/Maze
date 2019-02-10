@@ -13,9 +13,9 @@ class BinaryTreeGeneratorWithLoopsTest(BinaryTreeGeneratorTest, unittest.TestCas
     def setUp(self):
         self.log = logging.getLogger(__name__)
         self.size = 5
-        seed = 2
-        generator = BinaryTreeWithLoopsGenerator()
-        self.maze = generator.generate_random_maze(self.size, seed=seed)
+        self.seed = 6
+        self.generator = BinaryTreeWithLoopsGenerator()
+        self.maze = self.generator.generate_random_maze(self.size, seed=self.seed)
 
     def test_invalid_size(self):
         self.log.debug("test_invalid_size")

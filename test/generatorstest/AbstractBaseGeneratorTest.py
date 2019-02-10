@@ -56,3 +56,23 @@ class AbstractBaseGeneratorTest(ABC):
             if cell.get_bottom().is_removed():
                 exits += 1
         tc.assertEqual(exits, 1, 'There is more than one exit')
+
+    def test_custom_entry_exit(self):
+        self.log.debug("test_custom_entry_exit")
+        maze = self.generator.generate_custom_maze(self.size, 0, 3, 4, 4, seed=self.seed)
+        entry = maze.get_entrance()
+        tc.assertEquals(entry.get_x(), 0, 'Custom entry is not set correctly')
+        tc.assertEquals(entry.get_y(), 3, 'Custom entry is not set correctly')
+        exit = maze.get_exit()
+        tc.assertEqual(exit.get_x(), 4, 'Custom exit is not set correctly')
+        tc.assertEqual(exit.get_y(), 4, 'Custom exit is not set correctly')
+
+    def test_custom_entry_exit_with_coordinates(self):
+        self.log.debug("test_custom_entry_exit_with_coordinates")
+        maze = self.generator.generate_custom_maze(self.size, 0, 3, 2, 0, seed=self.seed, coordinates=True)
+        entry = maze.get_entrance()
+        tc.assertEquals(entry.get_x(), 1, 'Custom entry is not set correctly')
+        tc.assertEquals(entry.get_y(), 0, 'Custom entry is not set correctly')
+        exit = maze.get_exit()
+        tc.assertEqual(exit.get_x(), 4, 'Custom exit is not set correctly')
+        tc.assertEqual(exit.get_y(), 2, 'Custom exit is not set correctly')
