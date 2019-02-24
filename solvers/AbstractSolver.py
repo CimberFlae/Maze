@@ -3,6 +3,8 @@ import logging
 
 
 class AbstractSolver:
+    """Base class for all maze solvers. Every solver implements its own algorithm to solve a maze by using
+    or overriding the base class methods."""
 
     def __init__(self, seed=0):
         self.log = logging.getLogger(__name__)
@@ -13,7 +15,8 @@ class AbstractSolver:
             self.random.seed(seed)
 
     def solve_maze(self, maze):
-        """implement a solving algorithm"""
+        """Solve a maze. The solving algorithm is decided by the instantiating class.
+        This method has to be implemented by the concrete subclassing solver."""
 
     # cleans the path of redundant moves
     def __clean_path__(self):

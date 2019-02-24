@@ -3,6 +3,7 @@ import logging
 
 
 class AbstractGenerator:
+    """Base class for all maze generators. Every generator implements its own algorithm to generate a maze."""
 
     def __init__(self):
         self.log = logging.getLogger(__name__)
@@ -10,13 +11,18 @@ class AbstractGenerator:
         self.random = random
 
     def __generate_maze__(self, size):
-        """Generate a Maze using a specific algorithm"""
+        """Generate a Maze using a specific algorithm.
+        This method has to be implemented by concrete subclassing generators."""
         self.size = size
         if size < 2:
             self.log.error('Invalid maze size!')
             raise Exception('Invalid maze size!')
 
     def generate_random_maze(self, size, seed=0):
+        """Generate a maze with a random entry somewhere on the left or the top border, and a random exit somewhere
+        on the right or the bottom border.
+        The random seed can be provided through the parameter 'seed'
+        The generation algorithm is decided by the choice of the instantiating class"""
         if seed != 0:
             self.random.seed(seed)
             self.log.debug("generating maze with random seed {%s}", str(seed))
@@ -41,7 +47,8 @@ class AbstractGenerator:
         i.e. the top left corner is [0,0], the bottom right corner is [size-1,size-1].
         If you want the coordinates to be interpreted as in a coordinate system,
         set the 'coordinates' parameter to 'True'. In that case the bottom left corner would be [0,0]
-        and the top right corner would be [size-1,size-1]"""
+        and the top right corner would be [size-1,size-1]
+        The generation algorithm is decided by the choice of the instantiating class"""
         if seed != 0:
             self.random.seed(seed)
             self.log.debug("generating maze with random seed {%s}", str(seed))
